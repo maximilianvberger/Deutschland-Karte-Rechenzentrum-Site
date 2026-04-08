@@ -1,0 +1,1951 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MCDA Datacenter Suitability — Deutschland</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; height: 100%; }
+#map { width: 100%; height: 100%; }
+#pwr-panel {
+  position: fixed; top: 80px; right: 14px; width: 280px;
+  background: rgba(10,15,30,0.88);
+  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255,255,255,0.10); border-radius: 16px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.07);
+  z-index: 9999; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #e2e8f0; max-height: 92vh; overflow-y: auto;
+}
+#pwr-panel::-webkit-scrollbar { width: 3px; }
+#pwr-panel::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius:2px; }
+#pwr-panel.collapsed #pwr-body { display: none; }
+#pwr-hdr {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 16px; position: sticky; top: 0; z-index: 1;
+  background: linear-gradient(135deg, #1e3a5f 0%, #2d6a4f 100%);
+  cursor: pointer; user-select: none; border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+#pwr-hdr-t { font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: #fff; }
+#pwr-tog {
+  background: rgba(255,255,255,0.12); border: none; color: #fff;
+  font-size: 14px; cursor: pointer; width: 22px; height: 22px;
+  border-radius: 50%; display:flex; align-items:center; justify-content:center; transition: background .15s;
+}
+#pwr-tog:hover { background: rgba(255,255,255,0.25); }
+#pwr-body { padding: 14px 16px 14px; }
+#pwr-grad {
+  height: 10px; border-radius: 6px; margin: 0 0 4px;
+  background: linear-gradient(to right,#7f0000,#c0392b,#e67e22,#f1c40f,#a8d08d,#27ae60,#1a5c38);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.pwr-gl { display:flex; justify-content:space-between; font-size:10px; color:#94a3b8; margin-bottom:12px; }
+#pwr-stats-row { display:flex; justify-content:space-between; margin:10px 0 4px; }
+.pwr-stat-box {
+  flex:1; text-align:center; padding:6px 4px;
+  background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); border-radius:8px; margin:0 2px;
+}
+.pwr-stat-label { font-size:9px; text-transform:uppercase; letter-spacing:.08em; color:#64748b; display:block; }
+.pwr-stat-val { font-size:13px; font-weight:800; color:#e2e8f0; display:block; }
+.pwr-section-title {
+  font-size:9px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:#64748b;
+  margin:14px 0 8px; display:flex; align-items:center; gap:6px;
+}
+.pwr-section-title::after { content:""; flex:1; height:1px; background:rgba(255,255,255,0.07); }
+.pwr-weight-row { display:grid; grid-template-columns:20px 1fr 46px; align-items:center; gap:7px; margin-bottom:6px; }
+.pwr-weight-icon { font-size:13px; text-align:center; }
+.pwr-weight-label { font-size:11px; color:#cbd5e1; font-weight:500; white-space:nowrap; }
+.pwr-weight-val { font-size:11px; font-weight:800; color:#fff; text-align:right; white-space:nowrap; }
+input[type=range].pwr-sl {
+  -webkit-appearance:none; appearance:none; width:100%; height:4px;
+  background:rgba(255,255,255,0.12); border-radius:2px; outline:none; cursor:pointer; margin-bottom:5px;
+}
+input[type=range].pwr-sl::-webkit-slider-thumb {
+  -webkit-appearance:none; width:14px; height:14px;
+  background:linear-gradient(135deg,#3b82f6,#06b6d4); border-radius:50%; cursor:pointer;
+  box-shadow:0 0 6px rgba(59,130,246,0.7); transition:transform .1s;
+}
+input[type=range].pwr-sl::-webkit-slider-thumb:hover { transform:scale(1.25); }
+#pwr-sigma-row {
+  display:flex; justify-content:space-between; align-items:center;
+  margin:8px 0 4px; padding:6px 10px;
+  background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); border-radius:8px;
+}
+#pwr-sigma { font-size:12px; font-weight:800; color:#22c55e; }
+#pwr-reset-btn {
+  font-size:10px; font-weight:700; color:#94a3b8;
+  background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.1);
+  border-radius:6px; padding:3px 8px; cursor:pointer; transition:all .15s;
+}
+#pwr-reset-btn:hover { background:rgba(59,130,246,0.25); color:#93c5fd; }
+.prot-row {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:5px 8px; border-radius:8px; margin-bottom:4px;
+  background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06);
+}
+.prot-name { font-size:11px; color:#cbd5e1; font-weight:500; flex:1; }
+.prot-mode { display:flex; gap:2px; }
+.prot-btn {
+  font-size:9px; font-weight:700; padding:2px 6px; border-radius:4px;
+  border:1px solid rgba(255,255,255,0.12); cursor:pointer;
+  transition:all .15s; background:rgba(255,255,255,0.04); color:#64748b;
+}
+.prot-btn.active-hard { background:#7f1d1d; border-color:#ef4444; color:#fca5a5; }
+.prot-btn.active-soft { background:#713f12; border-color:#f59e0b; color:#fcd34d; }
+.prot-btn.active-off  { background:rgba(255,255,255,0.08); border-color:rgba(255,255,255,0.2); color:#94a3b8; }
+.pwr-bar-row { display:flex; align-items:center; gap:7px; margin-bottom:5px; }
+.pwr-bar-label { font-size:10px; color:#94a3b8; width:60px; flex-shrink:0; font-weight:600; }
+.pwr-bar-track { flex:1; height:6px; background:rgba(255,255,255,0.08); border-radius:3px; overflow:hidden; }
+.pwr-bar-fill { height:100%; border-radius:3px; transition:width .4s cubic-bezier(.4,0,.2,1); }
+.pwr-bar-val { font-size:10px; font-weight:700; color:#e2e8f0; min-width:32px; text-align:right; flex-shrink:0; white-space:nowrap; }
+/* ── Dark-themed Leaflet popups ── */
+.dark-popup .leaflet-popup-content-wrapper {
+  background:rgba(8,12,25,0.96); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+  border:1px solid rgba(255,255,255,0.12); border-radius:14px;
+  box-shadow:0 12px 48px rgba(0,0,0,0.7), 0 0 0 1px rgba(0,0,0,0.3);
+  color:#e2e8f0;
+}
+.dark-popup .leaflet-popup-tip { background:rgba(8,12,25,0.96); }
+.dark-popup .leaflet-popup-content { margin:14px 16px; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+.dark-popup .leaflet-popup-close-button { color:#64748b !important; font-size:18px !important; }
+.dark-popup .leaflet-popup-close-button:hover { color:#e2e8f0 !important; }
+/* ── Dark-themed GeoJSON tooltips ── */
+.geo-tip {
+  background:rgba(8,12,25,0.95) !important; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+  border:none !important; border-radius:10px !important; padding:8px 12px !important;
+  box-shadow:0 6px 24px rgba(0,0,0,0.6) !important; color:#e2e8f0 !important;
+  font-family:-apple-system,sans-serif !important; font-size:11px !important;
+  border-left:3px solid #64748b !important;
+}
+.geo-tip::before { border-right-color:rgba(8,12,25,0.95) !important; }
+.geo-tip--prot { border-left-color:#2d6a4f !important; }
+.geo-tip--landuse { border-left-color:#d97706 !important; }
+.geo-tip--powerline { border-left-color:#c0392b !important; }
+.geo-tip--substation { border-left-color:#8e44ad !important; }
+.geo-tip .gt-title { font-size:12px; font-weight:700; color:#fff; margin-bottom:3px; }
+.geo-tip .gt-badge { display:inline-block; padding:1px 7px; border-radius:8px; font-size:9px; font-weight:700; color:#fff; margin-right:4px; }
+.geo-tip .gt-detail { font-size:10px; color:#94a3b8; margin-top:2px; }
+.geo-tip .gt-cell { margin-top:5px; padding-top:5px; border-top:1px solid rgba(255,255,255,0.08); font-size:10px; color:#94a3b8; }
+.geo-tip .gt-cell b { color:#e2e8f0; }
+/* ── Popup internal styles ── */
+.popup-header { display:flex; align-items:baseline; gap:8px; margin-bottom:6px; }
+.popup-score { font-size:24px; font-weight:900; color:#fff; }
+.popup-badge { padding:3px 10px; border-radius:20px; font-size:11px; font-weight:700; color:#fff; }
+.popup-location { font-size:10px; color:#64748b; margin-bottom:10px; }
+.popup-location b { color:#94a3b8; font-weight:600; }
+.popup-section { font-size:9px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:#475569; margin:10px 0 6px; display:flex; align-items:center; gap:6px; }
+.popup-section::after { content:""; flex:1; height:1px; background:rgba(255,255,255,0.07); }
+.popup-bar-row { display:flex; align-items:center; gap:7px; margin-bottom:5px; }
+.popup-bar-label { font-size:10px; color:#94a3b8; width:66px; flex-shrink:0; font-weight:600; }
+.popup-bar-track { flex:1; height:6px; background:rgba(255,255,255,0.08); border-radius:3px; overflow:hidden; }
+.popup-bar-fill { height:100%; border-radius:3px; transition:width .4s cubic-bezier(.4,0,.2,1); }
+.popup-bar-val { font-size:10px; font-weight:800; color:#e2e8f0; min-width:34px; text-align:right; flex-shrink:0; }
+.popup-dist-grid { display:grid; grid-template-columns:1fr 1fr; gap:3px 14px; font-size:10px; color:#64748b; }
+.popup-dist-grid b { color:#cbd5e1; font-weight:700; }
+.popup-chips { display:flex; flex-wrap:wrap; gap:4px; margin-top:4px; }
+.popup-chip { display:inline-flex; align-items:center; gap:4px; padding:2px 8px; border-radius:8px; font-size:10px; font-weight:600; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.08); }
+.popup-feat-title { font-size:14px; font-weight:800; color:#fff; margin-bottom:4px; }
+.popup-feat-type { display:inline-block; padding:2px 9px; border-radius:10px; font-size:10px; font-weight:700; color:#fff; margin-bottom:8px; }
+.popup-feat-props { font-size:11px; color:#94a3b8; }
+.popup-feat-props div { margin-bottom:2px; }
+.popup-feat-props b { color:#e2e8f0; }
+.popup-divider { height:1px; background:rgba(255,255,255,0.08); margin:10px 0; }
+@keyframes tipIn { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:translateY(0); } }
+.tip-animate { animation:tipIn .15s ease-out; }
+#dc-sb-btn {
+  width:100%; margin-top:10px;
+  background:rgba(59,130,246,0.12); border:1px solid rgba(59,130,246,0.3);
+  border-radius:10px; padding:9px 12px; cursor:pointer;
+  display:flex; align-items:center; justify-content:space-between;
+  transition:all .15s; color:#93c5fd; font-family:-apple-system,sans-serif;
+}
+#dc-sb-btn:hover { background:rgba(59,130,246,0.25); border-color:rgba(59,130,246,0.5); }
+#dc-sb-btn .t { font-size:9px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:#64748b; display:block; }
+#dc-sb-btn .v { font-size:12px; font-weight:800; color:#93c5fd; }
+#dc-sb-btn .k { font-size:16px; color:#3b82f6; font-weight:700; }
+#sl-scenario { font-family:inherit; }
+#sl-scenario:focus { outline:1px solid rgba(59,130,246,0.4); }
+#sl-scenario option { background:#1e293b; color:#e2e8f0; }
+#pwr-tip {
+  position:fixed; z-index:20000; pointer-events:none; display:none;
+  background:rgba(8,12,25,0.96); backdrop-filter:blur(16px);
+  border:1px solid rgba(255,255,255,0.12); border-radius:12px; padding:11px 14px;
+  box-shadow:0 8px 32px rgba(0,0,0,0.7), 0 0 0 1px rgba(0,0,0,0.3); min-width:230px; max-width:310px;
+  color:#e2e8f0; font-family:-apple-system,sans-serif;
+}
+.tip-score { font-size:18px; font-weight:900; color:#fff; display:flex; align-items:baseline; gap:6px; margin-bottom:8px; }
+.tip-score-label { font-size:11px; font-weight:600; padding:2px 8px; border-radius:20px; color:#fff; }
+.tip-bar-row { display:flex; align-items:center; gap:7px; margin-bottom:4px; }
+.tip-bar-lbl { font-size:10px; color:#64748b; width:60px; flex-shrink:0; font-weight:600; }
+.tip-bar-track { flex:1; height:5px; background:rgba(255,255,255,0.08); border-radius:3px; overflow:hidden; }
+.tip-bar-fill { height:100%; border-radius:3px; }
+.tip-bar-val { font-size:10px; font-weight:700; color:#cbd5e1; min-width:28px; text-align:right; flex-shrink:0; white-space:nowrap; }
+.tip-dist-chips { display:flex; flex-wrap:wrap; gap:4px; margin-top:8px; padding-top:7px; border-top:1px solid rgba(255,255,255,0.07); }
+.tip-dist-chip { display:inline-flex; align-items:center; gap:3px; padding:2px 7px; border-radius:6px; font-size:9px; font-weight:600; background:rgba(255,255,255,0.06); color:#94a3b8; }
+.tip-dist-chip .dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
+.tip-dist-chip b { color:#cbd5e1; font-weight:700; }
+.tip-context { font-size:9px; margin-top:4px; display:flex; flex-wrap:wrap; gap:4px; }
+.tip-tag { display:inline-flex; align-items:center; gap:3px; padding:2px 7px; border-radius:6px; font-size:9px; font-weight:600; }
+#dc-sb {
+  position:fixed; top:80px; right:-382px; width:368px; max-height:80vh;
+  background:rgba(10,15,30,0.92); backdrop-filter:blur(18px);
+  border:1px solid rgba(255,255,255,0.09); border-radius:16px 0 0 16px;
+  box-shadow:-8px 0 40px rgba(0,0,0,0.5); z-index:10002; overflow:hidden;
+  font-family:-apple-system,sans-serif; color:#e2e8f0;
+  transition:right .25s cubic-bezier(.4,0,.2,1);
+}
+#dc-sb.open { right:0; }
+#dc-sb-h {
+  display:flex; align-items:center; justify-content:space-between; padding:12px 14px;
+  background:linear-gradient(135deg,#1e3a5f,#2d6a4f); border-bottom:1px solid rgba(255,255,255,0.08);
+}
+#dc-sb-t { font-size:11px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:#fff; }
+#dc-sb-x {
+  background:rgba(255,255,255,0.12); border:none; color:#fff; font-size:16px; cursor:pointer;
+  width:24px; height:24px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+}
+#dc-sb-x:hover { background:rgba(255,255,255,0.25); }
+#dc-sb-b { padding:12px 14px; }
+.dc-tools { display:flex; gap:8px; margin-bottom:10px; }
+.dc-in,.dc-sel {
+  border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:7px 10px; font-size:12px; outline:none;
+  background:rgba(255,255,255,0.06); color:#e2e8f0; transition:border-color .15s;
+}
+.dc-in { flex:1; }
+.dc-in:focus,.dc-sel:focus { border-color:rgba(59,130,246,0.5); }
+.dc-kpi { display:flex; justify-content:space-between; align-items:center; font-size:10px; color:#64748b; text-transform:uppercase; margin-bottom:10px; }
+.dc-kpi b { color:#e2e8f0; font-size:13px; }
+#dc-list { max-height:62vh; overflow-y:auto; padding-right:2px; }
+#dc-list::-webkit-scrollbar { width:4px; }
+#dc-list::-webkit-scrollbar-thumb { background:rgba(255,255,255,0.15); border-radius:2px; }
+#dc-kpi-note {
+  margin:-4px 0 10px; font-size:10px; line-height:1.45;
+  color:#64748b;
+}
+.dc-row {
+  padding:11px 12px; border-radius:12px; cursor:pointer; margin-bottom:8px;
+  border:1px solid rgba(255,255,255,0.06);
+  background:linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.015));
+  transition:background .12s,border-color .12s,transform .12s,box-shadow .12s;
+}
+.dc-row:hover {
+  background:rgba(59,130,246,0.11); border-color:rgba(59,130,246,0.25);
+  transform:translateY(-1px); box-shadow:0 10px 26px rgba(2,6,23,0.22);
+}
+.dc-row-top {
+  display:grid; grid-template-columns:minmax(0,1fr) auto; gap:10px; align-items:flex-start;
+}
+.dc-head { min-width:0; }
+.dc-name {
+  font-weight:800; color:#f1f5f9; font-size:13px; line-height:1.35;
+  word-break:break-word;
+}
+.dc-subtitle {
+  color:#8ea3bb; font-size:10.5px; line-height:1.45; margin-top:3px;
+  word-break:break-word;
+}
+.dc-context { display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
+.dc-pill {
+  display:inline-flex; align-items:center; padding:3px 8px; border-radius:999px;
+  font-size:9px; font-weight:700; letter-spacing:.03em;
+  border:1px solid rgba(255,255,255,0.08);
+}
+.dc-pill--muted {
+  background:rgba(148,163,184,0.10); color:#cbd5e1; border-color:rgba(148,163,184,0.18);
+}
+.dc-pill--approx {
+  background:rgba(245,158,11,0.12); color:#fcd34d; border-color:rgba(245,158,11,0.24);
+}
+.dc-pill--mw { color:#fff; border-color:rgba(255,255,255,0.12); }
+.dc-score-box { min-width:82px; text-align:right; flex-shrink:0; }
+.dc-score-num {
+  font-size:18px; font-weight:900; color:#fff; line-height:1;
+  font-variant-numeric:tabular-nums;
+}
+.dc-score-state {
+  display:inline-flex; align-items:center; justify-content:center;
+  margin-top:5px; padding:3px 8px; border-radius:999px;
+  font-size:9px; font-weight:800; letter-spacing:.04em;
+  border:1px solid transparent;
+}
+.dc-meta {
+  display:flex; flex-wrap:wrap; gap:10px; margin-top:9px;
+  color:#7c90a8; font-size:10px; line-height:1.45;
+}
+.dc-meta span { white-space:nowrap; }
+.dc-meta b { color:#dbe5f1; font-weight:800; }
+.dc-score-bar {
+  height:4px; border-radius:999px; margin-top:10px;
+  background:rgba(255,255,255,0.08); overflow:hidden;
+}
+.dc-score-fill { height:100%; border-radius:999px; }
+.dc-empty {
+  padding:14px 10px; border-radius:10px; text-align:center;
+  background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.05);
+  color:#64748b; font-size:11px;
+}
+.leaflet-control-layers {
+  border-radius:10px !important; background:rgba(10,15,30,0.85) !important;
+  backdrop-filter:blur(14px) !important; border:1px solid rgba(255,255,255,0.1) !important;
+  color:#e2e8f0 !important; box-shadow:0 4px 20px rgba(0,0,0,0.4) !important;
+}
+.leaflet-control-layers-toggle { background-color:rgba(30,58,95,0.9) !important; border-radius:8px !important; }
+.lyr-label {
+  display:inline-flex; align-items:center; gap:7px; min-width:0;
+}
+.lyr-text { color:#e2e8f0; }
+.lyr-count {
+  color:#64748b; font-size:10px; font-weight:700; white-space:nowrap;
+}
+.lyr-swatch { display:inline-block; flex-shrink:0; }
+.lyr-swatch--gradient {
+  width:18px; height:10px; border-radius:999px;
+  background:linear-gradient(to right,#7f0000,#c0392b,#e67e22,#f1c40f,#a8d08d,#27ae60,#1a5c38);
+  border:1px solid rgba(255,255,255,0.14);
+}
+.lyr-swatch--outline {
+  width:14px; height:10px; border-radius:3px; background:transparent;
+  border:2px solid currentColor;
+}
+.lyr-swatch--area {
+  width:14px; height:10px; border-radius:3px;
+  border:1px solid rgba(255,255,255,0.16);
+}
+.lyr-swatch--line {
+  width:18px; height:0; border-top:3px solid currentColor; border-radius:999px;
+}
+.lyr-swatch--dot {
+  width:11px; height:11px; border-radius:50%;
+  border:2px solid rgba(255,255,255,0.22);
+}
+.lyr-swatch--dc {
+  display:inline-flex; align-items:center; gap:2px;
+}
+.lyr-swatch--dc i {
+  display:block; width:7px; height:7px; border-radius:50%;
+  border:1px solid rgba(255,255,255,0.2);
+}
+#loading-overlay {
+  position:fixed; top:0; left:0; width:100%; height:100%;
+  background:rgba(10,15,30,0.95); z-index:99999;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  font-family:-apple-system,sans-serif; color:#e2e8f0;
+}
+#loading-overlay .spinner { width:40px; height:40px; border:3px solid rgba(255,255,255,0.1); border-top-color:#3b82f6; border-radius:50%; animation:spin 0.8s linear infinite; margin-bottom:16px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+#loading-status { font-size:12px; color:#64748b; }
+@media (max-width: 768px) {
+  #pwr-panel { width: calc(100vw - 28px); right: 14px; left: 14px; top: 10px; max-height: 70vh; border-radius: 12px; }
+  #dc-sb { width: calc(100vw - 20px); right: -105vw; top: 10px; max-height: 80vh; border-radius: 12px; }
+  #dc-sb.open { right: 10px; }
+}
+@media (max-width: 480px) {
+  #pwr-panel { width: calc(100vw - 16px); right: 8px; left: 8px; top: 6px; font-size: 13px; }
+  #pwr-body { padding: 10px 12px; }
+}
+#geo-search-wrap { margin: 0 0 12px 0; }
+#geo-search-row {
+  display: flex; gap: 0; align-items: center;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 10px; overflow: hidden;
+  transition: border-color .2s, box-shadow .2s;
+}
+#geo-search-row:focus-within {
+  border-color: rgba(59,130,246,0.45);
+  box-shadow: 0 0 0 2px rgba(59,130,246,0.12);
+}
+#geocode-input {
+  flex: 1; padding: 9px 12px; font-size: 12px;
+  background: transparent; border: none; outline: none;
+  color: #e2e8f0; font-family: inherit;
+}
+#geocode-input::placeholder { color: #4b5e78; font-size: 11px; }
+#geocode-clear {
+  background: none; border: none; color: #475569; cursor: pointer;
+  font-size: 13px; padding: 6px 10px; line-height: 1;
+  transition: color .15s; display: none;
+}
+#geocode-clear:hover { color: #94a3b8; }
+#geocode-results {
+  margin-top: 4px; max-height: 180px; overflow-y: auto;
+  border-radius: 8px; display: none;
+  background: rgba(15,23,42,0.95);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.35);
+}
+#geocode-results::-webkit-scrollbar { width: 3px; }
+#geocode-results::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 2px; }
+.geo-item {
+  padding: 9px 12px; cursor: pointer;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  transition: background .1s;
+  font-size: 12px; color: #cbd5e1;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.geo-item:hover { background: rgba(59,130,246,0.12); color: #fff; }
+.geo-item:last-child { border-bottom: none; }
+.geo-no-result { padding: 12px; text-align: center; font-size: 11px; color: #475569; }
+</style>
+</head>
+<body>
+
+<div id="loading-overlay">
+  <div class="spinner"></div>
+  <div id="loading-status">Lade Kartendaten ...</div>
+</div>
+
+<div id="pwr-panel">
+  <div id="pwr-hdr" onclick="pwrTog()">
+    <div id="pwr-hdr-t">&#9889; Standortanalyse</div>
+    <button id="pwr-tog">&minus;</button>
+  </div>
+  <div id="pwr-body">
+    <div id="geo-search-wrap">
+      <div id="geo-search-row">
+        <input id="geocode-input" type="text" placeholder="Adresse oder Ort suchen ..." autocomplete="off" spellcheck="false" />
+        <button id="geocode-clear" title="Suche leeren">&#x2715;</button>
+      </div>
+      <div id="geocode-results"></div>
+    </div>
+    <div id="pwr-grad"></div>
+    <div class="pwr-gl"><span>0,0</span><span>0,25</span><span>0,5</span><span>0,75</span><span>1,0</span></div>
+    <div id="pwr-stats-row">
+      <div class="pwr-stat-box"><span class="pwr-stat-label">Min</span><span class="pwr-stat-val" id="stat-min">&ndash;</span></div>
+      <div class="pwr-stat-box"><span class="pwr-stat-label">&Oslash; Median</span><span class="pwr-stat-val" id="stat-med">&ndash;</span></div>
+      <div class="pwr-stat-box"><span class="pwr-stat-label">Max</span><span class="pwr-stat-val" id="stat-max">&ndash;</span></div>
+    </div>
+    <div style="margin:10px 0 6px;padding:8px 10px;background:rgba(59,130,246,0.08);border-radius:8px;border:1px solid rgba(59,130,246,0.15)">
+      <button id="dc-sb-btn" onclick="dcSbToggle()" style="margin-bottom:0">
+        <div><span class="t">&#127970; Datacenter Explorer</span><span class="v" id="dc-count-label">Standorte</span></div>
+        <span class="k">&rsaquo;</span>
+      </button>
+    </div>
+    <div class="pwr-section-title">&#128208; Szenario</div>
+    <select id="sl-scenario" class="dc-sel" style="width:100%;margin-bottom:10px;padding:6px 8px;background:#1e293b;color:#e2e8f0;border:1px solid rgba(255,255,255,0.1);border-radius:6px;font-size:11px;cursor:pointer">
+      <option value="custom">Benutzerdefiniert</option>
+      <option value="edge">&#128313; Edge / Enterprise (1&ndash;5 MW)</option>
+      <option value="colo" selected>&#128312; Colocation (10&ndash;50 MW)</option>
+      <option value="hyper">&#128308; Hyperscale (&gt; 100 MW)</option>
+    </select>
+    <div id="scenario-desc" style="font-size:9px;color:#64748b;margin-bottom:8px;line-height:1.4"></div>
+    <div class="pwr-section-title">&#9889; Energieinfrastruktur</div>
+    <div class="pwr-weight-row"><span class="pwr-weight-icon">&#127981;</span><span class="pwr-weight-label">HV-Substation</span><span class="pwr-weight-val" id="lbl-w-sub">42 %</span></div>
+    <input type="range" class="pwr-sl" id="sl-w-sub" min="0" max="100" value="42">
+    <div class="pwr-weight-row"><span class="pwr-weight-icon">&#128309;</span><span class="pwr-weight-label">110-kV-Leitung</span><span class="pwr-weight-val" id="lbl-w-110">30 %</span></div>
+    <input type="range" class="pwr-sl" id="sl-w-110" min="0" max="100" value="30">
+    <div class="pwr-weight-row"><span class="pwr-weight-icon">&#128995;</span><span class="pwr-weight-label">220-kV-Leitung</span><span class="pwr-weight-val" id="lbl-w-220">5 %</span></div>
+    <input type="range" class="pwr-sl" id="sl-w-220" min="0" max="100" value="5">
+    <div class="pwr-weight-row"><span class="pwr-weight-icon">&#128308;</span><span class="pwr-weight-label">380-kV-Leitung</span><span class="pwr-weight-val" id="lbl-w-380">23 %</span></div>
+    <input type="range" class="pwr-sl" id="sl-w-380" min="0" max="100" value="23">
+    <div class="pwr-section-title">&#127760; Digital, Demografie &amp; Fl&auml;che</div>
+    <div class="pwr-weight-row"><span class="pwr-weight-icon">&#128225;</span><span class="pwr-weight-label">Gigabit (FTTB/H)</span><span class="pwr-weight-val" id="lbl-w-gb">0 %</span></div>
+    <input type="range" class="pwr-sl" id="sl-w-gb" min="0" max="100" value="0">
+    <div class="pwr-weight-row"><span class="pwr-weight-icon">&#128101;</span><span class="pwr-weight-label">Bev.-Dichte (inv.)</span><span class="pwr-weight-val" id="lbl-w-pop">0 %</span></div>
+    <input type="range" class="pwr-sl" id="sl-w-pop" min="0" max="100" value="0">
+    <div class="pwr-weight-row"><span class="pwr-weight-icon">&#127959;</span><span class="pwr-weight-label">Gewerbe/Industrie</span><span class="pwr-weight-val" id="lbl-w-lu">0 %</span></div>
+    <input type="range" class="pwr-sl" id="sl-w-lu" min="0" max="100" value="0">
+    <div id="pwr-sigma-row">
+      <span id="pwr-sigma">&Sigma; = 100 %</span>
+      <button id="pwr-reset-btn" onclick="pwrReset()">&#8634; Standard</button>
+    </div>
+    <div class="pwr-section-title">&#127807; Schutzgebiete</div>
+    <div style="font-size:9px;color:#64748b;margin-bottom:8px;line-height:1.4">
+      <b style="color:#fca5a5">Hart</b> = Score&rarr;0 &nbsp;|&nbsp;
+      <b style="color:#fcd34d">Weich</b> = Score&times;0,3 &nbsp;|&nbsp;
+      <b style="color:#94a3b8">Aus</b> = ignorieren
+    </div>
+    <div class="prot-row" id="prot-row-nationalpark">
+      <span class="prot-name">&#127956; Nationalpark</span>
+      <div class="prot-mode">
+        <button class="prot-btn active-hard" onclick="setProtMode('nationalpark','hard',this)">Hart</button>
+        <button class="prot-btn" onclick="setProtMode('nationalpark','soft',this)">Weich</button>
+        <button class="prot-btn" onclick="setProtMode('nationalpark','off',this)">Aus</button>
+      </div>
+    </div>
+    <div class="prot-row" id="prot-row-nsg">
+      <span class="prot-name">&#127794; Naturschutzgeb.</span>
+      <div class="prot-mode">
+        <button class="prot-btn active-hard" onclick="setProtMode('nsg','hard',this)">Hart</button>
+        <button class="prot-btn" onclick="setProtMode('nsg','soft',this)">Weich</button>
+        <button class="prot-btn" onclick="setProtMode('nsg','off',this)">Aus</button>
+      </div>
+    </div>
+    <div class="prot-row" id="prot-row-ffh">
+      <span class="prot-name">&#129419; FFH / Natura2000</span>
+      <div class="prot-mode">
+        <button class="prot-btn active-hard" onclick="setProtMode('ffh','hard',this)">Hart</button>
+        <button class="prot-btn" onclick="setProtMode('ffh','soft',this)">Weich</button>
+        <button class="prot-btn" onclick="setProtMode('ffh','off',this)">Aus</button>
+      </div>
+    </div>
+    <div class="prot-row" id="prot-row-biosphere">
+      <span class="prot-name">&#127758; Biosph&auml;renreservat</span>
+      <div class="prot-mode">
+        <button class="prot-btn" onclick="setProtMode('biosphere','hard',this)">Hart</button>
+        <button class="prot-btn active-soft" onclick="setProtMode('biosphere','soft',this)">Weich</button>
+        <button class="prot-btn" onclick="setProtMode('biosphere','off',this)">Aus</button>
+      </div>
+    </div>
+    <div class="prot-row" id="prot-row-lsg">
+      <span class="prot-name">&#127748; Landschaftsschutz</span>
+      <div class="prot-mode">
+        <button class="prot-btn" onclick="setProtMode('lsg','hard',this)">Hart</button>
+        <button class="prot-btn active-soft" onclick="setProtMode('lsg','soft',this)">Weich</button>
+        <button class="prot-btn" onclick="setProtMode('lsg','off',this)">Aus</button>
+      </div>
+    </div>
+    <div class="prot-row" id="prot-row-naturpark">
+      <span class="prot-name">&#127795; Naturpark</span>
+      <div class="prot-mode">
+        <button class="prot-btn" onclick="setProtMode('naturpark','hard',this)">Hart</button>
+        <button class="prot-btn" onclick="setProtMode('naturpark','soft',this)">Weich</button>
+        <button class="prot-btn active-off" onclick="setProtMode('naturpark','off',this)">Aus</button>
+      </div>
+    </div>
+    <div class="pwr-section-title">&#127912; Darstellung</div>
+    <div class="pwr-weight-row"><span class="pwr-weight-icon">&#128065;</span><span class="pwr-weight-label">Deckkraft</span><span class="pwr-weight-val" id="lbl-op">68 %</span></div>
+    <input type="range" class="pwr-sl" id="sl-op" min="10" max="95" value="68">
+    <div class="pwr-weight-row"><span class="pwr-weight-icon">&#128269;</span><span class="pwr-weight-label">Min-Score</span><span class="pwr-weight-val" id="lbl-filter">0,00</span></div>
+    <input type="range" class="pwr-sl" id="sl-filter" min="0" max="95" value="0">
+  </div>
+</div>
+
+<div id="dc-sb">
+  <div id="dc-sb-h">
+    <div id="dc-sb-t">&#127970; Datacenter Explorer</div>
+    <button id="dc-sb-x" onclick="dcSbClose()">&times;</button>
+  </div>
+  <div id="dc-sb-b">
+    <div class="dc-tools">
+      <input id="dc-q" class="dc-in" placeholder="&#128270; Suchen ..."/>
+      <select id="dc-sort" class="dc-sel">
+        <option value="score_desc" selected>Score &darr;</option>
+        <option value="mw_desc">MW &darr;</option>
+        <option value="dsub_asc">HV-Sub &uarr;</option>
+        <option value="d380_asc">380-kV &uarr;</option>
+        <option value="name_asc">Name A&ndash;Z</option>
+      </select>
+    </div>
+    <div class="dc-kpi"><span>Treffer</span><b id="dc-kpi-n">0</b></div>
+    <div id="dc-kpi-note"></div>
+    <div id="dc-list"></div>
+  </div>
+</div>
+
+<div id="pwr-tip"></div>
+<div id="pwr-cell-box" style="display:none"></div>
+
+<div id="map"></div>
+
+<script>
+/* ── Global state ── */
+var CELLS, LAT_EDGES, LON_EDGES, KRS_NAMES, DECAY, W, W_DEF, SCENARIOS;
+var PROT_MODES = {nationalpark:"hard",nsg:"hard",ffh:"hard",biosphere:"soft",lsg:"soft",naturpark:"off"};
+var PROT_BITS = {nationalpark:1,nsg:2,ffh:4,biosphere:8,lsg:16,naturpark:32};
+var SOFT_FACTOR = 0.3;
+var opacityRef = {value:0.68}, filterRef = {value:0.0};
+var map, heatLayer, kreisFg;
+var DC_DATA = [];
+var DC_MARKERS = [];
+var DC_EXPLORER_HIDDEN = 0;
+var geoSearchMarker = null;
+var cellHighlight = null;
+
+/* ── Status helper ── */
+function updateStatus(msg) {
+  var el = document.getElementById("loading-status");
+  if (el) el.textContent = msg;
+}
+
+/* ── Score functions ── */
+function decayScore(d_enc, key) {
+  if (d_enc < 0) return 0;
+  var d = d_enc * 10.0;
+  return 1.0 / (1.0 + Math.pow(d / DECAY[key].d0, DECAY[key].p));
+}
+
+function applyProtection(score, protMask) {
+  var cats = Object.keys(PROT_BITS);
+  var s = score;
+  for (var i = 0; i < cats.length; i++) {
+    var cat = cats[i], bit = PROT_BITS[cat], mode = PROT_MODES[cat];
+    if (mode === "off" || !(protMask & bit)) continue;
+    if (mode === "hard") return 0;
+    if (mode === "soft") s = s * SOFT_FACTOR;
+  }
+  return s;
+}
+
+function calcScore(c) {
+  var s_sub = decayScore(c[3], "sub"), s_380 = decayScore(c[4], "kv380");
+  var s_220 = decayScore(c[5], "kv220"), s_110 = decayScore(c[6], "kv110");
+  var s_gb = (c[11] || 0) / 1000.0, s_pop = (c[12] || 0) / 1000.0;
+  var s_lu = (c[16] || 0) / 1000.0;
+  var total = (W.sub || 0) * s_sub + (W.kv380 || 0) * s_380 + (W.kv220 || 0) * s_220 +
+              (W.kv110 || 0) * s_110 + (W.gb || 0) * s_gb + (W.pop || 0) * s_pop + (W.lu || 0) * s_lu;
+  if (c[3] >= 0 && c[3] * 10 < 2000 && c[4] >= 0 && c[4] * 10 < 5000) total += 0.05;
+  total = Math.max(0, Math.min(1, total));
+  var protMask = c[13] || 0;
+  if (protMask > 0) total = applyProtection(total, protMask);
+  return Math.max(0, Math.min(1, total));
+}
+
+function scoreColor(s, opacity) {
+  s = Math.max(0, Math.min(1, s));
+  var r = s < 0.5 ? 255 : Math.round(255 * (1 - s) * 2);
+  var g = s > 0.5 ? 255 : Math.round(255 * s * 2);
+  return "rgba(" + r + "," + g + ",60," + opacity + ")";
+}
+
+function scoreLabelDE(s) {
+  if (s === 0) return {t:"Ausgeschlossen", bg:"#1e1b1b"};
+  if (s < 0.20) return {t:"Ungeeignet", bg:"#7f0000"};
+  if (s < 0.40) return {t:"Eher schlecht", bg:"#c0392b"};
+  if (s < 0.60) return {t:"Mittel", bg:"#e67e22"};
+  if (s < 0.80) return {t:"Gut", bg:"#27ae60"};
+  return {t:"Sehr gut", bg:"#1a5c38"};
+}
+
+/* ── Cell lookup ── */
+var CELL_MAP = {};
+function buildCellMap() {
+  for (var i = 0; i < CELLS.length; i++) {
+    var _r = CELLS[i][0], _c = CELLS[i][1];
+    if (!CELL_MAP[_r]) CELL_MAP[_r] = {};
+    CELL_MAP[_r][_c] = i;
+  }
+}
+function _rowFor(lat) {
+  var nr = LAT_EDGES.length - 1;
+  var r = Math.floor((lat - LAT_EDGES[0]) / (LAT_EDGES[nr] - LAT_EDGES[0]) * nr);
+  r = Math.max(0, Math.min(nr - 1, r));
+  while (r > 0 && LAT_EDGES[r] > lat) r--;
+  while (r < nr - 1 && LAT_EDGES[r + 1] <= lat) r++;
+  return r;
+}
+function _colFor(lon) {
+  var nc = LON_EDGES.length - 1;
+  var c = Math.floor((lon - LON_EDGES[0]) / (LON_EDGES[nc] - LON_EDGES[0]) * nc);
+  c = Math.max(0, Math.min(nc - 1, c));
+  while (c > 0 && LON_EDGES[c] > lon) c--;
+  while (c < nc - 1 && LON_EDGES[c + 1] <= lon) c++;
+  return c;
+}
+function findCell(lat, lon) {
+  var nr = LAT_EDGES.length - 1, nc = LON_EDGES.length - 1;
+  if (lat < LAT_EDGES[0] - 0.05 || lat > LAT_EDGES[nr] + 0.05 ||
+      lon < LON_EDGES[0] - 0.05 || lon > LON_EDGES[nc] + 0.05) return null;
+  var r = _rowFor(lat), c = _colFor(lon);
+  /* Check 5x5 neighborhood to compensate for metric→WGS84 grid mismatch */
+  for (var dr = -2; dr <= 2; dr++) {
+    for (var dc = -2; dc <= 2; dc++) {
+      var rr = r + dr, cc = c + dc;
+      var rm = CELL_MAP[rr];
+      if (!rm || rm[cc] === undefined) continue;
+      var cell = CELLS[rm[cc]];
+      if (lat >= cell[18] / 1e5 && lat <= cell[19] / 1e5 &&
+          lon >= cell[20] / 1e5 && lon <= cell[21] / 1e5) {
+        return cell;
+      }
+    }
+  }
+  return null;
+}
+function candidatesForBounds(bounds) {
+  var s = bounds.getSouth(), n = bounds.getNorth(), w = bounds.getWest(), e = bounds.getEast();
+  var r0 = _rowFor(s), r1 = _rowFor(n), c0 = _colFor(w), c1 = _colFor(e);
+  /* Compensate for UTM→WGS84 drift: LON_EDGES/LAT_EDGES diverge from actual
+     cell positions by up to ~3 cell widths at the edges of Germany.
+     Add margin to ensure no cells are missed at tile boundaries. */
+  var COL_MARGIN = 5, ROW_MARGIN = 3;
+  c0 = Math.max(0, c0 - COL_MARGIN);
+  c1 = Math.min(LON_EDGES.length - 2, c1 + COL_MARGIN);
+  r0 = Math.max(0, r0 - ROW_MARGIN);
+  r1 = Math.min(LAT_EDGES.length - 2, r1 + ROW_MARGIN);
+  var out = [];
+  for (var r = r0; r <= r1; r++) {
+    var rm = CELL_MAP[r]; if (!rm) continue;
+    for (var c = c0; c <= c1; c++) { if (rm[c] !== undefined) out.push(rm[c]); }
+  }
+  return out;
+}
+
+/* ── Helpers ── */
+function distKm(v) {
+  if (v === null || v < 0) return "\u2013";
+  return ((v * 10) / 1000).toFixed(2).replace(".", ",") + "\u00a0km";
+}
+function fmtKmValue(km) {
+  if (km === null || km === undefined || isNaN(km)) return "\u2013";
+  return km.toFixed(1).replace(".", ",") + "\u00a0km";
+}
+function fmtCount(n) {
+  return Number(n || 0).toLocaleString("de-DE");
+}
+function fmtScore(s) { return s.toFixed(3).replace(".", ","); }
+var LU_LABELS = {0:"Keine", 500:"Brownfield", 700:"Gewerbe (GE)", 1000:"Industrie (GI)"};
+function luLabel(v) { return LU_LABELS[v] || ((v > 0) ? "Gewerbe" : "Keine"); }
+var PROT_NAMES = {1:"Nationalpark", 2:"NSG", 4:"FFH", 8:"Biosph\u00e4re", 16:"LSG", 32:"Naturpark"};
+function protLabel(mask) {
+  if (!mask) return null;
+  var found = Object.keys(PROT_NAMES).map(Number).filter(function(b) { return (mask & b) > 0; }).map(function(b) { return PROT_NAMES[b]; });
+  return found.length > 0 ? found.join(" \u00b7 ") : null;
+}
+
+function legendLabel(text, count, swatchHtml) {
+  return '<span class="lyr-label">' + swatchHtml + '<span class="lyr-text">' + escapeHtml(text) + '</span><span class="lyr-count">(' + fmtCount(count) + ')</span></span>';
+}
+function legendGradientLabel(text, count) {
+  return legendLabel(text, count, '<span class="lyr-swatch lyr-swatch--gradient"></span>');
+}
+function legendOutlineLabel(text, count, color) {
+  return legendLabel(text, count, '<span class="lyr-swatch lyr-swatch--outline" style="color:' + color + '"></span>');
+}
+function legendAreaLabel(text, count, color) {
+  return legendLabel(text, count, '<span class="lyr-swatch lyr-swatch--area" style="background:' + color + ';color:' + color + '"></span>');
+}
+function legendLineLabel(text, count, color) {
+  return legendLabel(text, count, '<span class="lyr-swatch lyr-swatch--line" style="color:' + color + '"></span>');
+}
+function legendDotLabel(text, count, color) {
+  return legendLabel(text, count, '<span class="lyr-swatch lyr-swatch--dot" style="background:' + color + '"></span>');
+}
+function legendDcLabel(text, count) {
+  var swatch = '<span class="lyr-swatch lyr-swatch--dc">' +
+    '<i style="background:#10b981;width:6px;height:6px"></i>' +
+    '<i style="background:#f59e0b;width:8px;height:8px"></i>' +
+    '<i style="background:#7c3aed;width:10px;height:10px"></i>' +
+    '<i style="background:#2563eb;width:12px;height:12px"></i>' +
+    '</span>';
+  return legendLabel(text, count, swatch);
+}
+
+/* ── UI: bar helpers ── */
+function barHtml(label, val, color) {
+  var pct = Math.round(val * 100);
+  return '<div class="pwr-bar-row"><span class="pwr-bar-label">' + label + '</span>' +
+    '<div class="pwr-bar-track"><div class="pwr-bar-fill" style="width:' + pct + '%;background:' + color + '"></div></div>' +
+    '<span class="pwr-bar-val">' + fmtScore(val) + '</span></div>';
+}
+function tipBarHtml(label, val, color) {
+  var pct = Math.round(val * 100);
+  return '<div class="tip-bar-row"><span class="tip-bar-lbl">' + label + '</span>' +
+    '<div class="tip-bar-track"><div class="tip-bar-fill" style="width:' + pct + '%;background:' + color + '"></div></div>' +
+    '<span class="tip-bar-val">' + fmtScore(val) + '</span></div>';
+}
+
+/* ── UI: tooltip (hover) ── */
+var _lastTipCellId = null;
+function showTip(c) {
+  var tip = document.getElementById("pwr-tip");
+  if (popupOpen) { tip.style.display = "none"; return; }
+  var cellId = c[0] + "_" + c[1];
+  var s = calcScore(c);
+  var lbl = scoreLabelDE(s);
+
+  /* Compute all sub-scores with weights for ranking */
+  var components = [
+    {label:"Substation", val:decayScore(c[3],"sub"), color:"#f59e0b", w:W.sub},
+    {label:"380 kV",     val:decayScore(c[4],"kv380"), color:"#c0392b", w:W.kv380},
+    {label:"220 kV",     val:decayScore(c[5],"kv220"), color:"#8e44ad", w:W.kv220},
+    {label:"110 kV",     val:decayScore(c[6],"kv110"), color:"#2980b9", w:W.kv110},
+    {label:"Gigabit",    val:(c[11]||0)/1000, color:"#06b6d4", w:W.gb},
+    {label:"Bev.inv.",   val:(c[12]||0)/1000, color:"#64748b", w:W.pop},
+    {label:"Gewerbe",    val:(c[16]||0)/1000, color:"#d97706", w:W.lu}
+  ];
+  /* Sort by weighted contribution descending */
+  var sorted = components.slice().sort(function(a,b) { return (b.val*b.w)-(a.val*a.w); });
+
+  var kreis = (c[17] >= 0 && KRS_NAMES[c[17]]) ? KRS_NAMES[c[17]] : "";
+  var latC = ((c[18]/1e5+c[19]/1e5)/2).toFixed(4);
+  var lonC = ((c[20]/1e5+c[21]/1e5)/2).toFixed(4);
+
+  /* Score glow for high scores */
+  var glow = s >= 0.8 ? 'text-shadow:0 0 12px ' + lbl.bg + '60' : '';
+
+  var html = '<div class="tip-score" style="' + glow + '">' + fmtScore(s) +
+    '<span class="tip-score-label" style="background:' + lbl.bg +
+    (s >= 0.8 ? ';box-shadow:0 0 10px ' + lbl.bg + '80' : '') + '">' + lbl.t + '</span></div>';
+  if (kreis) html += '<div style="font-size:11px;color:#cbd5e1;font-weight:600;margin-bottom:1px">' + kreis + '</div>';
+  html += '<div style="font-size:9px;color:#475569;margin-bottom:7px">' + latC + ', ' + lonC + ' &middot; [' + c[0] + ',' + c[1] + ']</div>';
+
+  /* Show top 4 score components */
+  for (var i = 0; i < Math.min(4, sorted.length); i++) {
+    var comp = sorted[i];
+    if (comp.w <= 0) continue;
+    html += tipBarHtml(comp.label, comp.val, comp.color);
+  }
+  /* Show remaining count */
+  var remaining = sorted.length - 4;
+  if (remaining > 0) html += '<div style="font-size:9px;color:#475569;text-align:right;margin-top:1px">+' + remaining + ' weitere</div>';
+
+  /* Distance chips */
+  html += '<div class="tip-dist-chips">';
+  var dists = [
+    {label:"Sub", val:c[3], color:"#f59e0b"},
+    {label:"380", val:c[4], color:"#c0392b"},
+    {label:"220", val:c[5], color:"#8e44ad"},
+    {label:"110", val:c[6], color:"#2980b9"}
+  ];
+  for (var di = 0; di < dists.length; di++) {
+    var km = dists[di].val / 1000;
+    if (km > 80) continue; /* Hide very distant infrastructure */
+    html += '<span class="tip-dist-chip"><span class="dot" style="background:' + dists[di].color + '"></span>' + dists[di].label + ': <b>' + distKm(dists[di].val) + '</b></span>';
+  }
+  html += '</div>';
+
+  /* Context tags: landuse + protection */
+  var luV = c[16] || 0;
+  var pl = protLabel(c[13] || 0);
+  if (luV > 0 || pl) {
+    html += '<div class="tip-context">';
+    if (luV > 0) html += '<span class="tip-tag" style="background:rgba(217,119,6,0.15);color:#fbbf24;border:1px solid rgba(217,119,6,0.3)">\ud83c\udfed ' + luLabel(luV) + '</span>';
+    if (pl) html += '<span class="tip-tag" style="background:rgba(239,68,68,0.12);color:#fca5a5;border:1px solid rgba(239,68,68,0.25)">\u26d4 ' + pl + '</span>';
+    html += '</div>';
+  }
+
+  tip.innerHTML = html;
+  if (_lastTipCellId !== cellId) {
+    tip.classList.remove("tip-animate");
+    void tip.offsetWidth;
+    tip.classList.add("tip-animate");
+    _lastTipCellId = cellId;
+  }
+  tip.style.display = "block";
+
+  /* Highlight cell boundary on map */
+  var minLat = c[18]/1e5, maxLat = c[19]/1e5;
+  var minLon = c[20]/1e5, maxLon = c[21]/1e5;
+  if (cellHighlight) { map.removeLayer(cellHighlight); }
+  cellHighlight = L.rectangle([[minLat,minLon],[maxLat,maxLon]], {
+    color:"#fff", weight:2, fill:false, dashArray:"6 4",
+    interactive:false, pane:"tooltipPane"
+  }).addTo(map);
+}
+function hideTip() {
+  var tip = document.getElementById("pwr-tip");
+  tip.style.display = "none";
+  _lastTipCellId = null;
+  if (cellHighlight) { map.removeLayer(cellHighlight); cellHighlight = null; }
+}
+var popupOpen = false;
+
+/* ── UI: cell popup (click) ── */
+function popupBarHtml(label, val, color) {
+  var pct = Math.round(val * 100);
+  return '<div class="popup-bar-row"><span class="popup-bar-label">' + label + '</span>' +
+    '<div class="popup-bar-track"><div class="popup-bar-fill" style="width:' + pct + '%;background:' + color + '"></div></div>' +
+    '<span class="popup-bar-val">' + fmtScore(val) + '</span></div>';
+}
+
+function buildCellHtml(c) {
+  var s = calcScore(c);
+  var lbl = scoreLabelDE(s);
+  var s_sub = decayScore(c[3],"sub"), s_380 = decayScore(c[4],"kv380");
+  var s_220 = decayScore(c[5],"kv220"), s_110 = decayScore(c[6],"kv110");
+  var s_gb = (c[11]||0)/1000, s_pop = (c[12]||0)/1000, s_lu = (c[16]||0)/1000;
+  var kreis = (c[17]>=0 && KRS_NAMES[c[17]]) ? KRS_NAMES[c[17]] : "";
+  var latC = ((c[18]/1e5+c[19]/1e5)/2).toFixed(5);
+  var lonC = ((c[20]/1e5+c[21]/1e5)/2).toFixed(5);
+
+  var glow = s >= 0.8 ? ';text-shadow:0 0 14px ' + lbl.bg + '70' : '';
+  var html = '<div style="min-width:260px;max-width:340px">';
+  html += '<div class="popup-header"><span class="popup-score" style="color:#fff' + glow + '">' + fmtScore(s) + '</span>';
+  html += '<span class="popup-badge" style="background:' + lbl.bg +
+    (s >= 0.8 ? ';box-shadow:0 0 12px ' + lbl.bg + '80' : '') + '">' + lbl.t + '</span></div>';
+  if (kreis) html += '<div class="popup-location"><b>' + kreis + '</b></div>';
+  html += '<div class="popup-location">' + latC + ', ' + lonC + ' &middot; Zelle [' + c[0] + ', ' + c[1] + ']</div>';
+
+  html += '<div class="popup-section">Score-Komponenten</div>';
+  html += popupBarHtml("Substation", s_sub, "#f59e0b");
+  html += popupBarHtml("380 kV", s_380, "#c0392b");
+  html += popupBarHtml("220 kV", s_220, "#8e44ad");
+  html += popupBarHtml("110 kV", s_110, "#2980b9");
+  html += popupBarHtml("Gigabit", s_gb, "#06b6d4");
+  html += popupBarHtml("Bev.-Dichte", s_pop, "#64748b");
+  html += popupBarHtml("Gewerbefl.", s_lu, "#d97706");
+
+  html += '<div class="popup-section">Entfernungen</div>';
+  html += '<div class="popup-dist-grid">';
+  html += '<div><span class="dot" style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#f59e0b;margin-right:4px"></span>Sub: <b>' + distKm(c[3]) + '</b></div>';
+  html += '<div><span class="dot" style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#c0392b;margin-right:4px"></span>380 kV: <b>' + distKm(c[4]) + '</b></div>';
+  html += '<div><span class="dot" style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#8e44ad;margin-right:4px"></span>220 kV: <b>' + distKm(c[5]) + '</b></div>';
+  html += '<div><span class="dot" style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#2980b9;margin-right:4px"></span>110 kV: <b>' + distKm(c[6]) + '</b></div>';
+  html += '</div>';
+
+  var luV = c[16]||0;
+  var pl = protLabel(c[13]||0);
+  if (luV > 0 || pl) {
+    html += '<div class="popup-section">Fl\u00e4chenkontext</div>';
+    html += '<div class="popup-chips">';
+    if (luV > 0) html += '<span class="popup-chip" style="color:#fbbf24;border-color:rgba(217,119,6,0.3)">\ud83c\udfed ' + luLabel(luV) + '</span>';
+    if (pl) html += '<span class="popup-chip" style="color:#fca5a5;border-color:rgba(239,68,68,0.25)">\u26d4 ' + pl + '</span>';
+    html += '</div>';
+  }
+  html += '</div>';
+  return html;
+}
+
+/* Build popup for GeoJSON feature with cell context */
+function geoFeaturePopupHtml(f, type, color, latlng) {
+  var p = f.properties || {};
+  var html = '<div style="min-width:220px;max-width:320px">';
+
+  /* Feature info */
+  html += '<div class="popup-feat-title">' + (p.name || type) + '</div>';
+  html += '<span class="popup-feat-type" style="background:' + color + '">' + type + '</span>';
+
+  /* Feature properties */
+  var fields = Object.keys(p);
+  if (fields.length > 0) {
+    html += '<div class="popup-feat-props">';
+    for (var i = 0; i < fields.length; i++) {
+      var k = fields[i], v = p[k];
+      if (!v || v === "" || v === "None" || k === "geometry" || k === "name") continue;
+      var label = k.replace(/_/g," ");
+      label = label.charAt(0).toUpperCase() + label.slice(1);
+      html += '<div>' + label + ': <b>' + v + '</b></div>';
+    }
+    html += '</div>';
+  }
+
+  /* Cell context at this location */
+  if (latlng) {
+    var c = findCell(latlng.lat, latlng.lng);
+    if (c) {
+      var s = calcScore(c);
+      var lbl = scoreLabelDE(s);
+      html += '<div class="popup-divider"></div>';
+      html += '<div class="popup-section">Zell-Eignung</div>';
+      html += '<div class="popup-header"><span class="popup-score" style="font-size:18px">' + fmtScore(s) + '</span>';
+      html += '<span class="popup-badge" style="font-size:9px;padding:2px 7px;background:' + lbl.bg + '">' + lbl.t + '</span></div>';
+      /* Top 3 contributing scores */
+      var comps = [
+        {l:"Sub",val:decayScore(c[3],"sub"),color:"#f59e0b",w:W.sub},
+        {l:"380",val:decayScore(c[4],"kv380"),color:"#c0392b",w:W.kv380},
+        {l:"110",val:decayScore(c[6],"kv110"),color:"#2980b9",w:W.kv110},
+        {l:"Gigabit",val:(c[11]||0)/1000,color:"#06b6d4",w:W.gb}
+      ];
+      comps.sort(function(a,b) { return (b.val*b.w)-(a.val*a.w); });
+      for (var ci = 0; ci < Math.min(3, comps.length); ci++) {
+        if (comps[ci].w <= 0) continue;
+        html += popupBarHtml(comps[ci].l, comps[ci].val, comps[ci].color);
+      }
+    }
+  }
+  html += '</div>';
+  return html;
+}
+
+function showCellPanel(c) {
+  var lat = (c[18]/1e5 + c[19]/1e5) / 2;
+  var lon = (c[20]/1e5 + c[21]/1e5) / 2;
+  hideTip();
+  L.popup({maxWidth:380, minWidth:280, className:"dark-popup"})
+    .setLatLng([lat, lon])
+    .setContent(buildCellHtml(c))
+    .openOn(map);
+}
+
+/* ── Kreis highlight ── */
+function highlightKreis(name) {
+  if (!kreisFg) return;
+  kreisFg.eachLayer(function(layer) {
+    var p = layer.feature && layer.feature.properties;
+    if (p && (p.name === name || p.GEN === name || p.NAME === name)) {
+      layer.setStyle({fillColor:"#3b82f6", fillOpacity:0.15, color:"#3b82f6", weight:2.5});
+    }
+  });
+}
+function resetKreisHL() {
+  if (!kreisFg) return;
+  kreisFg.eachLayer(function(layer) {
+    layer.setStyle({fillColor:"transparent", fillOpacity:0, color:"#475569", weight:1.5, opacity:0.7, dashArray:"4 3"});
+  });
+}
+
+/* ── DC sidebar ── */
+function dcSbClose() { document.getElementById("dc-sb").classList.remove("open"); }
+function dcSbToggle() {
+  var sb = document.getElementById("dc-sb");
+  sb.classList.toggle("open");
+  if (sb.classList.contains("open")) dcSbRender(map, DC_DATA);
+}
+
+function dcMaybeAutoOpen() {
+  try {
+    var params = new URLSearchParams(window.location.search);
+    if (params.get("explorer") === "1") {
+      document.getElementById("dc-sb").classList.add("open");
+      dcSbRender(map, DC_DATA);
+    }
+  } catch (err) {}
+}
+
+function dcBadgeColor(mw_class) {
+  if (mw_class === 5) return "#2563eb";
+  if (mw_class === 4) return "#7c3aed";
+  if (mw_class === 3) return "#f59e0b";
+  if (mw_class === 2) return "#10b981";
+  return "#64748b";
+}
+
+function escapeHtml(value) {
+  return String(value == null ? "" : value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function dcText(v) {
+  return typeof v === "string" ? v.trim() : "";
+}
+
+function dcHasProperName(name) {
+  var s = dcText(name).toLowerCase();
+  return !!s && s !== "unnamed" && s !== "none" && s !== "null";
+}
+
+function dcTextEq(a, b) {
+  return dcText(a).toLowerCase() === dcText(b).toLowerCase();
+}
+
+var DC_MW_META = {
+  A:{order:5, key:"A", label:"100+ MW", sortValue:120, radius:14},
+  B:{order:4, key:"B", label:"20-100 MW", sortValue:60, radius:11},
+  C:{order:3, key:"C", label:"5-20 MW", sortValue:12, radius:9},
+  D:{order:2, key:"D", label:"1-5 MW", sortValue:3, radius:7},
+  E:{order:1, key:"E", label:"<1 MW", sortValue:0.5, radius:5}
+};
+
+function dcFormatMwValue(mw) {
+  if (mw === null || mw === undefined || isNaN(mw)) return null;
+  var rounded = Math.round(mw * 10) / 10;
+  return (Math.abs(rounded - Math.round(rounded)) < 1e-9 ? String(Math.round(rounded)) : rounded.toFixed(1).replace(".", ",")) + " MW";
+}
+
+function dcParseActualMw(d) {
+  var text = [d.name, d.description, d.operator, d.address].map(function(v) { return dcText(v); }).join(" ");
+  var m = text.match(/(\d+(?:[.,]\d+)?)\s*\+?\s*MW\b/i);
+  if (!m) return null;
+  var val = parseFloat(m[1].replace(",", "."));
+  return isNaN(val) ? null : val;
+}
+
+function dcMwKeyFromActual(mw) {
+  if (mw === null || mw === undefined || isNaN(mw)) return "E";
+  if (mw >= 100) return "A";
+  if (mw >= 20) return "B";
+  if (mw >= 5) return "C";
+  if (mw >= 1) return "D";
+  return "E";
+}
+
+function dcInferMwKey(dsubKm, d380Km, d220Km, d110Km) {
+  var ds = (typeof dsubKm === "number" && !isNaN(dsubKm)) ? dsubKm : 99999;
+  var d3 = (typeof d380Km === "number" && !isNaN(d380Km)) ? d380Km : 99999;
+  var d2 = (typeof d220Km === "number" && !isNaN(d220Km)) ? d220Km : 99999;
+  var d1 = (typeof d110Km === "number" && !isNaN(d110Km)) ? d110Km : 99999;
+  if (ds < 2 && d3 < 2) return "A";
+  if (ds < 5 && (d3 < 8 || d2 < 5)) return "B";
+  if (ds < 8 && d1 < 5) return "C";
+  if (ds < 15) return "D";
+  return "E";
+}
+
+function dcClassMetaByKey(key) {
+  return DC_MW_META[key] || DC_MW_META.E;
+}
+
+function dcShortAddress(address) {
+  var parts = dcText(address).split(",").map(function(part) { return part.trim(); }).filter(Boolean);
+  if (parts.length === 0) return "";
+  if (parts.length > 1 && /^[0-9A-Za-zÄÖÜäöüß./-]+$/.test(parts[1])) return parts[0] + " " + parts[1];
+  return parts.slice(0, Math.min(2, parts.length)).join(", ");
+}
+
+function dcPlaceLabel(address) {
+  var parts = dcText(address).split(",").map(function(part) { return part.trim(); }).filter(Boolean);
+  if (parts.length === 0) return "";
+  if (/^\d{4,5}$/.test(parts[parts.length - 1]) && parts.length > 1) return parts[parts.length - 2];
+  return parts[parts.length - 1];
+}
+
+function dcCellCenter(cell) {
+  return {
+    lat: (cell[18] + cell[19]) / 2e5,
+    lon: (cell[20] + cell[21]) / 2e5
+  };
+}
+
+function dcNearestCell(lat, lon, radius) {
+  var r = _rowFor(lat), c = _colFor(lon);
+  var best = null, bestDist = Infinity;
+  for (var dr = -radius; dr <= radius; dr++) {
+    for (var dc = -radius; dc <= radius; dc++) {
+      var rr = r + dr, cc = c + dc;
+      var rm = CELL_MAP[rr];
+      if (!rm || rm[cc] === undefined) continue;
+      var cell = CELLS[rm[cc]];
+      var center = dcCellCenter(cell);
+      var dist = Math.pow(center.lat - lat, 2) + Math.pow(center.lon - lon, 2);
+      if (dist < bestDist) {
+        bestDist = dist;
+        best = cell;
+      }
+    }
+  }
+  return best ? {cell:best, mode:"nearest"} : null;
+}
+
+function dcFindCellMatch(lat, lon) {
+  var exact = findCell(lat, lon);
+  if (exact) return {cell:exact, mode:"exact"};
+  return dcNearestCell(lat, lon, 10);
+}
+
+function dcKmFromCell(cell, idx) {
+  if (!cell) return null;
+  var raw = cell[idx];
+  return (typeof raw === "number" && raw >= 0) ? (raw * 10.0 / 1000.0) : null;
+}
+
+function dcScoreValue(d) {
+  if (typeof d._scoreLive === "number" && !isNaN(d._scoreLive)) return d._scoreLive;
+  return (typeof d.score === "number" && !isNaN(d.score)) ? d.score : null;
+}
+
+function dcDistValue(d, key) {
+  var liveKey = "_d" + key + "_km_live";
+  if (typeof d[liveKey] === "number" && !isNaN(d[liveKey])) return d[liveKey];
+  var rawKey = "d" + key + "_km";
+  return (typeof d[rawKey] === "number" && !isNaN(d[rawKey])) ? d[rawKey] : null;
+}
+
+function dcScoreBarColor(score) {
+  if (score === null || score === undefined) return "rgba(100,116,139,0.35)";
+  if (score >= 0.80) return "#22c55e";
+  if (score >= 0.60) return "#84cc16";
+  if (score >= 0.40) return "#f59e0b";
+  return "#ef4444";
+}
+
+function dcScoreState(score) {
+  if (score === null || score === undefined) {
+    return {label:"Ohne Score", bg:"rgba(100,116,139,0.12)", border:"rgba(100,116,139,0.24)", color:"#94a3b8"};
+  }
+  if (score < 0.20) return {label:"Ungeeignet", bg:"rgba(127,29,29,0.18)", border:"rgba(239,68,68,0.28)", color:"#fca5a5"};
+  if (score < 0.40) return {label:"Schwach", bg:"rgba(192,57,43,0.18)", border:"rgba(248,113,113,0.24)", color:"#fca5a5"};
+  if (score < 0.60) return {label:"Mittel", bg:"rgba(217,119,6,0.16)", border:"rgba(245,158,11,0.26)", color:"#fcd34d"};
+  if (score < 0.80) return {label:"Gut", bg:"rgba(34,197,94,0.14)", border:"rgba(34,197,94,0.24)", color:"#86efac"};
+  return {label:"Sehr gut", bg:"rgba(22,163,74,0.18)", border:"rgba(34,197,94,0.30)", color:"#bbf7d0"};
+}
+
+function dcPrepareData(data) {
+  DC_EXPLORER_HIDDEN = 0;
+  for (var i = 0; i < data.length; i++) {
+    var d = data[i];
+    d._id = i;
+    d._rawName = dcText(d.name);
+    d._operator = dcText(d.operator);
+    d._address = dcText(d.address);
+    d._website = dcText(d.website);
+    d._hasProperName = dcHasProperName(d._rawName);
+    d._shortAddress = dcShortAddress(d._address);
+    d._place = dcPlaceLabel(d._address);
+    d._hideInExplorer = !d._hasProperName && !d._operator && !d._address && !d._website;
+    if (d._hideInExplorer) DC_EXPLORER_HIDDEN++;
+
+    var title = "", subtitle = "";
+    if (d._hasProperName) {
+      title = d._rawName;
+      if (d._operator && !dcTextEq(d._operator, title)) subtitle = d._operator;
+      else if (d._shortAddress) subtitle = d._shortAddress;
+      else if (d._place) subtitle = d._place;
+    } else if (d._operator) {
+      title = d._operator;
+      subtitle = d._shortAddress || d._place || "Standort ohne Eigennamen";
+    } else if (d._shortAddress) {
+      title = d._shortAddress;
+      subtitle = d._place && !dcTextEq(d._place, title) ? d._place : "Standort ohne Eigennamen";
+    } else if (d._place) {
+      title = "Standort in " + d._place;
+      subtitle = "Kein genauer Standortname hinterlegt";
+    } else {
+      title = "Standort ohne Namen";
+      subtitle = "Kein Betreiber oder Adresse hinterlegt";
+    }
+    d._title = title;
+    d._subtitle = subtitle;
+
+    var match = dcFindCellMatch(d.lat, d.lon);
+    d._cell = match ? match.cell : null;
+    d._cellMatch = match ? match.mode : null;
+    d._dsub_km_live = d._cell ? dcKmFromCell(d._cell, 3) : null;
+    d._d380_km_live = d._cell ? dcKmFromCell(d._cell, 4) : null;
+    d._d220_km_live = d._cell ? dcKmFromCell(d._cell, 5) : null;
+    d._d110_km_live = d._cell ? dcKmFromCell(d._cell, 6) : null;
+    d._mwActual = dcParseActualMw(d);
+    d._mwKey = d._mwActual !== null ? dcMwKeyFromActual(d._mwActual) : dcInferMwKey(d._dsub_km_live, d._d380_km_live, d._d220_km_live, d._d110_km_live);
+    d._mwMeta = dcClassMetaByKey(d._mwKey);
+    d._mwClass = d._mwMeta.order;
+    d._mwSort = d._mwActual !== null ? d._mwActual : d._mwMeta.sortValue;
+    d._mwText = d._mwActual !== null ? dcFormatMwValue(d._mwActual) : d._mwMeta.label;
+    d._mwFieldLabel = d._mwActual !== null ? "Leistung" : "MW-Potenzial";
+    d._mwHint = d._mwActual !== null ? "Wert aus Datensatz" : "Aus Netzanbindung abgeleitet";
+    d._searchText = [
+      d._rawName, d._title, d._subtitle, d._operator, d._address, d._website, d._mwText
+    ].filter(Boolean).join(" ").toLowerCase();
+  }
+}
+
+function dcRefreshComputed() {
+  var explorerVisible = 0;
+  for (var i = 0; i < DC_DATA.length; i++) {
+    var d = DC_DATA[i];
+    d._scoreLive = d._cell ? calcScore(d._cell) : ((typeof d.score === "number" && !isNaN(d.score)) ? d.score : null);
+    if (!d._hideInExplorer) explorerVisible++;
+    if (d._marker) dcRefreshMarker(d);
+  }
+
+  var countEl = document.getElementById("dc-count-label");
+  if (countEl) countEl.textContent = explorerVisible + " Profile";
+
+  var noteEl = document.getElementById("dc-kpi-note");
+  if (noteEl) {
+    var notes = [];
+    if (DC_EXPLORER_HIDDEN > 0) notes.push(DC_EXPLORER_HIDDEN + " Punkte ohne Namen, Betreiber oder Adresse sind im Explorer ausgeblendet.");
+    notes.push("MW-Klassen basieren auf bekannten MW-Werten oder, falls diese fehlen, auf der Netzanbindung.");
+    noteEl.innerHTML = notes.join("<br>");
+    noteEl.style.display = notes.length ? "block" : "none";
+  }
+
+  var sb = document.getElementById("dc-sb");
+  if (sb && sb.classList.contains("open")) dcSbRender(map, DC_DATA);
+}
+
+function dcMarkerTooltip(d) {
+  var score = dcScoreValue(d);
+  var title = d._title || d.name || "Datacenter";
+  var suffix = d._subtitle ? " \u00b7 " + d._subtitle : "";
+  var scoreTxt = score !== null ? fmtScore(score) : "\u2013";
+  return title + suffix + " \u00b7 " + d._mwText + " \u00b7 Score " + scoreTxt;
+}
+
+function dcMarkerRadiusByClass(mwClass) {
+  if (mwClass === 5) return 14;
+  if (mwClass === 4) return 11;
+  if (mwClass === 3) return 9;
+  if (mwClass === 2) return 7;
+  return 5;
+}
+
+function dcRefreshMarker(d) {
+  if (!d || !d._marker) return;
+  var color = dcBadgeColor(d._mwClass || d.mw_class || 0);
+  d._marker.setStyle({
+    radius: dcMarkerRadiusByClass(d._mwClass || d.mw_class || 0),
+    color: color,
+    fillColor: color,
+    fillOpacity: 0.82,
+    weight: 2
+  });
+  d._marker.setPopupContent(dcPopupHtml(d));
+  if (d._marker.getTooltip && d._marker.getTooltip()) d._marker.setTooltipContent(dcMarkerTooltip(d));
+}
+
+function dcPopupHtml(d) {
+  if (!d) return '<div>No data</div>';
+
+  var fc = dcBadgeColor(d._mwClass || d.mw_class || 0);
+  var sv = dcScoreValue(d);
+  var scoreBar = Math.round((sv || 0) * 100);
+  var barColor = sv >= 0.75 ? "#22c55e" : sv >= 0.5 ? "#f59e0b" : "#ef4444";
+  var lbl = scoreLabelDE(sv || 0);
+
+  var html = '<div style="min-width:280px;max-width:360px">';
+
+  /* Title + Type Badge */
+  html += '<div class="popup-feat-title">' + escapeHtml(d._title || d.name || "Datacenter") + '</div>';
+  html += '<span class="popup-feat-type" style="background:' + fc + ';margin-bottom:6px">' + escapeHtml(d._mwFieldLabel + ': ' + d._mwText) + '</span>';
+
+  if (d._subtitle) {
+    html += '<div style="font-size:10px;color:#94a3b8;margin-bottom:8px">' + escapeHtml(d._subtitle) + '</div>';
+  } else if (d.operator) {
+    html += '<div style="font-size:10px;color:#94a3b8;margin-bottom:8px">🏢 ' + escapeHtml(d.operator) + '</div>';
+  }
+  if (typeof d.lat === 'number' && typeof d.lon === 'number') {
+    html += '<div style="font-size:10px;color:#64748b;margin-bottom:8px">📍 ' + d.lat.toFixed(4) + ', ' + d.lon.toFixed(4) + '</div>';
+  }
+
+  /* Score + Bar (if available) */
+  if (sv !== null && sv !== undefined && typeof sv === 'number') {
+    html += '<div class="popup-header"><span class="popup-score" style="font-size:20px">' + sv.toFixed(3).replace(".",",") + '</span>';
+    html += '<span class="popup-badge" style="background:' + lbl.bg + '">' + lbl.t + '</span></div>';
+    html += '<div style="height:6px;background:rgba(255,255,255,0.08);border-radius:3px;overflow:hidden;margin-bottom:10px">';
+    html += '<div style="width:' + scoreBar + '%;height:100%;background:' + barColor + ';border-radius:3px;transition:width .4s"></div></div>';
+
+    /* Distances (only show if score exists) */
+    var dsubKm = dcDistValue(d, "sub");
+    var d380Km = dcDistValue(d, "380");
+    var d220Km = dcDistValue(d, "220");
+    var d110Km = dcDistValue(d, "110");
+    if (dsubKm !== null || d380Km !== null || d220Km !== null || d110Km !== null) {
+      html += '<div class="popup-section">Entfernungen zu Infrastruktur</div>';
+      html += '<div class="popup-dist-grid">';
+      if (dsubKm !== null) html += '<div><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#f59e0b;margin-right:4px"></span>Sub: <b>' + fmtKmValue(dsubKm) + '</b></div>';
+      if (d380Km !== null) html += '<div><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#c0392b;margin-right:4px"></span>380 kV: <b>' + fmtKmValue(d380Km) + '</b></div>';
+      if (d220Km !== null) html += '<div><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#8e44ad;margin-right:4px"></span>220 kV: <b>' + fmtKmValue(d220Km) + '</b></div>';
+      if (d110Km !== null) html += '<div><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#2980b9;margin-right:4px"></span>110 kV: <b>' + fmtKmValue(d110Km) + '</b></div>';
+      html += '</div>';
+    }
+  }
+
+  /* Additional info: capacity, address, website */
+  var details = [];
+  details.push('⚡ ' + escapeHtml(d._mwFieldLabel) + ': <b>' + escapeHtml(d._mwText) + '</b>');
+  if (d.address && typeof d.address === 'string') details.push('📌 Adresse: <b>' + escapeHtml(d.address) + '</b>');
+  if (d.website && typeof d.website === 'string') {
+    var domain = d.website.replace(/^https?:\/\//, '').split('/')[0];
+    details.push('🌐 <a href="' + d.website + '" target="_blank" style="color:#3b82f6;text-decoration:none">' + domain + '</a>');
+  }
+  if (d.email && typeof d.email === 'string') details.push('✉️ <a href="mailto:' + d.email + '" style="color:#3b82f6;text-decoration:none">' + d.email + '</a>');
+  if (d.phone && typeof d.phone === 'string') details.push('📞 ' + d.phone);
+  if (d._cellMatch === "nearest") details.push('📐 Score-Raster: <b>nächstgelegene Zelle</b>');
+  if (d._mwActual === null) details.push('🧭 MW-Klasse: <b>aus Netzanbindung abgeleitet</b>');
+
+  if (details.length > 0) {
+    if (sv !== null && sv !== undefined && typeof sv === 'number') {
+      html += '<div class="popup-divider"></div>';
+    }
+    html += '<div class="popup-section">Details</div>';
+    html += '<div style="font-size:10px;color:#94a3b8;line-height:1.6">';
+    for (var i = 0; i < details.length; i++) {
+      html += '<div>' + details[i] + '</div>';
+    }
+    html += '</div>';
+  }
+
+  html += '</div>';
+  return html;
+}
+
+function dcSbRender(mapRef, data) {
+  var q = document.getElementById("dc-q").value.toLowerCase();
+  var sort = document.getElementById("dc-sort").value;
+  var filtered = data.filter(function(d) {
+    if (d._hideInExplorer) return false;
+    if (!q) return true;
+    return d._searchText && d._searchText.indexOf(q) >= 0;
+  });
+  filtered.sort(function(a, b) {
+    if (sort === "mw_desc") return (b._mwSort || 0) - (a._mwSort || 0);
+    if (sort === "score_desc") return (dcScoreValue(b) || 0) - (dcScoreValue(a) || 0);
+    if (sort === "dsub_asc") return (dcDistValue(a, "sub") || 9999) - (dcDistValue(b, "sub") || 9999);
+    if (sort === "d380_asc") return (dcDistValue(a, "380") || 9999) - (dcDistValue(b, "380") || 9999);
+    if (sort === "name_asc") return (a._title || "").localeCompare(b._title || "", "de");
+    return 0;
+  });
+  document.getElementById("dc-kpi-n").textContent = filtered.length;
+  var listEl = document.getElementById("dc-list");
+  if (!filtered.length) {
+    listEl.innerHTML = '<div class="dc-empty">Keine passenden Datacenter gefunden.</div>';
+    return;
+  }
+  var html = "";
+  for (var i = 0; i < filtered.length; i++) {
+    var d = filtered[i];
+    var sv = dcScoreValue(d);
+    var pct = Math.round((sv || 0) * 100);
+    var state = dcScoreState(sv);
+    var meta = [];
+    var dsub = dcDistValue(d, "sub");
+    var d380 = dcDistValue(d, "380");
+    if (dsub !== null) meta.push('<span>HV-Sub <b>' + fmtKmValue(dsub) + '</b></span>');
+    if (d380 !== null) meta.push('<span>380-kV <b>' + fmtKmValue(d380) + '</b></span>');
+    if (d._cellMatch === "nearest") meta.push('<span>Raster <b>angenähert</b></span>');
+    html += '<div class="dc-row" data-idx="' + d._id + '" onclick="dcRowClick(' + d._id + ')">';
+    html += '<div class="dc-row-top"><div class="dc-head">';
+    html += '<div class="dc-name">' + escapeHtml(d._title) + '</div>';
+    if (d._subtitle) html += '<div class="dc-subtitle">' + escapeHtml(d._subtitle) + '</div>';
+    html += '<div class="dc-context">';
+    html += '<span class="dc-pill dc-pill--mw" style="background:' + dcBadgeColor(d._mwClass) + '">' + escapeHtml(d._mwText) + '</span>';
+    if (!d._hasProperName) html += '<span class="dc-pill dc-pill--muted">Ohne Standortname</span>';
+    if (d._cellMatch === "nearest") html += '<span class="dc-pill dc-pill--approx">Score angenähert</span>';
+    html += '</div>';
+    html += '</div>';
+    html += '<div class="dc-score-box"><div class="dc-score-num">' + (sv !== null ? fmtScore(sv) : '\u2013') + '</div>';
+    html += '<span class="dc-score-state" style="background:' + state.bg + ';border-color:' + state.border + ';color:' + state.color + '">' + state.label + '</span></div></div>';
+    if (meta.length) html += '<div class="dc-meta">' + meta.join("") + '</div>';
+    html += '<div class="dc-score-bar"><div class="dc-score-fill" style="width:' + pct + '%;background:' + dcScoreBarColor(sv) + '"></div></div>';
+    html += '</div>';
+  }
+  listEl.innerHTML = html;
+}
+
+function dcRowClick(idx) {
+  var d = DC_DATA[idx];
+  if (!d) return;
+  map.setView([d.lat, d.lon], 12);
+  if (d._marker) d._marker.openPopup();
+}
+
+/* ── UI: weight management ── */
+function updateWeights() {
+  var raw_sub = +document.getElementById("sl-w-sub").value;
+  var raw_110 = +document.getElementById("sl-w-110").value;
+  var raw_220 = +document.getElementById("sl-w-220").value;
+  var raw_380 = +document.getElementById("sl-w-380").value;
+  var raw_gb = +document.getElementById("sl-w-gb").value;
+  var raw_pop = +document.getElementById("sl-w-pop").value;
+  var raw_lu = +document.getElementById("sl-w-lu").value;
+  var total = raw_sub + raw_110 + raw_220 + raw_380 + raw_gb + raw_pop + raw_lu;
+  if (total === 0) total = 1;
+  W.sub = raw_sub / total;
+  W.kv110 = raw_110 / total;
+  W.kv220 = raw_220 / total;
+  W.kv380 = raw_380 / total;
+  W.gb = raw_gb / total;
+  W.pop = raw_pop / total;
+  W.lu = raw_lu / total;
+  document.getElementById("lbl-w-sub").textContent = Math.round(W.sub * 100) + " %";
+  document.getElementById("lbl-w-110").textContent = Math.round(W.kv110 * 100) + " %";
+  document.getElementById("lbl-w-220").textContent = Math.round(W.kv220 * 100) + " %";
+  document.getElementById("lbl-w-380").textContent = Math.round(W.kv380 * 100) + " %";
+  document.getElementById("lbl-w-gb").textContent = Math.round(W.gb * 100) + " %";
+  document.getElementById("lbl-w-pop").textContent = Math.round(W.pop * 100) + " %";
+  document.getElementById("lbl-w-lu").textContent = Math.round(W.lu * 100) + " %";
+  var sigmaEl = document.getElementById("pwr-sigma");
+  var sigma = Math.round((W.sub + W.kv110 + W.kv220 + W.kv380 + W.gb + W.pop + W.lu) * 100);
+  sigmaEl.textContent = "\u03A3 = " + sigma + " %";
+  sigmaEl.style.color = (sigma >= 99 && sigma <= 101) ? "#22c55e" : "#ef4444";
+  updateStats();
+  if (heatLayer) heatLayer.redraw();
+  dcRefreshComputed();
+}
+
+function updateStats() {
+  if (!CELLS || CELLS.length === 0) return;
+  var scores = [];
+  for (var i = 0; i < CELLS.length; i++) {
+    scores.push(calcScore(CELLS[i]));
+  }
+  scores.sort(function(a, b) { return a - b; });
+  var mn = scores[0], mx = scores[scores.length - 1];
+  var mid = scores.length % 2 === 0 ? (scores[scores.length / 2 - 1] + scores[scores.length / 2]) / 2 : scores[Math.floor(scores.length / 2)];
+  document.getElementById("stat-min").textContent = fmtScore(mn);
+  document.getElementById("stat-med").textContent = fmtScore(mid);
+  document.getElementById("stat-max").textContent = fmtScore(mx);
+}
+
+function applyScenario(key) {
+  if (!SCENARIOS || !SCENARIOS[key]) return;
+  var sc = SCENARIOS[key];
+  var wMap = sc.weights || {};
+  document.getElementById("sl-w-sub").value = Math.round((wMap.sub || 0) * 100);
+  document.getElementById("sl-w-110").value = Math.round((wMap.kv110 || 0) * 100);
+  document.getElementById("sl-w-220").value = Math.round((wMap.kv220 || 0) * 100);
+  document.getElementById("sl-w-380").value = Math.round((wMap.kv380 || 0) * 100);
+  document.getElementById("sl-w-gb").value = Math.round((wMap.gb || 0) * 100);
+  document.getElementById("sl-w-pop").value = Math.round((wMap.pop || 0) * 100);
+  document.getElementById("sl-w-lu").value = Math.round((wMap.lu || 0) * 100);
+  if (sc.protection) {
+    var cats = Object.keys(sc.protection);
+    for (var i = 0; i < cats.length; i++) {
+      var cat = cats[i], mode = sc.protection[cat];
+      PROT_MODES[cat] = mode;
+      var row = document.getElementById("prot-row-" + cat);
+      if (row) {
+        var btns = row.querySelectorAll(".prot-btn");
+        for (var j = 0; j < btns.length; j++) {
+          btns[j].className = "prot-btn";
+          var btnMode = btns[j].textContent.toLowerCase().replace("hart","hard").replace("weich","soft").replace("aus","off");
+          if (btnMode === mode) {
+            btns[j].classList.add(mode === "hard" ? "active-hard" : mode === "soft" ? "active-soft" : "active-off");
+          }
+        }
+      }
+    }
+  }
+  document.getElementById("scenario-desc").textContent = sc.desc || "";
+  updateWeights();
+}
+
+function onSliderManualChange() {
+  document.getElementById("sl-scenario").value = "custom";
+  document.getElementById("scenario-desc").textContent = "";
+  updateWeights();
+}
+
+function pwrReset() {
+  document.getElementById("sl-scenario").value = "colo";
+  applyScenario("colo");
+}
+
+function pwrTog() {
+  var panel = document.getElementById("pwr-panel");
+  panel.classList.toggle("collapsed");
+  var btn = document.getElementById("pwr-tog");
+  btn.innerHTML = panel.classList.contains("collapsed") ? "+" : "&minus;";
+}
+
+function setProtMode(cat, mode, btn) {
+  PROT_MODES[cat] = mode;
+  var row = document.getElementById("prot-row-" + cat);
+  if (row) {
+    var btns = row.querySelectorAll(".prot-btn");
+    for (var j = 0; j < btns.length; j++) btns[j].className = "prot-btn";
+  }
+  if (mode === "hard") btn.classList.add("active-hard");
+  else if (mode === "soft") btn.classList.add("active-soft");
+  else btn.classList.add("active-off");
+  updateStats();
+  if (heatLayer) heatLayer.redraw();
+  dcRefreshComputed();
+}
+
+/* ── Geocode search ── */
+var geocodeTimer = null;
+function initGeoSearch() {
+  var input = document.getElementById("geocode-input");
+  var clearBtn = document.getElementById("geocode-clear");
+  var resultsDiv = document.getElementById("geocode-results");
+
+  input.addEventListener("input", function() {
+    clearBtn.style.display = input.value ? "block" : "none";
+    if (geocodeTimer) clearTimeout(geocodeTimer);
+    var q = input.value.trim();
+    if (q.length < 3) { resultsDiv.style.display = "none"; return; }
+    geocodeTimer = setTimeout(function() {
+      fetch("https://nominatim.openstreetmap.org/search?format=json&countrycodes=de&limit=5&q=" + encodeURIComponent(q))
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          if (!data || data.length === 0) {
+            resultsDiv.innerHTML = '<div class="geo-no-result">Kein Ergebnis</div>';
+            resultsDiv.style.display = "block";
+            return;
+          }
+          var html = "";
+          for (var i = 0; i < data.length; i++) {
+            html += '<div class="geo-item" data-lat="' + data[i].lat + '" data-lon="' + data[i].lon + '">' + data[i].display_name + '</div>';
+          }
+          resultsDiv.innerHTML = html;
+          resultsDiv.style.display = "block";
+          var items = resultsDiv.querySelectorAll(".geo-item");
+          for (var j = 0; j < items.length; j++) {
+            items[j].addEventListener("click", function() {
+              var lat = parseFloat(this.getAttribute("data-lat"));
+              var lon = parseFloat(this.getAttribute("data-lon"));
+              map.setView([lat, lon], 12);
+              if (geoSearchMarker) map.removeLayer(geoSearchMarker);
+              geoSearchMarker = L.marker([lat, lon]).addTo(map).bindPopup(this.textContent).openPopup();
+              input.value = this.textContent;
+              resultsDiv.style.display = "none";
+            });
+          }
+        })
+        .catch(function() { resultsDiv.style.display = "none"; });
+    }, 400);
+  });
+
+  clearBtn.addEventListener("click", function() {
+    input.value = "";
+    clearBtn.style.display = "none";
+    resultsDiv.style.display = "none";
+    if (geoSearchMarker) { map.removeLayer(geoSearchMarker); geoSearchMarker = null; }
+  });
+}
+
+/* ── Heatmap tile layer ── */
+var HeatTileLayer = L.GridLayer.extend({
+  createTile: function(coords) {
+    var tile = L.DomUtil.create("canvas", "leaflet-tile");
+    var sz = this.getTileSize(); tile.width = sz.x; tile.height = sz.y;
+    var ctx = tile.getContext("2d"); ctx.imageSmoothingEnabled = false;
+    var b = this._tileCoordsToBounds(coords);
+    var padded = L.latLngBounds([b.getSouth() - 0.15, b.getWest() - 0.15], [b.getNorth() + 0.15, b.getEast() + 0.15]);
+    var cand = candidatesForBounds(padded);
+    for (var ii = 0; ii < cand.length; ii++) {
+      var c = CELLS[cand[ii]];
+      var minLat = c[18] / 1e5, maxLat = c[19] / 1e5;
+      var minLon = c[20] / 1e5, maxLon = c[21] / 1e5;
+      if (maxLat < padded.getSouth() || minLat > padded.getNorth() || maxLon < padded.getWest() || minLon > padded.getEast()) continue;
+      var s = calcScore(c);
+      if (s < filterRef.value) continue;
+      var nw = this._map.project([maxLat, minLon], coords.z);
+      var se = this._map.project([minLat, maxLon], coords.z);
+      var origin = coords.scaleBy(sz);
+      var x1 = Math.floor(nw.x - origin.x), y1 = Math.floor(nw.y - origin.y);
+      var x2 = Math.ceil(se.x - origin.x), y2 = Math.ceil(se.y - origin.y);
+      ctx.fillStyle = (s === 0 && (c[13] || 0) > 0) ? "rgba(100,0,0," + opacityRef.value + ")" : scoreColor(s, opacityRef.value);
+      ctx.fillRect(x1, y1, x2 - x1 || 1, y2 - y1 || 1);
+    }
+    return tile;
+  }
+});
+
+/* ── GeoJSON loading helper ── */
+function loadGeoJSON(url) {
+  return fetch(url).then(function(r) {
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    return r.json();
+  });
+}
+
+/* ── Map init ── */
+function initMap(dcs) {
+  DC_DATA = dcs;
+
+  map = L.map("map", {center:[51.2, 10.5], zoom:6, zoomControl:true});
+
+  /* Basemaps */
+  var bkg = L.tileLayer("https://sgx.geodatenzentrum.de/wmts_topplus_open/tile/1.0.0/web_light_grau/default/WEBMERCATOR/{z}/{y}/{x}.png", {
+    attribution:'&copy; <a href="https://www.bkg.bund.de">BKG</a>', maxZoom:18
+  });
+  var carto = L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
+    attribution:'&copy; OSM contributors &copy; CARTO', maxZoom:19, subdomains:'abcd'
+  });
+  var esri = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
+    attribution:'&copy; Esri', maxZoom:18
+  });
+  bkg.addTo(map);
+
+  var baseMaps = {
+    "TopPlus Grau (BKG)": bkg,
+    "CARTO Voyager (OSM)": carto,
+    "Satellit (Esri)": esri
+  };
+
+  /* Custom panes */
+  map.createPane("heatTilesPane");
+  map.getPane("heatTilesPane").style.zIndex = 350;
+  map.getPane("heatTilesPane").style.pointerEvents = "none";
+
+  map.createPane("dcPane");
+  map.getPane("dcPane").style.zIndex = 650;
+
+  /* Build cell map and heat layer */
+  buildCellMap();
+  dcPrepareData(DC_DATA);
+  heatLayer = new HeatTileLayer({pane:"heatTilesPane", opacity:1, updateWhenZooming:false, updateWhenIdle:true});
+  heatLayer.addTo(map);
+
+  var overlayEntries = [];
+  function registerOverlay(order, label, layer) {
+    overlayEntries.push({order:order, label:label, layer:layer});
+  }
+  registerOverlay(10, legendGradientLabel("Heatmap", CELLS.length), heatLayer);
+
+  /* Load GeoJSON layers */
+  var layerPromises = [];
+
+  /* Germany border */
+  layerPromises.push(
+    loadGeoJSON("data/layers/germany_border.geojson").then(function(gj) {
+      var lyr = L.geoJSON(gj, {interactive:false, style:{fill:false, color:"#1e3a5f", weight:2.5, opacity:0.85}});
+      lyr.addTo(map);
+      registerOverlay(30, legendOutlineLabel("Grenze", (gj.features || []).length || 1, "#1e3a5f"), lyr);
+    }).catch(function(){})
+  );
+
+  /* Kreise */
+  layerPromises.push(
+    loadGeoJSON("data/layers/kreise.geojson").then(function(gj) {
+      kreisFg = L.geoJSON(gj, {interactive:false, style:{fillColor:"transparent", fillOpacity:0, color:"#475569", weight:1.5, opacity:0.7, dashArray:"4 3"}});
+      registerOverlay(40, legendOutlineLabel("Kreise", (gj.features || []).length, "#475569"), kreisFg);
+    }).catch(function(){})
+  );
+
+  /* Protection areas */
+  var protColors = {nationalpark:"#1a5c38", nsg:"#2d6a4f", ffh:"#52b788", biosphere:"#7b5ea7", lsg:"#c9a84c", naturpark:"#6aab7e"};
+  var protLabelsUI = {nationalpark:"Nationalpark", nsg:"Naturschutz", ffh:"FFH/Natura2000", biosphere:"Biosph\u00e4re", lsg:"Landschaftsschutz", naturpark:"Naturpark"};
+  var protCats = ["nationalpark","nsg","ffh","biosphere","lsg","naturpark"];
+  for (var pi = 0; pi < protCats.length; pi++) {
+    (function(cat) {
+      layerPromises.push(
+        loadGeoJSON("data/layers/protection_" + cat + ".geojson").then(function(gj) {
+          var lyr = L.geoJSON(gj, {
+            style:{color:protColors[cat], fillColor:protColors[cat], fillOpacity:0.25, weight:1},
+            onEachFeature:function(f, layer) {
+              var p = f.properties || {};
+              var tipHtml = '<div class="gt-title">' + (p.name || protLabelsUI[cat]) + '</div>';
+              tipHtml += '<span class="gt-badge" style="background:' + protColors[cat] + '">' + protLabelsUI[cat] + '</span>';
+              if (p.kategorie) tipHtml += '<div class="gt-detail">' + p.kategorie + '</div>';
+              layer.bindTooltip(tipHtml, {sticky:true, className:"geo-tip geo-tip--prot"});
+              layer.bindPopup(function() {
+                var center = layer.getBounds ? layer.getBounds().getCenter() : null;
+                return geoFeaturePopupHtml(f, protLabelsUI[cat], protColors[cat], center);
+              }, {maxWidth:340, className:"dark-popup"});
+            }
+          });
+          var protOrder = {nationalpark:70, nsg:71, ffh:72, biosphere:73, lsg:74, naturpark:75};
+          registerOverlay(protOrder[cat] || 79, legendAreaLabel(protLabelsUI[cat], (gj.features || []).length, protColors[cat]), lyr);
+        }).catch(function(){})
+      );
+    })(protCats[pi]);
+  }
+
+  /* Landuse */
+  var luColors = {industrial:"#d97706", commercial:"#f59e0b", brownfield:"#92400e"};
+  var luLabelsUI = {industrial:"Industrie", commercial:"Gewerbe", brownfield:"Brownfield"};
+  var luCats = ["industrial","commercial","brownfield"];
+  for (var li = 0; li < luCats.length; li++) {
+    (function(cat) {
+      layerPromises.push(
+        loadGeoJSON("data/layers/landuse_" + cat + ".geojson").then(function(gj) {
+          var lyr = L.geoJSON(gj, {
+            style:{color:luColors[cat], fillColor:luColors[cat], fillOpacity:0.35, weight:1},
+            onEachFeature:function(f, layer) {
+              var p = f.properties || {};
+              var tipHtml = '<div class="gt-title">' + (p.name || luLabelsUI[cat]) + '</div>';
+              tipHtml += '<span class="gt-badge" style="background:' + luColors[cat] + '">' + luLabelsUI[cat] + '</span>';
+              if (p.flaeche) tipHtml += '<div class="gt-detail">' + p.flaeche + ' ha</div>';
+              layer.bindTooltip(tipHtml, {sticky:true, className:"geo-tip geo-tip--landuse"});
+              layer.bindPopup(function() {
+                var center = layer.getBounds ? layer.getBounds().getCenter() : null;
+                return geoFeaturePopupHtml(f, luLabelsUI[cat], luColors[cat], center);
+              }, {maxWidth:340, className:"dark-popup"});
+            }
+          });
+          var luOrder = {industrial:80, commercial:81, brownfield:82};
+          registerOverlay(luOrder[cat] || 89, legendAreaLabel(luLabelsUI[cat], (gj.features || []).length, luColors[cat]), lyr);
+        }).catch(function(){})
+      );
+    })(luCats[li]);
+  }
+
+  /* Power lines */
+  var plColors = {380:"#c0392b", 220:"#8e44ad", 110:"#2980b9"};
+  var plWeights = {380:2.0, 220:1.3, 110:0.9};
+  var plVoltages = ["380","220","110"];
+  for (var vi = 0; vi < plVoltages.length; vi++) {
+    (function(v) {
+      layerPromises.push(
+        loadGeoJSON("data/layers/power_lines_" + v + ".geojson").then(function(gj) {
+          var lyr = L.geoJSON(gj, {
+            style:{color:plColors[v], weight:plWeights[v], opacity:0.8},
+            onEachFeature:function(f, layer) {
+              var p = f.properties || {};
+              var tipHtml = '<div class="gt-title">\u26a1 ' + (p.voltage_kv || v) + ' kV</div>';
+              if (p.operator_show) tipHtml += '<div class="gt-detail">' + p.operator_show + '</div>';
+              if (p.name_show) tipHtml += '<div class="gt-detail">' + p.name_show + '</div>';
+              layer.bindTooltip(tipHtml, {sticky:true, className:"geo-tip geo-tip--powerline"});
+              layer.bindPopup(function(l) {
+                var center = l.getCenter ? l.getCenter() : (l.getLatLng ? l.getLatLng() : null);
+                return geoFeaturePopupHtml(f, v + "-kV-Leitung", plColors[v], center);
+              }, {maxWidth:340, className:"dark-popup"});
+            }
+          });
+          if (v === "380") lyr.addTo(map);
+          registerOverlay({380:50,220:51,110:52}[v] || 59, legendLineLabel(v + "-kV-Leitungen", (gj.features || []).length, plColors[v]), lyr);
+        }).catch(function(){})
+      );
+    })(plVoltages[vi]);
+  }
+
+  /* Substations */
+  layerPromises.push(
+    loadGeoJSON("data/layers/substations.geojson").then(function(gj) {
+      var subGroups = {};
+      var subAll = L.geoJSON(gj, {
+        pointToLayer: function(f, latlng) {
+          var p = f.properties || {};
+          var vb = p.v_bucket || 110;
+          var color = vb >= 380 ? "#c0392b" : vb >= 220 ? "#8e44ad" : "#2980b9";
+          var radius = vb >= 380 ? 6 : vb >= 220 ? 5 : 4;
+          var m = L.circleMarker(latlng, {radius:radius, color:color, fillColor:color, fillOpacity:0.8, weight:1.5});
+          var tip = (p.name || "Substation") + (p.operator ? " \u2013 " + p.operator : "") +
+                    (p.voltage_max_kv ? " (" + p.voltage_max_kv + " kV)" : "");
+          var tipHtml = '<div class="gt-title">' + (p.name || "Umspannwerk") + '</div>';
+          tipHtml += '<span class="gt-badge" style="background:' + color + '">' + (p.voltage_max_kv ? p.voltage_max_kv + ' kV' : vb + ' kV') + '</span>';
+          if (p.operator) tipHtml += '<div class="gt-detail">' + p.operator + '</div>';
+          m.bindTooltip(tipHtml, {sticky:true, className:"geo-tip geo-tip--substation"});
+          m.bindPopup(function() {
+            return geoFeaturePopupHtml(f, "Umspannwerk " + (p.voltage_max_kv || vb) + " kV", color, latlng);
+          }, {maxWidth:340, className:"dark-popup"});
+          if (!subGroups[vb]) subGroups[vb] = [];
+          subGroups[vb].push(m);
+          return m;
+        }
+      });
+      /* Group by voltage */
+      var subGroupLayers = {};
+      var vKeys = Object.keys(subGroups).sort(function(a, b) { return b - a; });
+      for (var k = 0; k < vKeys.length; k++) {
+        var vk = vKeys[k];
+        var fg = L.featureGroup(subGroups[vk]);
+        if (+vk >= 380) fg.addTo(map);
+        registerOverlay({380:60,220:61,110:62}[vk] || 69, legendDotLabel("Sub " + vk + " kV", subGroups[vk].length, (+vk >= 380 ? "#c0392b" : +vk >= 220 ? "#8e44ad" : "#2980b9")), fg);
+      }
+    }).catch(function(){})
+  );
+
+  /* DC markers */
+  var dcFg = L.featureGroup();
+  for (var di = 0; di < dcs.length; di++) {
+    var d = dcs[di];
+    var color = dcBadgeColor(d._mwClass || d.mw_class || 0);
+    var radius = dcMarkerRadiusByClass(d._mwClass || d.mw_class || 0);
+    var m = L.circleMarker([d.lat, d.lon], {
+      radius: radius, color: color, fillColor: color, fillOpacity: 0.85,
+      weight: 2, pane: "dcPane"
+    });
+    d._marker = m;
+    m.bindPopup(dcPopupHtml(d), {maxWidth:320, className:"dark-popup"});
+    m.bindTooltip(dcMarkerTooltip(d));
+    m.addTo(dcFg);
+    DC_MARKERS.push(m);
+  }
+  dcFg.addTo(map);
+  registerOverlay(20, legendDcLabel("Rechenzentren", dcs.length), dcFg);
+  dcRefreshComputed();
+  dcMaybeAutoOpen();
+
+  /* Layer control */
+  Promise.all(layerPromises).then(function() {
+    var overlays = {};
+    overlayEntries.sort(function(a, b) { return a.order - b.order; });
+    for (var oi = 0; oi < overlayEntries.length; oi++) overlays[overlayEntries[oi].label] = overlayEntries[oi].layer;
+    L.control.layers(baseMaps, overlays, {collapsed:true, position:"topleft"}).addTo(map);
+  });
+
+  /* ── Event handlers ── */
+  var tip = document.getElementById("pwr-tip");
+
+  map.on("mousemove", function(e) {
+    var c = findCell(e.latlng.lat, e.latlng.lng);
+    if (c) {
+      showTip(c);
+      /* Smart positioning: avoid panel overlap AND Leaflet tooltips */
+      var tw = tip.offsetWidth, th = tip.offsetHeight;
+      var mw = window.innerWidth, mh = window.innerHeight;
+      var cx = e.originalEvent.clientX, cy = e.originalEvent.clientY;
+      var panel = document.getElementById("pwr-panel");
+      var panelRect = panel ? panel.getBoundingClientRect() : {left:mw,right:mw,top:0,bottom:0};
+
+      /* Check if a Leaflet tooltip is currently visible (from GeoJSON layers) */
+      var leafletTip = document.querySelector(".leaflet-tooltip");
+      var leafletTipRect = leafletTip ? leafletTip.getBoundingClientRect() : null;
+
+      /* Default: below and right of cursor (avoids Leaflet tooltips which appear above) */
+      var tx = cx + 18, ty = cy + 22;
+
+      /* If tooltip would overlap with the right panel, show it to the left of cursor */
+      if (tx + tw > panelRect.left - 8) {
+        tx = cx - tw - 14;
+      }
+      /* If going off right edge of screen */
+      if (tx + tw > mw - 10) tx = cx - tw - 14;
+      /* If going off left edge */
+      if (tx < 10) tx = 10;
+      /* If going off bottom, flip above cursor */
+      if (ty + th > mh - 10) ty = cy - th - 14;
+      /* If going off top */
+      if (ty < 10) ty = 10;
+
+      /* If still overlapping a visible Leaflet tooltip, nudge further down */
+      if (leafletTipRect) {
+        var myRect = {left:tx, top:ty, right:tx+tw, bottom:ty+th};
+        if (!(myRect.right < leafletTipRect.left || myRect.left > leafletTipRect.right ||
+              myRect.bottom < leafletTipRect.top || myRect.top > leafletTipRect.bottom)) {
+          ty = leafletTipRect.bottom + 6;
+          if (ty + th > mh - 10) ty = leafletTipRect.top - th - 6;
+        }
+      }
+
+      tip.style.left = tx + "px";
+      tip.style.top = ty + "px";
+    } else {
+      hideTip();
+    }
+  });
+
+  map.on("mouseout", function() { hideTip(); });
+
+  /* Track popup open/close to suppress hover tooltip when popup visible */
+  map.on("popupopen", function() { popupOpen = true; hideTip(); });
+  map.on("popupclose", function() { popupOpen = false; });
+
+  map.on("click", function(e) {
+    if (popupOpen) return; /* let Leaflet handle popup close first */
+    var c = findCell(e.latlng.lat, e.latlng.lng);
+    if (c) {
+      showCellPanel(c);
+      var kreis = (c[17] >= 0 && KRS_NAMES[c[17]]) ? KRS_NAMES[c[17]] : null;
+      resetKreisHL();
+      if (kreis) highlightKreis(kreis);
+    }
+  });
+
+  /* Sliders */
+  var sliderIds = ["sl-w-sub","sl-w-110","sl-w-220","sl-w-380","sl-w-gb","sl-w-pop","sl-w-lu"];
+  for (var si = 0; si < sliderIds.length; si++) {
+    document.getElementById(sliderIds[si]).addEventListener("input", onSliderManualChange);
+  }
+
+  document.getElementById("sl-op").addEventListener("input", function() {
+    opacityRef.value = this.value / 100;
+    document.getElementById("lbl-op").textContent = this.value + " %";
+    if (heatLayer) heatLayer.redraw();
+  });
+
+  document.getElementById("sl-filter").addEventListener("input", function() {
+    filterRef.value = this.value / 100;
+    document.getElementById("lbl-filter").textContent = (this.value / 100).toFixed(2).replace(".", ",");
+    if (heatLayer) heatLayer.redraw();
+  });
+
+  document.getElementById("sl-scenario").addEventListener("change", function() {
+    var v = this.value;
+    if (v !== "custom") applyScenario(v);
+  });
+
+  /* DC sidebar search/sort */
+  document.getElementById("dc-q").addEventListener("input", function() { dcSbRender(map, DC_DATA); });
+  document.getElementById("dc-sort").addEventListener("change", function() { dcSbRender(map, DC_DATA); });
+
+  /* Geocode */
+  initGeoSearch();
+
+  /* Initial stats */
+  updateWeights();
+
+  /* Hide loading overlay */
+  document.getElementById("loading-overlay").style.display = "none";
+}
+
+/* ── Boot ── */
+async function loadData() {
+  updateStatus("Lade Zell-Daten ...");
+  var cellData = await fetch("data/cells.json").then(function(r) { return r.json(); });
+  CELLS = cellData.cells;
+  LAT_EDGES = cellData.lat_edges;
+  LON_EDGES = cellData.lon_edges;
+  KRS_NAMES = cellData.krs_names;
+
+  updateStatus("Lade Konfiguration ...");
+  var cfg = await fetch("data/config.json").then(function(r) { return r.json(); });
+  DECAY = cfg.decay;
+  W_DEF = cfg.weights;
+  W = Object.assign({}, W_DEF);
+  SCENARIOS = cfg.scenarios;
+
+  updateStatus("Lade Rechenzentren ...");
+  var dcs = await fetch("data/datacenters.json").then(function(r) { return r.json(); });
+
+  updateStatus("Initialisiere Karte ...");
+  initMap(dcs);
+}
+
+loadData().catch(function(err) {
+  console.error("Load error:", err);
+  updateStatus("Fehler beim Laden: " + err.message);
+});
+</script>
+</body>
+</html>

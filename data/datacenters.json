@@ -1,0 +1,2173 @@
+[
+  {
+    "name": "Unnamed",
+    "lat": 50.1923393,
+    "lon": 8.5922263
+  },
+  {
+    "name": "Unnamed",
+    "lat": 49.0133517,
+    "lon": 8.3474849
+  },
+  {
+    "name": "Unnamed",
+    "lat": 48.1517638,
+    "lon": 11.5984415,
+    "address": "Am Tucherpark, 12, München, 80538"
+  },
+  {
+    "name": "Unnamed",
+    "lat": 54.3369245,
+    "lon": 13.0689199
+  },
+  {
+    "name": "Unnamed",
+    "lat": 49.4089896,
+    "lon": 11.1314813
+  },
+  {
+    "name": "ForHLR II",
+    "lat": 49.0960368,
+    "lon": 8.4334306,
+    "operator": "Steinbuch Centre for Computing",
+    "website": "https://www.scc.kit.edu/dienste/forhlr2.php",
+    "score": 0.875
+  },
+  {
+    "name": "Unnamed",
+    "lat": 49.8435851,
+    "lon": 8.5846352
+  },
+  {
+    "name": "Unnamed",
+    "lat": 48.0948696,
+    "lon": 11.530393,
+    "address": "Baierbrunner Straße, 36, München"
+  },
+  {
+    "name": "Unnamed",
+    "lat": 49.0956655,
+    "lon": 8.4331265
+  },
+  {
+    "name": "Unnamed",
+    "lat": 53.11193,
+    "lon": 8.2103049,
+    "address": "Cloppenburger Straße, 302, Oldenburg, 26133"
+  },
+  {
+    "name": "GWDG - Außenstelle",
+    "lat": 51.5479407,
+    "lon": 9.9439876,
+    "address": "Margarethe-von-Wrangell-Weg, 7, Göttingen, 37075",
+    "score": 0.93
+  },
+  {
+    "name": "Unnamed",
+    "lat": 49.0135183,
+    "lon": 8.3469497
+  },
+  {
+    "name": "Unnamed",
+    "lat": 52.0047796,
+    "lon": 7.5390082
+  },
+  {
+    "name": "Unnamed",
+    "lat": 49.4086364,
+    "lon": 11.1310859
+  },
+  {
+    "name": "Unnamed",
+    "lat": 51.2196526,
+    "lon": 6.8064627,
+    "address": "Albertstraße, 27a, Düsseldorf, 40233"
+  },
+  {
+    "name": "Unnamed",
+    "lat": 51.21951,
+    "lon": 6.8066727
+  },
+  {
+    "name": "Unnamed",
+    "lat": 53.1119802,
+    "lon": 8.2095484
+  },
+  {
+    "name": "Unnamed",
+    "lat": 53.1121454,
+    "lon": 8.209638
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.1440923,
+    "lon": 8.5534152
+  },
+  {
+    "name": "Informationstechnikzentrum Bund (ITZBund)",
+    "lat": 50.1261254,
+    "lon": 8.5856592,
+    "website": "https://www.itzbund.de/",
+    "email": "poststelle@itzbund.de",
+    "phone": "+49 22899 680-0",
+    "address": "Wilhelm-Fay-Straße, 11, Frankfurt am Main, 65936",
+    "score": 1.0
+  },
+  {
+    "name": "TelemaxX IPC2",
+    "lat": 49.019584,
+    "lon": 8.4398031,
+    "operator": "TelemaxX Telekommunikation GmbH",
+    "address": "Emmy-Noether-Straße, 9, Karlsruhe, 76131",
+    "description": "Rechenzentrum IPC2 der TelemaxX Telekommunikation GmbH",
+    "score": 0.9
+  },
+  {
+    "name": "NorthC Nürnberg 1",
+    "lat": 49.3896407,
+    "lon": 11.1766281,
+    "operator": "NorthC",
+    "website": "https://www.northcdatacenters.com/de/northc-datacenters/nuernberg/",
+    "address": "Am Tower, 5, Nürnberg, 90475",
+    "score": 0.674
+  },
+  {
+    "name": "Unnamed",
+    "lat": 54.0821144,
+    "lon": 12.1390714,
+    "operator": "Hansestadt Rostock"
+  },
+  {
+    "name": "Unnamed",
+    "lat": 54.0847873,
+    "lon": 12.1371038
+  },
+  {
+    "name": "Unnamed",
+    "lat": 51.9841519,
+    "lon": 11.6553327
+  },
+  {
+    "name": "ColocationIX",
+    "lat": 53.0938935,
+    "lon": 8.7905596,
+    "score": 0.868
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.1193231,
+    "lon": 8.7373751
+  },
+  {
+    "name": "IT- und Medienzentrum",
+    "lat": 54.0773947,
+    "lon": 12.1066375,
+    "operator": "Universität Rostock",
+    "website": "https://www.itmz.uni-rostock.de/",
+    "score": 0.897
+  },
+  {
+    "name": "Rechenzentrum Citeq",
+    "lat": 51.9746919,
+    "lon": 7.6102911,
+    "operator": "Stadt Münster",
+    "score": 0.96
+  },
+  {
+    "name": "Warenannahme MPCDF",
+    "lat": 48.2627277,
+    "lon": 11.672861,
+    "score": 0.983
+  },
+  {
+    "name": "Unnamed",
+    "lat": 48.2628412,
+    "lon": 11.672927
+  },
+  {
+    "name": "Unnamed",
+    "lat": 49.0202975,
+    "lon": 8.4398619
+  },
+  {
+    "name": "Wiit AG DUS",
+    "lat": 51.2667997,
+    "lon": 6.8172593,
+    "operator": "Wiit AG",
+    "website": "https://www.wiit.cloud/de/",
+    "address": "Am Gatherhof, 44, Düsseldorf, 40472",
+    "score": 0.888
+  },
+  {
+    "name": "Rechenzentrum Akquinet",
+    "lat": 53.7000316,
+    "lon": 9.9937299,
+    "score": 0.94
+  },
+  {
+    "name": "Rechenzentrum",
+    "lat": 49.25724,
+    "lon": 7.0450634,
+    "operator": "Hochschul-IT-Zentrum",
+    "score": 0.818
+  },
+  {
+    "name": "Unnamed",
+    "lat": 52.2854977,
+    "lon": 8.0222279,
+    "address": "Nelson-Mandela-Straße, 4, Osnabrück, 49076"
+  },
+  {
+    "name": "Unnamed",
+    "lat": 48.0950448,
+    "lon": 11.5304247
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.7770627,
+    "lon": 6.1316522
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.7770858,
+    "lon": 6.1316985
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.777043,
+    "lon": 6.1315588
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.7774126,
+    "lon": 6.1313286
+  },
+  {
+    "name": "Unnamed",
+    "lat": 52.2856585,
+    "lon": 8.0222747,
+    "address": "Nelson-Mandela-Straße, 2, Osnabrück, 49076"
+  },
+  {
+    "name": "Unnamed",
+    "lat": 49.7460963,
+    "lon": 9.9559456
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.0621791,
+    "lon": 8.4841382
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.0625764,
+    "lon": 8.4861175
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.0619005,
+    "lon": 8.4836686
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.0610571,
+    "lon": 8.4829188
+  },
+  {
+    "name": "Open Skies One",
+    "lat": 49.2249548,
+    "lon": 7.0396224,
+    "operator": "prego. services GmbH",
+    "website": "https://www.prego-services.de/",
+    "address": "Am Halberg, 3, Saarbrücken, 66121",
+    "score": 0.84
+  },
+  {
+    "name": "Unnamed",
+    "lat": 48.7397986,
+    "lon": 9.0969794
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.0619293,
+    "lon": 8.4837915
+  },
+  {
+    "name": "Unnamed",
+    "lat": 52.1480995,
+    "lon": 11.6373206
+  },
+  {
+    "name": "Digital Reality DUS2",
+    "lat": 51.187765,
+    "lon": 6.8667225,
+    "operator": "Digital Realty",
+    "website": "https://www.digitalrealty.com/data-centers/emea/dusseldorf/dus2",
+    "phone": "+49 211 74966700",
+    "address": "In der Steele, 39-45, Düsseldorf, 40599",
+    "score": 0.886
+  },
+  {
+    "name": "InterXion DUS1",
+    "lat": 51.1880894,
+    "lon": 6.8678571,
+    "operator": "Interxion",
+    "phone": "+49 211 74966700",
+    "address": "In der Steele, 25-27a, Düsseldorf, 40599"
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.3552607,
+    "lon": 8.7532925,
+    "operator": "Artec"
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.1199885,
+    "lon": 8.7391776
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.1195244,
+    "lon": 8.7380325
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.4792774,
+    "lon": 12.3356314
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.4793858,
+    "lon": 12.3357309
+  },
+  {
+    "name": "Nepustil RZ4",
+    "lat": 48.7088377,
+    "lon": 9.1707248,
+    "score": 0.838
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.3026833,
+    "lon": 7.1671016
+  },
+  {
+    "name": "Unnamed",
+    "lat": 51.5608512,
+    "lon": 9.9574769
+  },
+  {
+    "name": "Unnamed",
+    "lat": 51.5611101,
+    "lon": 9.9574813
+  },
+  {
+    "name": "Unnamed",
+    "lat": 49.8336929,
+    "lon": 9.9081798
+  },
+  {
+    "name": "IPB Internet Provider in Berlin GmbH",
+    "lat": 52.5020344,
+    "lon": 13.3693009,
+    "website": "https://www.ipb.de/",
+    "phone": "+49 30 9203739-00",
+    "address": "Lützowstraße, 106, Berlin, 10785",
+    "description": "/P/B/ ist Internet Service Provider, Cloud Betreiber und mit der Marke CarrierColo einer der bedeutendsten Rechenzentrumsbetreiber Berlins. Mit einem breiten Produktspektrum von Access über VPN, Hosting und Cloud Services hat sich I/P/B/ in über 20 Jahren",
+    "score": 0.708
+  },
+  {
+    "name": "Unnamed",
+    "lat": 51.6810714,
+    "lon": 8.7360452
+  },
+  {
+    "name": "Unnamed",
+    "lat": 49.3940966,
+    "lon": 8.6725645
+  },
+  {
+    "name": "Unnamed",
+    "lat": 48.3550061,
+    "lon": 10.903686,
+    "website": "https://www.tha.de/Rechenzentrum.html"
+  },
+  {
+    "name": "CarrierColo Berlin K",
+    "lat": 52.4326183,
+    "lon": 13.3738355,
+    "operator": "IPB",
+    "website": "https://www.carrier-colo.com/de/datacenter/location-k.html",
+    "address": "Kitzingstraße, 15, Berlin, 12277",
+    "score": 0.671
+  },
+  {
+    "name": "Unnamed",
+    "lat": 51.226871,
+    "lon": 7.6352936
+  },
+  {
+    "name": "Unnamed",
+    "lat": 48.7531988,
+    "lon": 11.4795606
+  },
+  {
+    "name": "Unnamed",
+    "lat": 48.262866,
+    "lon": 11.673311
+  },
+  {
+    "name": "Universitätsrechenzentrum",
+    "lat": 50.9320923,
+    "lon": 11.5819783,
+    "operator": "Friedrich-Schiller-Universität Jena",
+    "score": 0.789
+  },
+  {
+    "name": "Iron Mountain FRA-2",
+    "lat": 50.195252,
+    "lon": 8.6397882,
+    "operator": "Iron Mountain, Inc.",
+    "website": "https://www.ironmountain.com/data-centers/locations/frankfurt-data-center",
+    "address": "Heinrich-Lanz-Allee, 47, Frankfurt am Main, 60437",
+    "score": 1.0
+  },
+  {
+    "name": "Rechenzentrum AtlasEdge HAM002",
+    "lat": 53.6786512,
+    "lon": 10.2712655,
+    "operator": "AtlasEdge",
+    "score": 0.92
+  },
+  {
+    "name": "NIC",
+    "lat": 49.8832929,
+    "lon": 8.6311406,
+    "operator": "Deutsche Telekom AG",
+    "score": 0.931
+  },
+  {
+    "name": "Unnamed",
+    "lat": 49.3940964,
+    "lon": 8.6725661
+  },
+  {
+    "name": "Unnamed",
+    "lat": 49.3939362,
+    "lon": 8.6725181
+  },
+  {
+    "name": "Unnamed",
+    "lat": 49.3939195,
+    "lon": 8.6725133
+  },
+  {
+    "name": "Gauß-IT-Zentrum",
+    "lat": 52.2765022,
+    "lon": 10.5417274,
+    "operator": "TU Braunschweig",
+    "website": "https:www.tu-braunschweig.de/it",
+    "phone": "+49 531 39155555",
+    "description": "Rechenzentrum der TU Braunschweig, zentraler Dienstleister für IT-Dienste",
+    "score": 0.825
+  },
+  {
+    "name": "Unnamed",
+    "lat": 49.975422,
+    "lon": 8.452167
+  },
+  {
+    "name": "Unnamed",
+    "lat": 49.974896,
+    "lon": 8.4491229
+  },
+  {
+    "name": "Unnamed",
+    "lat": 49.9748414,
+    "lon": 8.4512294
+  },
+  {
+    "name": "Unnamed",
+    "lat": 49.975533,
+    "lon": 8.449263
+  },
+  {
+    "name": "NTT Data Inc, München Data Center",
+    "lat": 48.292453,
+    "lon": 11.5738444,
+    "website": "https://services.global.ntt/de-de/services-und-produkte/global-data-centers/globale-standorte/emea/muenchen-2-data-center",
+    "score": 0.941
+  },
+  {
+    "name": "ennit GmbH",
+    "lat": 54.3663515,
+    "lon": 10.1076094,
+    "operator": "TNG Group",
+    "website": "https://www.ennit.de",
+    "phone": "+49 431 530540",
+    "address": "Gerhard-Fröhler-Straße, 12, Kiel, 24106",
+    "score": 0.705
+  },
+  {
+    "name": "Unnamed",
+    "lat": 51.9298583,
+    "lon": 10.4317546,
+    "operator": "PDV Systeme GmbH"
+  },
+  {
+    "name": "Rechenzentrum Nürnberg Zentrum",
+    "lat": 49.453733,
+    "lon": 11.0638651,
+    "operator": "noris network",
+    "website": "https://www.noris.de/rechenzentren/rz-nuernberg-zentrum",
+    "score": 0.845
+  },
+  {
+    "name": "Equinix MU1",
+    "lat": 48.142709,
+    "lon": 11.5558571,
+    "operator": "Equinix",
+    "website": "https://www.equinix.com/data-centers/europe-colocation/germany-colocation/munich-data-centers/mu1",
+    "address": "Seidlstraße, 3",
+    "score": 0.734
+  },
+  {
+    "name": "Unnamed",
+    "lat": 53.549767029629635,
+    "lon": 10.048251681481483,
+    "address": "Wendenstraße, 408, Hamburg, 20537"
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.144413459999996,
+    "lon": 8.55251576
+  },
+  {
+    "name": "Kyndryl Data Center",
+    "lat": 50.14421708333333,
+    "lon": 8.553297616666667,
+    "address": "Bismarckstraße, 2, Eschborn, 65760",
+    "score": 0.976
+  },
+  {
+    "name": "Rechenzentrum Garching",
+    "lat": 48.262726316666665,
+    "lon": 11.673068627777777,
+    "operator": "Max-Planck Computing & Data Facility",
+    "website": "https://www.mpcdf.mpg.de/"
+  },
+  {
+    "name": "Equinix FR4",
+    "lat": 50.09804498571429,
+    "lon": 8.587795385714287,
+    "operator": "Equinix",
+    "website": "https://www.equinix.de/locations/germany-colocation/frankfurt-data-centers/fr4/",
+    "address": "Lärchenstraße, 110, Frankfurt am Main, 65933",
+    "score": 1.0
+  },
+  {
+    "name": "T-Systems Magdeburg",
+    "lat": 52.14878938695653,
+    "lon": 11.637122378260868,
+    "operator": "T-Systems",
+    "address": "Lübecker Straße, 2, Magdeburg, 39124"
+  },
+  {
+    "name": "Telekom Data-Center",
+    "lat": 48.151528850000005,
+    "lon": 11.598170349999998
+  },
+  {
+    "name": "Unnamed",
+    "lat": 52.53723539,
+    "lon": 13.23723084,
+    "operator": "NTT Global Data Centers EMEA GmbH",
+    "phone": "+49 69 78 01 21 90",
+    "address": "Nonnendammallee, 15, Berlin, 13599"
+  },
+  {
+    "name": "EWE NETZ GmbH",
+    "lat": 53.11192280833334,
+    "lon": 8.209712933333334,
+    "operator": "EWE Netz GmbH",
+    "address": "Cloppenburger Straße, 302, Oldenburg, 26133"
+  },
+  {
+    "name": "NSA Rechenzentrum",
+    "lat": 49.84400520000001,
+    "lon": 8.584797638235294,
+    "score": 0.91
+  },
+  {
+    "name": "Unnamed",
+    "lat": 53.550814989473686,
+    "lon": 10.038337584210526,
+    "address": "Wendenstraße, 251, Hamburg, 20537"
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.09616142857143,
+    "lon": 8.629984457142855,
+    "operator": "Telehouse",
+    "website": "https://www.telehouse.net/data-centre-services/germany/frankfurt/",
+    "address": "Kleyerstraße, 75-87, Frankfurt am Main, 60326"
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.09685115714286,
+    "lon": 8.630829957142856,
+    "operator": "Telehouse",
+    "website": "https://www.telehouse.net/data-centre-services/germany/frankfurt/",
+    "address": "Kleyerstraße, 75-87, Frankfurt am Main, 60326"
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.1929138,
+    "lon": 8.59168872
+  },
+  {
+    "name": "Kyndryl Data Center",
+    "lat": 50.19252795999999,
+    "lon": 8.5922266,
+    "operator": "Kyndryl Deutschland GmbH",
+    "address": "Gablonzer Straße, 34, Oberursel (Taunus), 61440",
+    "score": 0.976
+  },
+  {
+    "name": "Unnamed",
+    "lat": 48.20847006666667,
+    "lon": 11.658332283333332
+  },
+  {
+    "name": "DVZ Datenverarbeitungszentrum Mecklenburg-Vorpommern GmbH",
+    "lat": 53.6467613,
+    "lon": 11.380619972727272,
+    "website": "https://www.dvz-mv.de",
+    "phone": "+49 385 48000",
+    "address": "Lübecker Straße, 283, Schwerin, 19059",
+    "description": "Haus B",
+    "score": 0.872
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.09875648888888,
+    "lon": 8.632920544444445,
+    "address": "Kleyerstraße, 88, Frankfurt am Main, 60326"
+  },
+  {
+    "name": "Digital Realty FRA4",
+    "lat": 50.11902168888889,
+    "lon": 8.734915333333333,
+    "operator": "Digital Realty",
+    "address": "Weismüllerstraße, 19, Frankfurt am Main, 60314"
+  },
+  {
+    "name": "Digital Realty FRA6",
+    "lat": 50.119904305263155,
+    "lon": 8.735312499999997,
+    "operator": "Digital Realty",
+    "address": "Hanauer Landstraße, 300a, Frankfurt am Main, 60314"
+  },
+  {
+    "name": "Digital Realty FRA2",
+    "lat": 50.120325550000004,
+    "lon": 8.7359403,
+    "operator": "Digital Realty",
+    "address": "Hanauer Landstraße, 304, Frankfurt am Main, 60314"
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.120561287499996,
+    "lon": 8.73657455625,
+    "address": "Hanauer Landstraße, 308, Frankfurt am Main, 60314"
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.11947302,
+    "lon": 8.736501955
+  },
+  {
+    "name": "Digital Realty FRA3",
+    "lat": 50.11929193333333,
+    "lon": 8.736077466666666,
+    "operator": "Digital Realty",
+    "address": "Weismüllerstraße, 21-23, Frankfurt am Main, 60314"
+  },
+  {
+    "name": "iNTERWERK Rechenzentrum",
+    "lat": 50.122474399999994,
+    "lon": 8.745121357142859,
+    "score": 0.862
+  },
+  {
+    "name": "Interwerk Rechenzentrum",
+    "lat": 50.1226616375,
+    "lon": 8.744788775,
+    "operator": "Interwerk",
+    "website": "https://www.interwerk.de/rechenzentrum.html",
+    "address": "Dieselstraße, 37-41, Frankfurt am Main, 60314"
+  },
+  {
+    "name": "TelemaxX IPC1",
+    "lat": 49.01350585,
+    "lon": 8.347212725,
+    "operator": "TelemaxX Telekommunikation GmbH",
+    "address": "Am Sonnenbad, 2a, Karlsruhe, 76189",
+    "description": "Rechenzentrum IPC1 der TelemaxX Telekommunikation GmbH",
+    "score": 1.0
+  },
+  {
+    "name": "DARZ - Darmstädter Rechenzentrum",
+    "lat": 49.87682689375,
+    "lon": 8.64257598125,
+    "website": "https://da-rz.de/de/",
+    "score": 0.881
+  },
+  {
+    "name": "Unnamed",
+    "lat": 51.520400688888884,
+    "lon": 7.4881829333333325,
+    "address": "Im Spähenfelde, 51, Dortmund, 44143"
+  },
+  {
+    "name": "Equinix",
+    "lat": 53.644514400000006,
+    "lon": 9.97502568,
+    "operator": "Equinix",
+    "website": "https://www.equinix.com/locations/europe-colocation/germany-colocation/hamburg-data-centers/hh1/",
+    "address": "Vierenkamp, 1, Hamburg, 22453",
+    "score": 0.778
+  },
+  {
+    "name": "Unnamed",
+    "lat": 51.92981981999999,
+    "lon": 10.4317227,
+    "address": "Troppauer Straße, 9"
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.4786089,
+    "lon": 12.337171499999998,
+    "address": "Am Datacenter-Park, 1, Falkenstein/Vogtl., 08223"
+  },
+  {
+    "name": "Equinix FR7",
+    "lat": 50.09737662,
+    "lon": 8.64312316,
+    "operator": "Equinix",
+    "score": 0.995
+  },
+  {
+    "name": "Equinix FR7",
+    "lat": 50.09752853,
+    "lon": 8.64409582,
+    "operator": "Equinix",
+    "score": 0.995
+  },
+  {
+    "name": "I.T.E.N.O.S. Frankfurt - B",
+    "lat": 50.0996301,
+    "lon": 8.631678,
+    "address": "Rebstöcker Straße, 33, Frankfurt am Main, 60326"
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.10444404,
+    "lon": 8.61986065,
+    "operator": "servinga GmbH"
+  },
+  {
+    "name": "ITSMZ",
+    "lat": 53.88833798461538,
+    "lon": 11.446702069230765,
+    "website": "https://www.hs-wismar.de/hochschule/einrichtungen/it-service-und-medienzentrum/",
+    "address": "Bürgermeister-Haupt-Straße, 34, Wismar, 23966",
+    "description": "IT-Service- und Medienzentrum (ehemals Rechenzentrum) der Hochschule Wismar",
+    "score": 0.826
+  },
+  {
+    "name": "Unnamed",
+    "lat": 51.883898,
+    "lon": 8.447426555555555
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.12981737619047,
+    "lon": 8.598065847619047,
+    "operator": "TE Connectivety"
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.12847881333334,
+    "lon": 8.602461633333336,
+    "address": "In der Kron, 6-8, Frankfurt am Main, 60489"
+  },
+  {
+    "name": "NTT",
+    "lat": 50.130236322222224,
+    "lon": 8.600985433333333,
+    "operator": "NTT",
+    "score": 1.0
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.12791048,
+    "lon": 8.604884880000002,
+    "address": "Breitlacherstraße, 96, Frankfurt am Main, 60489"
+  },
+  {
+    "name": "NTT",
+    "lat": 50.12880202307693,
+    "lon": 8.60013333076923,
+    "operator": "NTT",
+    "score": 1.0
+  },
+  {
+    "name": "NTT",
+    "lat": 50.12953348,
+    "lon": 8.60068462,
+    "operator": "NTT",
+    "score": 1.0
+  },
+  {
+    "name": "NTT",
+    "lat": 50.128591611111105,
+    "lon": 8.601235722222222,
+    "operator": "NTT",
+    "score": 1.0
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.129023763157896,
+    "lon": 8.597909900000001,
+    "address": "Eschborner Landstraße, 112, Frankfurt am Main, 60489"
+  },
+  {
+    "name": "Equinix FR8.1",
+    "lat": 50.098634942857146,
+    "lon": 8.58565292857143,
+    "operator": "Equinix",
+    "website": "https://www.equinix.de/data-centers/europe-colocation/germany-colocation/frankfurt-data-centers/fr8",
+    "address": "Lärchenstraße, 141, Frankfurt am Main, 65933"
+  },
+  {
+    "name": "DXC Technology Company",
+    "lat": 49.978423539999994,
+    "lon": 8.4322305,
+    "score": 0.979
+  },
+  {
+    "name": "Rechenzentrum PFALZKOM, DCRN I",
+    "lat": 49.426384500000005,
+    "lon": 8.359369915384615,
+    "operator": "Pfalzkom GmbH",
+    "website": "https://www.pfalzkom.de/",
+    "address": "An der Fohlenweide, 2, Mutterstadt, 67112",
+    "score": 1.0
+  },
+  {
+    "name": "Euregiocenter",
+    "lat": 50.79015707333333,
+    "lon": 6.056773240000001,
+    "address": "Im Süsterfeld, 6, Aachen, 52072",
+    "score": 0.753
+  },
+  {
+    "name": "Inexio",
+    "lat": 49.31858014545455,
+    "lon": 6.754320345454546,
+    "score": 1.0
+  },
+  {
+    "name": "Unnamed",
+    "lat": 52.1489291,
+    "lon": 11.637879400000001
+  },
+  {
+    "name": "Unnamed",
+    "lat": 52.14889461333334,
+    "lon": 11.637358806666668
+  },
+  {
+    "name": "Boreus Rechenzentrum GmbH",
+    "lat": 54.33685421538462,
+    "lon": 13.06911329230769,
+    "website": "https://www.boreus.de/",
+    "address": "Zur Schwedenschanze, 2, Stralsund, 18435",
+    "score": 0.613
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.446688900000005,
+    "lon": 7.7815405,
+    "operator": "GasLINE"
+  },
+  {
+    "name": "Dernbach 2",
+    "lat": 50.446739,
+    "lon": 7.7809516400000005,
+    "operator": "GasLINE"
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.44665562,
+    "lon": 7.78080514,
+    "operator": "GasLINE"
+  },
+  {
+    "name": "Dernbach 3",
+    "lat": 50.44689202000001,
+    "lon": 7.781158100000001,
+    "operator": "GasLINE"
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.44667294,
+    "lon": 7.78116258,
+    "operator": "GasLINE"
+  },
+  {
+    "name": "Dernbach 1",
+    "lat": 50.44577334,
+    "lon": 7.784917419999999,
+    "operator": "GasLINE"
+  },
+  {
+    "name": "Dernbach 1",
+    "lat": 50.44592064,
+    "lon": 7.7849112599999994,
+    "operator": "GasLINE"
+  },
+  {
+    "name": "Dernbach 1",
+    "lat": 50.44586686,
+    "lon": 7.78491298,
+    "operator": "GasLINE"
+  },
+  {
+    "name": "net.DE AG",
+    "lat": 52.408739352941176,
+    "lon": 9.727695529411765,
+    "address": "Büttnerstraße, 57, Hannover, 30165",
+    "score": 0.766
+  },
+  {
+    "name": "Equinix FR5",
+    "lat": 50.09891689444445,
+    "lon": 8.63190426666667,
+    "operator": "Equinix",
+    "address": "Kleyerstraße, 90, Frankfurt am Main, 60326"
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.099126999999996,
+    "lon": 8.63265616,
+    "address": "Rebstöcker Straße, 29, Frankfurt am Main, 60326"
+  },
+  {
+    "name": "I.T.E.N.O.S. Frankfurt - C",
+    "lat": 50.09938435555554,
+    "lon": 8.632134855555556,
+    "address": "Rebstöcker Straße, 31, Frankfurt am Main, 60326"
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.0993187,
+    "lon": 8.631335850000001
+  },
+  {
+    "name": "Equinix DU1",
+    "lat": 51.21980128235294,
+    "lon": 6.806888399999999,
+    "operator": "Equinix",
+    "website": "https://equinix.de",
+    "address": "Albertstraße, 27, Düsseldorf, 40233"
+  },
+  {
+    "name": "Datenstelle der Rentenversicherung",
+    "lat": 49.74599655,
+    "lon": 9.956185316666666,
+    "operator": "Deutsche Rentenversicherung Bund",
+    "website": "https://dsrv.info",
+    "address": "Berner Straße, 1, Würzburg, 97084",
+    "score": 0.599
+  },
+  {
+    "name": "EURaix",
+    "lat": 50.77723586666667,
+    "lon": 6.131401933333333,
+    "operator": "regioIT;synaix",
+    "address": "Hüttenstraße, 21, Aachen, 52068",
+    "score": 0.908
+  },
+  {
+    "name": "ekom21",
+    "lat": 50.599219616666666,
+    "lon": 8.660799616666667,
+    "address": "Carlo-Mierendorff-Straße, 11, Gießen, 35398",
+    "score": 0.997
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.77793638,
+    "lon": 6.0385008199999985
+  },
+  {
+    "name": "Digital Realty FRA1",
+    "lat": 50.11960274444445,
+    "lon": 8.73553861111111,
+    "operator": "Digital Realty",
+    "address": "Hanauer Landstraße, 302, Frankfurt am Main, 60314"
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.121430239999995,
+    "lon": 8.739594924999999,
+    "address": "Hanauer Landstraße, 324a, Frankfurt am Main, 60314"
+  },
+  {
+    "name": "Digital Realty FRA9",
+    "lat": 50.11962003333333,
+    "lon": 8.736876916666667,
+    "operator": "Digital Realty",
+    "address": "Weismüllerstraße, 25-27, Frankfurt am Main, 60314"
+  },
+  {
+    "name": "Vantage Data Center (FRA1)",
+    "lat": 50.10898294146342,
+    "lon": 8.743690412195123,
+    "operator": "Vantage Data Centers",
+    "website": "https://vantage-dc.com/data-center-locations/emea/frankfurt-i-germany",
+    "address": "Goethering, 27, Offenbach am Main, 63067",
+    "score": 0.892
+  },
+  {
+    "name": "CyrusOne FRA1",
+    "lat": 50.128108579999996,
+    "lon": 8.58279292,
+    "operator": "CyrusOne",
+    "website": "https://www.cyrusone.com/data-centers/europe/germany/fra1-frankfurt",
+    "address": "Leonhard-Heißwolf-Straße, 4, Frankfurt am Main, 65936"
+  },
+  {
+    "name": "Unnamed",
+    "lat": 49.86430548571429,
+    "lon": 8.626921885714285
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.47834349090909,
+    "lon": 12.336145463636363
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.47812047272728,
+    "lon": 12.33574941818182
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.47789903636363,
+    "lon": 12.335351990909091
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.47860375454545,
+    "lon": 12.336489054545455
+  },
+  {
+    "name": "Digital Realty FRA8",
+    "lat": 50.119193639130444,
+    "lon": 8.737617799999999,
+    "operator": "Digital Realty",
+    "address": "Weismüllerstraße, 36, Frankfurt am Main, 60314"
+  },
+  {
+    "name": "SAP Building 6 / 16",
+    "lat": 49.24327576190477,
+    "lon": 8.643162642857144,
+    "address": "SAP-Allee, 13a, St. Leon-Rot, 68789",
+    "score": 0.809
+  },
+  {
+    "name": "NTT DATA Business Solutions Global Managed Services",
+    "lat": 51.194013074999994,
+    "lon": 14.346252975,
+    "operator": "NTT",
+    "website": "https://nttdata-solutions.com/de",
+    "phone": "+49 3591 29520",
+    "address": "Philipp-Reis-Straße, 10, Bautzen, 02625",
+    "score": 0.763
+  },
+  {
+    "name": "Unnamed",
+    "lat": 52.36841799444445,
+    "lon": 9.86360288888889,
+    "operator": "GRASS-MERKUR GmbH & Co. KG",
+    "website": "https://www.grass-merkur.de",
+    "address": "Rothwiese, 5, Hannover, 30559"
+  },
+  {
+    "name": "Planet IC",
+    "lat": 53.59835169230769,
+    "lon": 11.418447738461538,
+    "website": "https://www.planet-ic.de/",
+    "score": 0.98
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.91484163333334,
+    "lon": 6.38480135,
+    "address": "Königskamp, 32, Jülich, 52428"
+  },
+  {
+    "name": "LRZ SuperMUC-NG",
+    "lat": 48.261735157142866,
+    "lon": 11.666535885714286,
+    "operator": "Leibniz-Rechenzentrum (LRZ) der Bayerischen Akademie der Wissenschaften"
+  },
+  {
+    "name": "Vantage Data Center FRA31",
+    "lat": 50.01647429999999,
+    "lon": 8.456159271428572,
+    "operator": "Vantage Data Centers",
+    "score": 0.898
+  },
+  {
+    "name": "Siemens EAGLE Data Center",
+    "lat": 48.09491476363637,
+    "lon": 11.530262445454545,
+    "operator": "Siemens",
+    "website": "https://blog.siemens.com/2020/07/green-it-in-the-siemens-eagle-data-center/"
+  },
+  {
+    "name": "Unnamed",
+    "lat": 49.97490676470588,
+    "lon": 8.44998231764706
+  },
+  {
+    "name": "Rechenzentrum Ellhofen",
+    "lat": 49.14588810833333,
+    "lon": 9.307954424999998,
+    "operator": "Stack IT",
+    "website": "https://www.stackit.de/de/colocation/dc-08/",
+    "address": "Am Autobahnkreuz, 14, Ellhofen, 74248",
+    "score": 0.754
+  },
+  {
+    "name": "WKNJ00",
+    "lat": 48.73415681666666,
+    "lon": 13.603325616666666,
+    "operator": "Deutsche Telekom",
+    "address": "Freyunger Straße, 10, Waldkirchen, 94065",
+    "score": 0.731
+  },
+  {
+    "name": "OVHcloud LIM1-3 Rechenzentrum",
+    "lat": 50.408792987999995,
+    "lon": 8.0622137,
+    "operator": "OVH GmbH",
+    "address": "Limburger Straße, 45, Limburg a. d. Lahn, 65555",
+    "score": 0.999
+  },
+  {
+    "name": "Equinix FR7",
+    "lat": 50.09739296,
+    "lon": 8.6437186,
+    "operator": "Equinix",
+    "score": 0.995
+  },
+  {
+    "name": "Unnamed",
+    "lat": 53.13708363846154,
+    "lon": 8.247136084615384,
+    "operator": "EWE TEL GmbH",
+    "address": "Holler Landstraße, 80, Oldenburg, 26135"
+  },
+  {
+    "name": "SAP Building 13",
+    "lat": 49.24043298780489,
+    "lon": 8.643631102439027,
+    "address": "SAP-Allee, 19, St. Leon-Rot, 68789"
+  },
+  {
+    "name": "General Logistics Systems Germany GmbH & Co. OHG",
+    "lat": 50.908594140000005,
+    "lon": 9.585454959999998,
+    "operator": "GLS IT Services GmbH",
+    "address": "GLS-Germany-Straße, Neuenstein, 36286",
+    "score": 0.777
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.10372035555556,
+    "lon": 8.619839044444442,
+    "operator": "servinga GmbH"
+  },
+  {
+    "name": "Stadtwerke Lüdenscheid GmbH (ENERVIE-Gruppe)",
+    "lat": 51.226740461111106,
+    "lon": 7.635048966666667,
+    "operator": "ENERVIE – Südwestfalen Energie und Wasser AG",
+    "website": "https://www.stadtwerke-luedenscheid.de/",
+    "email": "info@stadtwerke-luedenscheid.de",
+    "phone": "+ 49 2351 1570",
+    "score": 0.808
+  },
+  {
+    "name": "Unnamed",
+    "lat": 52.00490768571429,
+    "lon": 7.5385639357142855,
+    "operator": "Fiducia & GAD IT AG",
+    "address": "Feldstiege, 110, Münster, 48161"
+  },
+  {
+    "name": "TelemaxX IPC4",
+    "lat": 49.0271261,
+    "lon": 8.473239999999999,
+    "operator": "TelemaxX Telekommunikation GmbH",
+    "description": "Rechenzentrum IPC4 der TelemaxX Telekommunikation GmbH",
+    "score": 0.903
+  },
+  {
+    "name": "Unnamed",
+    "lat": 53.14701098571428,
+    "lon": 8.181332495238093
+  },
+  {
+    "name": "R-KOM Datacenter Ostbayern 2",
+    "lat": 49.0134628,
+    "lon": 12.14737714,
+    "operator": "R-KOM Regensburger Telekommunikationsgesellschaft mbH & Co. KG",
+    "address": "Straubinger Straße, 48, Regensburg, 93055",
+    "score": 0.852
+  },
+  {
+    "name": "Unnamed",
+    "lat": 52.38555313333333,
+    "lon": 8.623623544444447,
+    "operator": "Mittwald CM Service GmbH & Co. KG"
+  },
+  {
+    "name": "T-Systems Biere Rechenzentrum",
+    "lat": 51.98462872142858,
+    "lon": 11.653737499999997,
+    "operator": "Deutsche Telekom",
+    "website": "https://www.t-systems.com/de/en/about-t-systems/innovation-management/data-center-biere",
+    "score": 0.86
+  },
+  {
+    "name": "RZ",
+    "lat": 52.148760216666666,
+    "lon": 11.63641975,
+    "score": 0.883
+  },
+  {
+    "name": "Unnamed",
+    "lat": 51.01565465,
+    "lon": 6.9011819375000005,
+    "operator": "NetCologne",
+    "address": "Nettesheimer Straße, 20, Köln, 50767"
+  },
+  {
+    "name": "Digital Realty FRA7",
+    "lat": 50.1195271,
+    "lon": 8.734744043749998,
+    "operator": "Digital Realty",
+    "address": "Hanauer Landstraße, 296a, Frankfurt am Main, 60314"
+  },
+  {
+    "name": "Digital Realty FRA10",
+    "lat": 50.119381925000006,
+    "lon": 8.7382508,
+    "operator": "Digital Realty",
+    "address": "Weismüllerstraße, 38, Frankfurt am Main, 60314"
+  },
+  {
+    "name": "Digital Realty FRA5",
+    "lat": 50.120330168749994,
+    "lon": 8.736792181249998,
+    "operator": "Digital Realty",
+    "address": "Hanauer Landstraße, 308a, Frankfurt am Main, 60314"
+  },
+  {
+    "name": "Bundesnachrichtendienst Pullach Rechenzentrum",
+    "lat": 48.06392978,
+    "lon": 11.5332945,
+    "operator": "Bundesnachrichtendienst",
+    "score": 0.649
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.91434524,
+    "lon": 6.38545932
+  },
+  {
+    "name": "TelemaxX IPC3",
+    "lat": 49.020104562068965,
+    "lon": 8.47832705172414,
+    "operator": "TelemaxX Telekommunikation GmbH",
+    "address": "Auf der Breit, 5a, Karlsruhe, 76227",
+    "description": "Rechenzentrum IPC3 der TelemaxX Telekommunikation GmbH",
+    "score": 0.879
+  },
+  {
+    "name": "Unnamed",
+    "lat": 53.21843976,
+    "lon": 8.24334976,
+    "address": "Schafjückenweg, 3, Rastede, 26180"
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.477675127272725,
+    "lon": 12.334956236363636
+  },
+  {
+    "name": "Equinix Frankfurt FR2",
+    "lat": 50.14296270212767,
+    "lon": 8.738681770212766,
+    "operator": "Equinix",
+    "address": "Kruppstraße, 121-127, Frankfurt am Main, 60388"
+  },
+  {
+    "name": "aixit GmbH",
+    "lat": 50.100527240000005,
+    "lon": 8.629004380000001,
+    "website": "https://www.aixit.com/standorte/rechenzentrum-frankfurt",
+    "address": "Rebstöcker Straße, 55, Frankfurt am Main, 60326"
+  },
+  {
+    "name": "GAD-Rechenzentrum 2",
+    "lat": 51.89338931538461,
+    "lon": 7.596625323076922,
+    "operator": "Atruvia AG",
+    "address": "Stockholmer Straße, 11, Münster, 48163",
+    "score": 1.0
+  },
+  {
+    "name": "Digital Realty FRA11",
+    "lat": 50.11983625,
+    "lon": 8.739149375,
+    "operator": "Digital Realty",
+    "address": "Weismüllerstraße, 40, Frankfurt am Main, 60314"
+  },
+  {
+    "name": "Scientific Computing Center",
+    "lat": 49.09599281645571,
+    "lon": 8.43266021392405,
+    "website": "https://www.scc.kit.edu"
+  },
+  {
+    "name": "Rechenzentrum KÜS Data",
+    "lat": 49.50502894,
+    "lon": 6.804170600000001,
+    "address": "Prof.-Pirlet-Straße, 27-29, Losheim am See, 66679",
+    "score": 0.898
+  },
+  {
+    "name": "noris Munich MUC5",
+    "lat": 48.16151715714285,
+    "lon": 11.737544385714287,
+    "operator": "noris",
+    "website": "https://www.noris.de/en/data-centers/dc-munich-east/",
+    "score": 0.768
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.13591145882353,
+    "lon": 8.738433005882355,
+    "address": "Gwinnerstraße, 7-9, Frankfurt am Main, 60388"
+  },
+  {
+    "name": "Unnamed",
+    "lat": 49.449575522222226,
+    "lon": 11.014133199999998
+  },
+  {
+    "name": "R-KOM Datacenter Ostbayern 1",
+    "lat": 49.01337696,
+    "lon": 12.148198019999999,
+    "operator": "R-KOM Regensburger Telekommunikationsgesellschaft mbH & Co. KG",
+    "address": "Straubinger Straße, 50, Regensburg, 93055"
+  },
+  {
+    "name": "CyrusOne FRA2",
+    "lat": 50.127637379999996,
+    "lon": 8.58253528,
+    "operator": "CyrusOne",
+    "website": "https://www.cyrusone.com/data-centers/europe/germany/fra2-frankfurt",
+    "address": "Leonhard-Heißwolf-Straße, 2, Frankfurt am Main, 65936"
+  },
+  {
+    "name": "Digital Realty FRA30",
+    "lat": 50.12700611428572,
+    "lon": 8.585846585714288,
+    "operator": "Digital Realty",
+    "address": "Wilhelm-Fay-Straße, 24, Frankfurt am Main, 65936"
+  },
+  {
+    "name": "Höchstleistungsrechenzentrum der Universität Stuttgart",
+    "lat": 48.73940902857142,
+    "lon": 9.097239521428572,
+    "website": "https://www.hlrs.de/",
+    "address": "Nobelstraße, 19, Stuttgart, 70569",
+    "score": 0.801
+  },
+  {
+    "name": "Unnamed",
+    "lat": 49.99656614285714,
+    "lon": 10.203373614285713,
+    "operator": "FIS-ASP GmbH"
+  },
+  {
+    "name": "synaforce GmbH",
+    "lat": 48.671771414285715,
+    "lon": 13.119724314285715,
+    "website": "https://www.synaforce.com/",
+    "email": "info@synaforce.com",
+    "phone": "+49 8545 969930",
+    "address": "IT-Zentrum, 1",
+    "score": 1.0
+  },
+  {
+    "name": "TelemaxX IPC5",
+    "lat": 49.07775216,
+    "lon": 8.458138719999999,
+    "operator": "TelemaxX Telekommunikation GmbH",
+    "address": "Friedrich-List-Straße, 12, Stutensee, 76297",
+    "description": "Rechenzentrum IPC5 der TelemaxX Telekommunikation GmbH",
+    "score": 0.897
+  },
+  {
+    "name": "Servergebäude",
+    "lat": 51.9662123,
+    "lon": 7.603826811111111,
+    "operator": "Universität Münster",
+    "score": 0.96
+  },
+  {
+    "name": "NTT",
+    "lat": 50.12949899333333,
+    "lon": 8.603197826666667,
+    "operator": "NTT",
+    "score": 1.0
+  },
+  {
+    "name": "Hetzner – Rechenzentrumspark Falkenstein",
+    "lat": 50.477638202272736,
+    "lon": 12.334365884090909,
+    "operator": "Hetzner Online GmbH",
+    "address": "Am Datacenter-Park, 1, Falkenstein/Vogtl., 08223",
+    "score": 0.78
+  },
+  {
+    "name": "Digital Realty FRA12",
+    "lat": 50.11994344090909,
+    "lon": 8.737737836363637,
+    "operator": "Digital Realty",
+    "address": "Weismüllerstraße, 29-31, Frankfurt am Main, 60314"
+  },
+  {
+    "name": "Digital Realty FRA13",
+    "lat": 50.119983485714286,
+    "lon": 8.7395236,
+    "operator": "Digital Realty",
+    "address": "Weismüllerstraße, 42, Frankfurt am Main, 60314"
+  },
+  {
+    "name": "Digital Realty FRA14",
+    "lat": 50.11878083999999,
+    "lon": 8.736875610000002,
+    "operator": "Digital Realty",
+    "address": "Weismüllerstraße, 34, Frankfurt am Main, 60314"
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.09555262307693,
+    "lon": 8.629372092307692,
+    "operator": "Telehouse"
+  },
+  {
+    "name": "Equinix FR2.6",
+    "lat": 50.142025909090904,
+    "lon": 8.739037336363635,
+    "operator": "Equinix",
+    "address": "Friesstraße, 24, Frankfurt am Main, 60388",
+    "score": 0.898
+  },
+  {
+    "name": "Equinix FR6",
+    "lat": 50.09681373333334,
+    "lon": 8.588011674999999,
+    "operator": "Equinix",
+    "website": "https://www.equinix.de/locations/germany-colocation/frankfurt-data-centers/fr6/",
+    "address": "Lärchenstraße, 110, Frankfurt am Main, 65933"
+  },
+  {
+    "name": "Equinix Germany GmbH",
+    "lat": 50.09727053076922,
+    "lon": 8.643371776923077,
+    "operator": "Equinix",
+    "address": "Gutleutstraße, 310, Frankfurt am Main, 60327"
+  },
+  {
+    "name": "Unnamed",
+    "lat": 49.975473487500004,
+    "lon": 8.45004076875
+  },
+  {
+    "name": "Telekom Vermittlungsstelle",
+    "lat": 52.015918060000004,
+    "lon": 9.619698600000001,
+    "operator": "Deutsche Telekom",
+    "score": 0.733
+  },
+  {
+    "name": "SAP WDF51",
+    "lat": 49.29327700454546,
+    "lon": 8.631378313636363,
+    "operator": "SAP SE",
+    "description": "Rechenzentrum SAP",
+    "score": 0.825
+  },
+  {
+    "name": "RZ5 Dortmund-Huckarde",
+    "lat": 51.53502754,
+    "lon": 7.418180680000001,
+    "operator": "DOKOM Gesellschaft für Telekommunikation mbH",
+    "address": "Fallgatter, 11, Dortmund, 44369",
+    "score": 1.0
+  },
+  {
+    "name": "Unnamed",
+    "lat": 52.44920218,
+    "lon": 13.362042980000002,
+    "address": "Attilastraße, 60A, Berlin, 12105"
+  },
+  {
+    "name": "VegaSystems GmbH & Co. KG",
+    "lat": 51.68102606666667,
+    "lon": 8.736462033333334,
+    "score": 0.968
+  },
+  {
+    "name": "LEITWERK Rechenzentrum Appenweier",
+    "lat": 48.550011600000005,
+    "lon": 7.973407619999999,
+    "operator": "Leitwerk Rechenzentren Appenweier/Lahr GmbH",
+    "address": "Südstraße, 7, Appenweier, 77767",
+    "score": 0.899
+  },
+  {
+    "name": "Unnamed",
+    "lat": 48.46472537777778,
+    "lon": 7.9375295
+  },
+  {
+    "name": "euNetworks ColoCentre Karlsruhe",
+    "lat": 49.02041025,
+    "lon": 8.439974900000001,
+    "operator": "euNetworks GmbH",
+    "website": "https://eunetworks.com/",
+    "phone": "+49 69 905 54 0",
+    "address": "Emmy-Noether-Straße, 10, Karlsruhe, 76131"
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.02919448,
+    "lon": 11.30468722,
+    "address": "Azendorf, 62"
+  },
+  {
+    "name": "Rechenzentrum Ostermiething",
+    "lat": 48.0322996,
+    "lon": 12.8371296,
+    "operator": "Stack IT",
+    "website": "https://www.stackit.de/de/colocation/dc-10/",
+    "address": "Weilhartstraße, 92, Ostermiething, 5121"
+  },
+  {
+    "name": "MK Netzdienste GmbH FRA2",
+    "lat": 50.12661131428571,
+    "lon": 8.581805242857143,
+    "operator": "MK Netzdienste GmbH",
+    "address": "Wilhelm-Fay-Straße, 23, Frankfurt am Main, 65936"
+  },
+  {
+    "name": "Unnamed",
+    "lat": 49.975414207142855,
+    "lon": 8.45306617142857
+  },
+  {
+    "name": "Hetzner Online GmbH - NBG1",
+    "lat": 49.449214259999984,
+    "lon": 11.014436739999999,
+    "operator": "Hetzner Online GmbH",
+    "website": "https://www.hetzner.com/",
+    "address": "Sigmundstraße, 135, Nürnberg, 90431",
+    "score": 0.835
+  },
+  {
+    "name": "Rechenzentrum Nürnberg Süd",
+    "lat": 49.40985751304347,
+    "lon": 11.13126295652174,
+    "operator": "noris network",
+    "website": "https://www.noris.de/rechenzentren/rechenzentrum-nuernberg-sued",
+    "score": 0.789
+  },
+  {
+    "name": "Digital Realty FRA15",
+    "lat": 50.11856634032259,
+    "lon": 8.732711290322579,
+    "operator": "Digital Realty",
+    "address": "Weismüllerstraße, 1, Frankfurt am Main, 60314",
+    "score": 0.892
+  },
+  {
+    "name": "Equinix FR9",
+    "lat": 50.14150182666667,
+    "lon": 8.739470906666668,
+    "operator": "Equinix",
+    "address": "Friesstraße, 22, Frankfurt am Main, 60388"
+  },
+  {
+    "name": "Gebäude 94/95",
+    "lat": 52.285550671428574,
+    "lon": 8.02207052857143,
+    "operator": "Universität Osnabrück",
+    "description": "Rechenzentrum und Dezernat Gebäudemanagement"
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.062713711111115,
+    "lon": 8.485261522222222
+  },
+  {
+    "name": "Global Switch Frankfurt",
+    "lat": 50.13047211111111,
+    "lon": 8.59789151111111,
+    "operator": "Global Switch"
+  },
+  {
+    "name": "maincubes FRANKFURT-01",
+    "lat": 50.109659900000004,
+    "lon": 8.74303242,
+    "operator": "maincubes",
+    "website": "https://www.maincubes.com/en/data-centers/frankfurt-01/",
+    "address": "Goethering, 29, Offenbach am Main, 63067"
+  },
+  {
+    "name": "hex/AC",
+    "lat": 50.78355444,
+    "lon": 6.13498562,
+    "score": 0.931
+  },
+  {
+    "name": "Rechenzentrum PFALZKOM, DCRN II",
+    "lat": 49.42090676666666,
+    "lon": 8.350009966666669,
+    "operator": "Pfalzkom GmbH",
+    "address": "In der Schlicht, 4, Mutterstadt, 67112",
+    "score": 1.0
+  },
+  {
+    "name": "PoP-Hauptverteiler",
+    "lat": 52.07688948,
+    "lon": 9.56374582,
+    "description": "Glasfaser Infrastruktur. Inhaber: Landkreis Hameln-Pyrmont. Betreiber: htp GmbH",
+    "score": 0.687
+  },
+  {
+    "name": "PoP Hauptverteiler",
+    "lat": 52.06115148,
+    "lon": 9.590553159999999,
+    "description": "Glasfaser Infrastruktur. Inhaber: Landkreis Hameln-Pyrmont. Betreiber: htp GmbH",
+    "score": 0.659
+  },
+  {
+    "name": "PoP-Hauptverteiler",
+    "lat": 52.01865780000001,
+    "lon": 9.620230580000001,
+    "operator": "htp GmbH",
+    "description": "Glasfaser Infrastruktur.\nEigentümer: Landkreis Hameln-Pyrmont",
+    "score": 0.687
+  },
+  {
+    "name": "PoP-Hauptverteiler",
+    "lat": 52.12161538,
+    "lon": 9.533293279999999,
+    "operator": "htp GmbH",
+    "description": "Glasfaser Infrastruktur.\nEigentümer: Landkreis Hameln-Pyrmont",
+    "score": 0.687
+  },
+  {
+    "name": "Digital Realty FRA16",
+    "lat": 50.12031614285714,
+    "lon": 8.738494600000001,
+    "operator": "Digital Realty",
+    "address": "Weismüllerstraße, 37-39, Frankfurt am Main, 60314"
+  },
+  {
+    "name": "CyrusOne FRA3",
+    "lat": 50.12884903333333,
+    "lon": 8.577089813333334,
+    "operator": "CyrusOne",
+    "address": "Wilhelm-Fay-Straße, 45, Frankfurt am Main, 65936",
+    "score": 1.0
+  },
+  {
+    "name": "Datacenter One GmbH",
+    "lat": 51.191258228571435,
+    "lon": 6.938678800000001,
+    "operator": "AtlasEdge",
+    "address": "Zum Jägerhof, 10, Hilden, 40724",
+    "score": 0.948
+  },
+  {
+    "name": "Unnamed",
+    "lat": 51.68101959999999,
+    "lon": 8.736270768181818
+  },
+  {
+    "name": "VegaSystems GmbH & Co. KG",
+    "lat": 51.68101199090909,
+    "lon": 8.736151290909092,
+    "score": 0.968
+  },
+  {
+    "name": "Digital Realty FRA31",
+    "lat": 50.12716475714285,
+    "lon": 8.58503077142857,
+    "operator": "Digital Realty",
+    "address": "Wilhelm-Fay-Straße, 24a, Frankfurt am Main, 65936"
+  },
+  {
+    "name": "Digital Realty FRA32",
+    "lat": 50.12733548333333,
+    "lon": 8.58426395,
+    "operator": "Digital Realty",
+    "address": "Wilhelm-Fay-Straße, 24b, Frankfurt am Main, 65936"
+  },
+  {
+    "name": "EVF-Datacenter",
+    "lat": 48.713285642857144,
+    "lon": 9.68680562857143,
+    "operator": "Energieversorgung Filstal",
+    "website": "https://evf.de/geschaeftskunden/datacenter",
+    "address": "Karl-Ehmann-Straße, 10, Göppingen, 73037",
+    "score": 0.803
+  },
+  {
+    "name": "Iron Mountain FRA-1",
+    "lat": 50.133784584210524,
+    "lon": 8.740075847368422,
+    "operator": "Iron Mountain",
+    "website": "https://www.ironmountain.com/data-centers/locations/frankfurt-data-center",
+    "address": "Borsigallee, 1, Frankfurt am Main, 60388"
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.061711366666664,
+    "lon": 8.484753844444446
+  },
+  {
+    "name": "NTT Global Datacenters Frankfurt 4",
+    "lat": 50.06188882000001,
+    "lon": 8.48418242,
+    "operator": "NTT",
+    "website": "https://services.global.ntt/de-de/services-und-produkte/global-data-centers/globale-standorte/emea/frankfurt-4-data-center",
+    "score": 0.955
+  },
+  {
+    "name": "Digital Realty FRA29",
+    "lat": 50.12617668888888,
+    "lon": 8.584716244444444,
+    "operator": "Digital Realty",
+    "address": "Wilhelm-Fay-Straße, 15, Frankfurt am Main, 65936"
+  },
+  {
+    "name": "Rechenzentrum Thüringer Netkom",
+    "lat": 50.68491972,
+    "lon": 10.94851534,
+    "address": "Robert-Bosch-Ring, 21, Ilmenau, 98693",
+    "score": 0.97
+  },
+  {
+    "name": "Colt FRA74",
+    "lat": 50.125487,
+    "lon": 8.58762028,
+    "operator": "Colt",
+    "address": "Wilhelm-Fay-Straße, 7, Frankfurt am Main, 65936"
+  },
+  {
+    "name": "Datacenter One",
+    "lat": 51.05858588666667,
+    "lon": 7.020145673333334,
+    "operator": "Datacenter One NRW GmbH",
+    "website": "https://www.dc1.com/rechenzentrum/lev1/",
+    "address": "Dornierstraße, 10, Leverkusen, 51381",
+    "score": 0.891
+  },
+  {
+    "name": "Unnamed",
+    "lat": 52.43846784,
+    "lon": 13.37424028,
+    "operator": "NTT Global Data Centers EMEA GmbH",
+    "website": "https://services.global.ntt/de-de/services-und-produkte/global-data-centers/globale-standorte/emea/berlin-2-data-center",
+    "phone": "+49 69 78 01 21 90",
+    "address": "Lankwitzer Straße, 45-47, Berlin, 12107"
+  },
+  {
+    "name": "CA31",
+    "lat": 48.75348769090909,
+    "lon": 11.479645281818181,
+    "score": 1.0
+  },
+  {
+    "name": "Unnamed",
+    "lat": 49.00631195714285,
+    "lon": 10.304958771428572,
+    "operator": "JH-Computers GmbH",
+    "website": "https://jh-computers.de/"
+  },
+  {
+    "name": "Verizon",
+    "lat": 50.10084988947368,
+    "lon": 8.62867814736842,
+    "operator": "Verizon",
+    "address": "Rebstöcker Straße, 59, Frankfurt am Main, 60326",
+    "score": 1.0
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.119901568181824,
+    "lon": 8.73762094090909
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.11972357727272,
+    "lon": 8.737203627272727
+  },
+  {
+    "name": "Equinix FR11",
+    "lat": 50.13831555555555,
+    "lon": 8.740478033333334,
+    "operator": "Equinix",
+    "address": "Friesstraße, 7, Frankfurt am Main, 60388"
+  },
+  {
+    "name": "BER11",
+    "lat": 52.3219542,
+    "lon": 13.294448585714283,
+    "operator": "Vantage Data Centers",
+    "website": "https://vantage-dc.com/data-center-locations/emea/berlin-i-germany/",
+    "address": "Uferring, 5, Ludwigsfelde, 14974",
+    "score": 0.878
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.062074844444446,
+    "lon": 8.4858245
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.06235096666666,
+    "lon": 8.486681855555554
+  },
+  {
+    "name": "Digital Realty FRA33",
+    "lat": 50.062556361538455,
+    "lon": 8.487855584615385,
+    "operator": "Digital Realty",
+    "score": 1.0
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.477237833333334,
+    "lon": 12.334134788888889
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.477435672727275,
+    "lon": 12.334528881818182
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.4786325,
+    "lon": 12.337831842857142
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.479140224999995,
+    "lon": 12.336435725
+  },
+  {
+    "name": "rockenstein AG",
+    "lat": 49.83362065,
+    "lon": 9.908301091666667,
+    "website": "https://www.rockenstein.de",
+    "phone": "+49 931 29934 4",
+    "address": "Schleehofstraße, 16, Veitshöchheim, 97209",
+    "score": 0.75
+  },
+  {
+    "name": "Unnamed",
+    "lat": 51.56097671428571,
+    "lon": 9.95747277857143,
+    "description": "Betriebstechnik"
+  },
+  {
+    "name": "Unnamed",
+    "lat": 49.45018393333334,
+    "lon": 11.0146088
+  },
+  {
+    "name": "Unnamed",
+    "lat": 49.449883,
+    "lon": 11.014365866666667
+  },
+  {
+    "name": "Unnamed",
+    "lat": 49.44930254285714,
+    "lon": 11.013898414285714
+  },
+  {
+    "name": "Digital Realty FRA17",
+    "lat": 50.12511301666667,
+    "lon": 8.75401965,
+    "operator": "Digital Realty",
+    "score": 0.849
+  },
+  {
+    "name": "CloudHQ",
+    "lat": 50.10808766666667,
+    "lon": 8.804548766666667,
+    "address": "Eibenweg, 11, Offenbach am Main, 63075",
+    "score": 0.998
+  },
+  {
+    "name": "IRZ-HIP-Heidelberg",
+    "lat": 49.39392564999999,
+    "lon": 8.6725862,
+    "operator": "Data Center Group",
+    "address": "George-Boole-Weg, 3, Heidelberg, 69124",
+    "score": 0.886
+  },
+  {
+    "name": "Vantage Data Center FRA21",
+    "lat": 50.013152976470586,
+    "lon": 8.461588288235294,
+    "operator": "Vantage Data Centers",
+    "website": "https://vantage-dc.com/data-center-locations/emea/frankfurt-ii-germany/",
+    "score": 0.898
+  },
+  {
+    "name": "Unnamed",
+    "lat": 49.98794308,
+    "lon": 8.230078540000001,
+    "operator": "Johannes Gutenberg-Universität Mainz",
+    "address": "Ackermannweg, 17, Mainz, 55128",
+    "description": "Rechenzentrum"
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.09587065714286,
+    "lon": 8.628877828571428,
+    "operator": "Telehouse"
+  },
+  {
+    "name": "Vantage Data Center FRA22",
+    "lat": 50.0122316,
+    "lon": 8.461823088888888,
+    "operator": "Vantage Data Centers",
+    "website": "https://vantage-dc.com/data-center-locations/emea/frankfurt-ii-germany/"
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.10983890000001,
+    "lon": 8.74413641904762,
+    "address": "Andréstraße, 73, Offenbach am Main, 63067"
+  },
+  {
+    "name": "CyrusOne FRA 4",
+    "lat": 50.13262143529412,
+    "lon": 8.578435652941176,
+    "operator": "CyrusOne",
+    "address": "Wilhelm-Fay-Straße, 58, Frankfurt am Main, 65936"
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.12904198,
+    "lon": 8.604486679999999,
+    "operator": "NTT Global Data Centers",
+    "address": "Frankfurt am Main, 60489"
+  },
+  {
+    "name": "Wavehouse",
+    "lat": 49.385406063333335,
+    "lon": 8.681376623333335,
+    "operator": "Heidelberg iT Management GmbH & Co. KG",
+    "address": "Billie-Holiday-Straße, 7, Heidelberg, 69126",
+    "description": "Europas größtes 3D-gedrucktes Gebäude",
+    "score": 0.886
+  },
+  {
+    "name": "BER12",
+    "lat": 52.32300136,
+    "lon": 13.292785749999998,
+    "address": "Uferring, 7, Ludwigsfelde, 14974"
+  },
+  {
+    "name": "Unnamed",
+    "lat": 52.32335063333333,
+    "lon": 13.296324833333335,
+    "address": "Uferring, 6, Ludwigsfelde, 14974"
+  },
+  {
+    "name": "Vantage Berlin II (BER2)",
+    "lat": 52.26381826666667,
+    "lon": 13.573542433333333,
+    "operator": "Vantage Data Centers",
+    "score": 0.813
+  },
+  {
+    "name": "Vantage Berlin II (BER2)",
+    "lat": 52.26284123846154,
+    "lon": 13.574324576923077,
+    "operator": "Vantage Data Centers",
+    "score": 0.813
+  },
+  {
+    "name": "Equinix FR13",
+    "lat": 50.139124566666666,
+    "lon": 8.739665422222224,
+    "operator": "Equinix",
+    "address": "Friesstraße, 9, Frankfurt am Main, 60388"
+  },
+  {
+    "name": "Digital Realty FRA18",
+    "lat": 50.12449134,
+    "lon": 8.7520418,
+    "operator": "Digital Realty"
+  },
+  {
+    "name": "Digital Realty",
+    "lat": 50.064351329411764,
+    "lon": 8.486778735294118,
+    "operator": "Digital Realty"
+  },
+  {
+    "name": "Digital Realty",
+    "lat": 50.06505093529411,
+    "lon": 8.48770838235294,
+    "operator": "Digital Realty"
+  },
+  {
+    "name": "Equinix FR8.2",
+    "lat": 50.09816224,
+    "lon": 8.5859303,
+    "operator": "Equinix",
+    "website": "https://www.equinix.de/data-centers/europe-colocation/germany-colocation/frankfurt-data-centers/fr8",
+    "address": "Lärchenstraße, 141, Frankfurt am Main, 65933"
+  },
+  {
+    "name": "Destination Earth Data Bridge",
+    "lat": 49.86419456,
+    "lon": 8.62757278,
+    "website": "https://destination-earth.eu/destination-earth/destines-components/destination-earth-data-lake/",
+    "score": 0.897
+  },
+  {
+    "name": "R-KOM Datacenter Ostbayern 3",
+    "lat": 49.03728932857143,
+    "lon": 12.087389814285714,
+    "operator": "R-KOM GmbH",
+    "address": "Keltenstraße, 56, Lappersdorf, 93138",
+    "score": 0.693
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.91470857142856,
+    "lon": 6.384720428571428
+  },
+  {
+    "name": "Maincubes FRA02",
+    "lat": 50.16552654444445,
+    "lon": 8.531528566666667,
+    "operator": "Maincubes",
+    "website": "https://www.maincubes.com/rechenzentren/frankfurt-02/",
+    "score": 0.989
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.13761312857143,
+    "lon": 8.740810457142857,
+    "address": "Friesstraße, 5, Frankfurt am Main, 60388"
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.47702243333333,
+    "lon": 12.333769188888887
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.476807333333326,
+    "lon": 12.333372188888887
+  },
+  {
+    "name": "Unnamed",
+    "lat": 49.984362999999995,
+    "lon": 8.583482676190474,
+    "address": "Dreieichstraße, 12-14, Mörfelden-Walldorf, 64546"
+  },
+  {
+    "name": "Unnamed",
+    "lat": 49.98532066666665,
+    "lon": 8.583200104761906
+  },
+  {
+    "name": "FKQ I Data Center",
+    "lat": 50.09550792,
+    "lon": 8.58408938,
+    "operator": "Winthrop Technologies Ltd."
+  },
+  {
+    "name": "Digital Realty FRA33",
+    "lat": 50.054967364705874,
+    "lon": 8.458405558823529,
+    "score": 1.0
+  },
+  {
+    "name": "Maincubes  FRA03A",
+    "lat": 50.160490200000005,
+    "lon": 8.534788571428571,
+    "operator": "Maincubes Three GmbH",
+    "score": 0.989
+  },
+  {
+    "name": "Yondr - Rechenzentrum",
+    "lat": 49.99103372727273,
+    "lon": 8.337301945454547,
+    "operator": "Yondr Group",
+    "address": "In der Niederwiese, 3, Bischofsheim, 65474",
+    "description": "40MW Data Center",
+    "score": 0.913
+  },
+  {
+    "name": "Colt FRA3",
+    "lat": 50.124477739999996,
+    "lon": 8.58745216,
+    "address": "Wilhelm-Fay-Straße, 3-5, Frankfurt am Main, 65936"
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.09566805714286,
+    "lon": 8.628322819047618,
+    "operator": "Telehouse"
+  },
+  {
+    "name": "Unnamed",
+    "lat": 50.02290578461539,
+    "lon": 8.806714623076925
+  }
+]
