@@ -311,7 +311,7 @@ input[type=range].pwr-sl::-webkit-slider-thumb:hover { transform:scale(1.25); }
 .lyr-count {
   color:#64748b; font-size:10px; font-weight:700; white-space:nowrap;
 }
-.lyr-swatch { display:inline-block; flex-shrink:0; }
+.lyr-swatch { display:inline-block; flex-shrink:0; position:relative; }
 .lyr-swatch--gradient {
   width:18px; height:10px; border-radius:999px;
   background:linear-gradient(to right,#7f0000,#c0392b,#e67e22,#f1c40f,#a8d08d,#27ae60,#1a5c38);
@@ -324,6 +324,39 @@ input[type=range].pwr-sl::-webkit-slider-thumb:hover { transform:scale(1.25); }
 .lyr-swatch--area {
   width:14px; height:10px; border-radius:3px;
   border:1px solid rgba(255,255,255,0.16);
+}
+.lyr-swatch--prot {
+  width:18px; height:14px; color:var(--swatch-color);
+  background:
+    repeating-linear-gradient(135deg,
+      currentColor 0 2px,
+      transparent 2px 5px);
+  border:2px solid currentColor;
+  border-radius:7px 7px 5px 5px;
+  clip-path:polygon(50% 0, 95% 18%, 84% 100%, 16% 100%, 5% 18%);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,0.16);
+}
+.lyr-swatch--prot::after {
+  content:""; position:absolute; left:7px; top:3px;
+  width:4px; height:7px; border-radius:999px;
+  background:rgba(255,255,255,0.82);
+}
+.lyr-swatch--landuse {
+  width:18px; height:13px; color:var(--swatch-color);
+  background:currentColor;
+  border:1px solid rgba(255,255,255,0.22);
+  border-radius:2px;
+  box-shadow:inset 0 0 0 1px rgba(15,23,42,0.24);
+}
+.lyr-swatch--landuse::before {
+  content:""; position:absolute; inset:3px;
+  background:
+    linear-gradient(90deg, transparent 0 36%, rgba(15,23,42,0.55) 36% 48%, transparent 48%),
+    linear-gradient(0deg, transparent 0 42%, rgba(15,23,42,0.55) 42% 55%, transparent 55%);
+}
+.lyr-swatch--landuse::after {
+  content:""; position:absolute; left:3px; right:3px; bottom:2px;
+  height:2px; border-radius:999px; background:rgba(255,255,255,0.52);
 }
 .lyr-swatch--line {
   width:18px; height:0; border-top:3px solid currentColor; border-radius:999px;
@@ -565,7 +598,7 @@ var CELLS, LAT_EDGES, LON_EDGES, KRS_NAMES, DECAY, W, W_DEF, SCENARIOS;
 var PROT_MODES = {nationalpark:"hard",nsg:"hard",ffh:"hard",biosphere:"soft",lsg:"soft",naturpark:"off"};
 var PROT_BITS = {nationalpark:1,nsg:2,ffh:4,biosphere:8,lsg:16,naturpark:32};
 var SOFT_FACTOR = 0.3;
-var ASSET_VERSION = "2026-04-15-dc-aoi-check";
+var ASSET_VERSION = "2026-04-15-layer-symbols";
 var opacityRef = {value:0.68}, filterRef = {value:0.0};
 var map, heatLayer, kreisFg;
 var DC_DATA = [];
@@ -757,6 +790,12 @@ function legendOutlineLabel(text, count, color) {
 }
 function legendAreaLabel(text, count, color) {
   return legendLabel(text, count, '<span class="lyr-swatch lyr-swatch--area" style="background:' + color + ';color:' + color + '"></span>');
+}
+function legendProtectionLabel(text, count, color) {
+  return legendLabel(text, count, '<span class="lyr-swatch lyr-swatch--prot" style="--swatch-color:' + color + ';color:' + color + '"></span>');
+}
+function legendLanduseLabel(text, count, color) {
+  return legendLabel(text, count, '<span class="lyr-swatch lyr-swatch--landuse" style="--swatch-color:' + color + ';color:' + color + '"></span>');
 }
 function legendLineLabel(text, count, color) {
   return legendLabel(text, count, '<span class="lyr-swatch lyr-swatch--line" style="color:' + color + '"></span>');
@@ -1859,7 +1898,7 @@ function initMap(dcs) {
             }
           });
           var protOrder = {nationalpark:70, nsg:71, ffh:72, biosphere:73, lsg:74, naturpark:75};
-          registerOverlay(protOrder[cat] || 79, legendAreaLabel(protLabelsUI[cat], (gj.features || []).length, protColors[cat]), lyr);
+          registerOverlay(protOrder[cat] || 79, legendProtectionLabel(protLabelsUI[cat], (gj.features || []).length, protColors[cat]), lyr);
         }).catch(function(){})
       );
     })(protCats[pi]);
@@ -1888,7 +1927,7 @@ function initMap(dcs) {
             }
           });
           var luOrder = {industrial:80, commercial:81, brownfield:82};
-          registerOverlay(luOrder[cat] || 89, legendAreaLabel(luLabelsUI[cat], (gj.features || []).length, luColors[cat]), lyr);
+          registerOverlay(luOrder[cat] || 89, legendLanduseLabel(luLabelsUI[cat], (gj.features || []).length, luColors[cat]), lyr);
         }).catch(function(){})
       );
     })(luCats[li]);
