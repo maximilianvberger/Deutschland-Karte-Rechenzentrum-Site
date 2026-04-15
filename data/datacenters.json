@@ -38,7 +38,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Digital Realty FRA15",
@@ -79,7 +80,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Digital Realty FRA16",
@@ -120,7 +122,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Digital Realty FRA3",
@@ -161,7 +164,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Digital Realty FRA30",
@@ -201,7 +205,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Digital Realty FRA32",
@@ -241,7 +246,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Digital Realty FRA5",
@@ -282,7 +288,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Equinix FR4",
@@ -324,7 +331,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Equinix FR8.1",
@@ -366,7 +374,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Equinix FR9",
@@ -407,7 +416,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Equinix Frankfurt FR2",
@@ -448,7 +458,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Equinix Germany GmbH",
@@ -490,7 +501,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "FKQ I Data Center",
@@ -526,7 +538,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "NTT",
@@ -561,7 +574,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "NTT",
@@ -596,7 +610,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "NTT Global Data Centers Campus",
@@ -631,7 +646,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "telecom": "data_center",
@@ -670,7 +686,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "operator": "TE Connectivety",
@@ -705,7 +722,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "TelemaxX IPC1",
@@ -747,7 +765,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "GAD-Rechenzentrum 2",
@@ -789,7 +808,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Colt FRA74",
@@ -829,7 +849,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "CyrusOne FRA 4",
@@ -870,7 +891,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "operator": "Telehouse",
@@ -905,7 +927,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "operator": "Telehouse",
@@ -940,7 +963,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "CyrusOne FRA2",
@@ -981,7 +1005,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "CyrusOne FRA3",
@@ -1021,7 +1046,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "IPB Internet Provider in Berlin GmbH",
@@ -1062,7 +1088,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "source_raw_idx": "129",
@@ -1101,7 +1128,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "operator": "NTT Global Data Centers EMEA GmbH",
@@ -1144,7 +1172,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Rechenzentrum Garching",
@@ -1181,7 +1210,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Digital Realty FRA18",
@@ -1216,7 +1246,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Digital Realty FRA17",
@@ -1251,7 +1282,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "NTT Data Inc, München Data Center",
@@ -1286,7 +1318,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "RZ5 Dortmund-Huckarde",
@@ -1326,7 +1359,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "LRZ SuperMUC-NG",
@@ -1361,7 +1395,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "operator": "Vodafone",
@@ -1396,7 +1431,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Equinix DU1",
@@ -1438,7 +1474,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "operator": "GRASS-MERKUR GmbH & Co. KG",
@@ -1480,7 +1517,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Interwerk Rechenzentrum",
@@ -1521,7 +1559,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Siemens EAGLE Data Center",
@@ -1557,7 +1596,8 @@
     "mw_label": "5-20 MW",
     "mw_class": 3,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Iron Mountain FRA-1",
@@ -1601,7 +1641,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Iron Mountain FRA-2",
@@ -1642,7 +1683,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "MU4",
@@ -1676,7 +1718,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Maincubes  FRA03A",
@@ -1712,7 +1755,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Equinix FR13",
@@ -1753,7 +1797,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "MK Netzdienste GmbH FRA2",
@@ -1793,7 +1838,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Maincubes FRA02",
@@ -1830,7 +1876,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "operator": "NTT Global Data Centers EMEA GmbH",
@@ -1873,7 +1920,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Equinix FR5",
@@ -1914,7 +1962,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "aixit GmbH",
@@ -1955,7 +2004,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "CarrierColo Berlin K",
@@ -1995,7 +2045,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Vantage Data Center (FRA1)",
@@ -2036,7 +2087,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Equinix MU1",
@@ -2075,7 +2127,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Wiit AG DUS",
@@ -2116,7 +2169,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Datacenter One GmbH",
@@ -2157,7 +2211,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "operator": "NTT Global Data Centers",
@@ -2195,7 +2250,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "telecom": "data_center",
@@ -2234,7 +2290,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "TelemaxX IPC2",
@@ -2275,7 +2332,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Digital Reality DUS2",
@@ -2317,7 +2375,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "ColocationIX",
@@ -2350,7 +2409,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Yondr - Rechenzentrum",
@@ -2391,7 +2451,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "source_raw_idx": "254",
@@ -2424,7 +2485,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Digital Realty FRA33",
@@ -2458,7 +2520,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "R-KOM Datacenter Ostbayern 2",
@@ -2499,7 +2562,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Rechenzentrum Nürnberg Süd",
@@ -2536,7 +2600,8 @@
     "mw_label": "5-20 MW",
     "mw_class": 3,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Digital Realty FRA33",
@@ -2572,7 +2637,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Höchstleistungsrechenzentrum der Universität Stuttgart",
@@ -2614,7 +2680,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Digital Realty",
@@ -2649,7 +2716,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Nepustil RZ4",
@@ -2682,7 +2750,8 @@
     "mw_label": "5-20 MW",
     "mw_class": 3,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "operator": "Fiducia & GAD IT AG",
@@ -2723,7 +2792,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Rechenzentrum Nürnberg Zentrum",
@@ -2759,7 +2829,8 @@
     "mw_label": "5-20 MW",
     "mw_class": 3,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "TelemaxX IPC5",
@@ -2801,7 +2872,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Servergebäude",
@@ -2836,7 +2908,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "operator": "EWE TEL GmbH",
@@ -2876,7 +2949,8 @@
     "mw_label": "5-20 MW",
     "mw_class": 3,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Rechenzentrum Citeq",
@@ -2910,7 +2984,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Gauß-IT-Zentrum",
@@ -2949,7 +3024,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "source_raw_idx": "317",
@@ -2983,7 +3059,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "ForHLR II",
@@ -3019,7 +3096,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Kyndryl Data Center",
@@ -3060,7 +3138,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "LEITWERK Rechenzentrum Appenweier",
@@ -3100,7 +3179,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "SAP WDF51",
@@ -3136,7 +3216,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "noris Munich MUC5",
@@ -3173,7 +3254,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Kyndryl Data Center",
@@ -3213,7 +3295,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "OVHcloud LIM1-3 Rechenzentrum",
@@ -3254,7 +3337,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Equinix",
@@ -3296,7 +3380,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "SAP Building 13",
@@ -3334,7 +3419,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "NorthC Nürnberg 1",
@@ -3375,7 +3461,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "SAP Building 6 / 16",
@@ -3413,7 +3500,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "CloudHQ",
@@ -3452,7 +3540,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Rechenzentrum Thüringer Netkom",
@@ -3492,7 +3581,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Vantage Data Center FRA22",
@@ -3529,7 +3619,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Vantage Data Center FRA31",
@@ -3565,7 +3656,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Hetzner Online GmbH - NBG1",
@@ -3607,7 +3699,8 @@
     "mw_label": "5-20 MW",
     "mw_class": 3,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Rechenzentrum PFALZKOM, DCRN II",
@@ -3647,7 +3740,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Datacenter One",
@@ -3688,7 +3782,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Rechenzentrum PFALZKOM, DCRN I",
@@ -3729,7 +3824,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "DXC Technology Company",
@@ -3763,7 +3859,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "RZ",
@@ -3796,7 +3893,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Open Skies One",
@@ -3837,7 +3935,8 @@
     "mw_label": "5-20 MW",
     "mw_class": 3,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Rechenzentrum Ellhofen",
@@ -3880,7 +3979,8 @@
     "mw_label": "5-20 MW",
     "mw_class": 3,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "telecom": "data_center",
@@ -3914,7 +4014,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "DVZ Datenverarbeitungszentrum Mecklenburg-Vorpommern GmbH",
@@ -3957,7 +4058,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "telecom": "data_center",
@@ -3991,7 +4093,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Rechenzentrum Akquinet",
@@ -4024,7 +4127,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "source_raw_idx": "138",
@@ -4057,7 +4161,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Stadtwerke Lüdenscheid GmbH (ENERVIE-Gruppe)",
@@ -4094,7 +4199,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Planet IC",
@@ -4129,7 +4235,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Vantage Berlin II (BER2)",
@@ -4165,7 +4272,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Universitätsrechenzentrum",
@@ -4199,7 +4307,8 @@
     "mw_label": "100+ MW",
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Gebäude 94/95",
@@ -4236,7 +4345,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "telecom": "data_center",
@@ -4270,7 +4380,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "GWDG - Außenstelle",
@@ -4309,7 +4420,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "BER11",
@@ -4350,7 +4462,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "BER12",
@@ -4389,7 +4502,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Rechenzentrum AtlasEdge HAM002",
@@ -4423,7 +4537,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "source_raw_idx": "132",
@@ -4462,7 +4577,8 @@
     "mw_label": "5-20 MW",
     "mw_class": 3,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "telecom": "data_center",
@@ -4501,7 +4617,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "operator": "Hansestadt Rostock",
@@ -4536,7 +4653,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "source_raw_idx": "305",
@@ -4569,7 +4687,8 @@
     "mw_label": "5-20 MW",
     "mw_class": 3,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "source_raw_idx": "344",
@@ -4602,7 +4721,8 @@
     "mw_label": "5-20 MW",
     "mw_class": 3,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "operator": "Johannes Gutenberg-Universität Mainz",
@@ -4643,7 +4763,8 @@
     "mw_label": "5-20 MW",
     "mw_class": 3,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "rockenstein AG",
@@ -4684,7 +4805,8 @@
     "mw_label": "5-20 MW",
     "mw_class": 3,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "R-KOM Datacenter Ostbayern 3",
@@ -4724,7 +4846,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Rechenzentrum",
@@ -4758,7 +4881,8 @@
     "mw_label": "5-20 MW",
     "mw_class": 3,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Bundesnachrichtendienst Pullach Rechenzentrum",
@@ -4793,7 +4917,8 @@
     "mw_label": "5-20 MW",
     "mw_class": 3,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "ITSMZ",
@@ -4836,7 +4961,8 @@
     "mw_label": "5-20 MW",
     "mw_class": 3,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Boreus Rechenzentrum GmbH",
@@ -4877,7 +5003,8 @@
     "mw_label": "5-20 MW",
     "mw_class": 3,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Telekom Data-Center",
@@ -4910,7 +5037,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "TelemaxX IPC3",
@@ -4952,50 +5080,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
-  },
-  {
-    "name": "Rechenzentrum Ostermiething",
-    "operator": "Stack IT",
-    "telecom": "data_center",
-    "source_raw_idx": "259",
-    "dc_evidence": "telecom=data_center + expliziter DC-Name/Betreiber/Webseite",
-    "address": "Weilhartstraße 92, 5121 Ostermiething",
-    "addr:street": "Weilhartstraße",
-    "addr:housenumber": "92",
-    "addr:postcode": "5121",
-    "addr:city": "Ostermiething",
-    "addr:country": "AT",
-    "website": "https://www.stackit.de/de/colocation/dc-10/",
-    "building": "yes",
-    "ref": "DC10",
-    "lat": 48.03225891,
-    "lon": 12.83725136,
-    "score": 0.243,
-    "site_base_score": 0.243,
-    "score_method": "point_mcda",
-    "protection_mask": 0,
-    "landuse_score": 0.0,
-    "landuse_cat": null,
-    "score_sub": 0.237,
-    "score_110": 0.167,
-    "score_220": 0.517,
-    "score_380": 0.167,
-    "gigabit_score": 0.752,
-    "gigabit_pct": 75.16,
-    "pop_score": 0.855,
-    "pop_density": 114,
-    "labor_score": 0.142,
-    "it_workforce": 1120,
-    "kreis": "Traunstein",
-    "dsub_km": 14.35,
-    "d110_km": 12.22,
-    "d220_km": 14.35,
-    "d380_km": 35.07,
-    "mw_label": "1-5 MW",
-    "mw_class": 2,
-    "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "Rechenzentrum KÜS Data",
@@ -5035,7 +5121,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "NTT DATA Business Solutions Global Managed Services",
@@ -5078,7 +5165,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "DARZ - Darmstädter Rechenzentrum",
@@ -5113,7 +5201,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "EVF-Datacenter",
@@ -5155,7 +5244,8 @@
     "mw_label": "5-20 MW",
     "mw_class": 3,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "IRZ-HIP-Heidelberg",
@@ -5196,7 +5286,8 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   },
   {
     "name": "NSA Rechenzentrum",
@@ -5230,6 +5321,7 @@
     "mw_label": "20-100 MW",
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
-    "protection_score_policy": "context_only_for_existing_dc"
+    "protection_score_policy": "context_only_for_existing_dc",
+    "aoi_check": "inside_germany_aoi"
   }
 ]
