@@ -224,6 +224,15 @@ input[type=range].pwr-sl::-webkit-slider-thumb:hover { transform:scale(1.25); }
 .report-kpi b { display:block; margin-top:4px; font-size:22px; color:#0f172a; }
 .report-bar { width:100%; height:8px; border-radius:5px; background:#e2e8f0; overflow:hidden; }
 .report-bar > i { display:block; height:100%; border-radius:5px; background:linear-gradient(90deg,#ef4444,#f59e0b,#84cc16,#22c55e); animation:reportGrow .8s ease-out both; }
+.report-callout {
+  margin:12px 0; padding:10px 12px; border-radius:8px;
+  background:#ecfdf5; border:1px solid #86efac; color:#14532d; font-size:12px;
+}
+.report-warn {
+  margin:12px 0; padding:10px 12px; border-radius:8px;
+  background:#fff7ed; border:1px solid #fdba74; color:#7c2d12; font-size:12px;
+}
+.report-small { font-size:10px; color:#64748b; }
 @keyframes reportGrow { from { width:0; } }
 @media (max-width:700px) {
   #report-shell { inset:8px; }
@@ -692,7 +701,7 @@ var SOFT_FACTOR = 0.3;
 var PROT_MIN_SHARE = 0.001;
 var PROT_HARD_FULL_SHARE = 0.25;
 var PROT_SHARE_IDX = {nationalpark:23,nsg:24,ffh:25,biosphere:26,lsg:27,naturpark:28};
-var ASSET_VERSION = "2026-04-15-report-v1";
+var ASSET_VERSION = "2026-04-15-smart-report-v2";
 var opacityRef = {value:0.68}, filterRef = {value:0.0};
 var map, heatLayer, kreisFg;
 var DC_DATA = [];
@@ -701,6 +710,9 @@ var DC_EXPLORER_HIDDEN = 0;
 var geoSearchMarker = null;
 var cellHighlight = null;
 var layerControlHoverSuppressed = false;
+var REPORT_GEO = {protection:{}, landuse:{}, lines:{}, substations:null};
+var REPORT_LAYERGROUPS = {landuse:{}, protection:{}};
+var REPORT_LAYERS_READY = false;
 var LAST_CELL = null;
 var LAST_ADDRESS = null;
 var CURRENT_REPORT_HTML = "";
@@ -1338,7 +1350,210 @@ function reportTopDcs(scope) {
   } else {
     rows = rows.sort(function(a, b) { return (dcScoreValue(b) || 0) - (dcScoreValue(a) || 0); });
   }
-  return rows.slice(0, 10);
+  return rows.slice(0, 5);
+}
+
+function reportCellBounds(c) {
+  return {s:c[18]/1e5, n:c[19]/1e5, w:c[20]/1e5, e:c[21]/1e5};
+}
+
+function reportBoundsIntersect(a, b) {
+  return !(a.e < b.w || a.w > b.e || a.n < b.s || a.s > b.n);
+}
+
+function reportFeatureBounds(f) {
+  if (f._reportBounds) return f._reportBounds;
+  var b = {s:90, n:-90, w:180, e:-180};
+  function scan(coords) {
+    if (!coords) return;
+    if (typeof coords[0] === "number") {
+      var lon = coords[0], lat = coords[1];
+      if (lat < b.s) b.s = lat;
+      if (lat > b.n) b.n = lat;
+      if (lon < b.w) b.w = lon;
+      if (lon > b.e) b.e = lon;
+      return;
+    }
+    for (var i = 0; i < coords.length; i++) scan(coords[i]);
+  }
+  scan(f.geometry && f.geometry.coordinates);
+  f._reportBounds = b;
+  return b;
+}
+
+function reportCleanText(v, fallback) {
+  var t = (v === null || v === undefined) ? "" : String(v).trim();
+  if (!t || t === "–" || t === "-" || t === "None" || t === "nan") return fallback || "";
+  return t;
+}
+
+function reportFeatureTitle(f, fallback) {
+  var p = f.properties || {};
+  return reportCleanText(p.name, "") || reportCleanText(p.name_show, "") || fallback || "ohne Namen";
+}
+
+function reportSubstationTitle(f) {
+  var p = f.properties || {};
+  var voltage = reportCleanText(p.voltage_max_kv, reportCleanText(p.v_bucket, ""));
+  var name = reportFeatureTitle(f, "Umspannwerk");
+  return name + (voltage ? " (" + voltage + " kV)" : "");
+}
+
+function reportPointToSegmentKm(lat, lon, a, b) {
+  var lat0 = lat * Math.PI / 180;
+  var ax = (a[0] - lon) * 111.32 * Math.cos(lat0), ay = (a[1] - lat) * 110.57;
+  var bx = (b[0] - lon) * 111.32 * Math.cos(lat0), by = (b[1] - lat) * 110.57;
+  var vx = bx - ax, vy = by - ay;
+  var den = vx * vx + vy * vy;
+  var t = den > 0 ? Math.max(0, Math.min(1, -(ax * vx + ay * vy) / den)) : 0;
+  var px = ax + t * vx, py = ay + t * vy;
+  return Math.sqrt(px * px + py * py);
+}
+
+function reportFeatureDistanceKm(f, lat, lon) {
+  var best = Infinity;
+  function scanLine(coords) {
+    if (!coords || !coords.length) return;
+    if (typeof coords[0] === "number") {
+      best = Math.min(best, reportDistanceKm(lat, lon, coords[1], coords[0]));
+      return;
+    }
+    if (coords.length && typeof coords[0][0] === "number") {
+      for (var i = 0; i < coords.length - 1; i++) best = Math.min(best, reportPointToSegmentKm(lat, lon, coords[i], coords[i + 1]));
+      if (coords.length === 1) best = Math.min(best, reportDistanceKm(lat, lon, coords[0][1], coords[0][0]));
+      return;
+    }
+    for (var j = 0; j < coords.length; j++) scanLine(coords[j]);
+  }
+  scanLine(f.geometry && f.geometry.coordinates);
+  return best;
+}
+
+function reportNearestFeatures(gj, lat, lon, limit, maxKm, labelFn) {
+  var feats = (gj && gj.features) || [], out = [];
+  for (var i = 0; i < feats.length; i++) {
+    var d = reportFeatureDistanceKm(feats[i], lat, lon);
+    if (isFinite(d) && (maxKm === null || maxKm === undefined || d <= maxKm)) {
+      out.push({feature:feats[i], distance:d, label:labelFn ? labelFn(feats[i]) : reportFeatureTitle(feats[i])});
+    }
+  }
+  out.sort(function(a, b) { return a.distance - b.distance; });
+  return out.slice(0, limit || 5);
+}
+
+function reportNearestSubstations(scope) {
+  if (!scope.cell || !REPORT_GEO.substations) return [];
+  var cc = reportCellCenter(scope.cell);
+  return reportNearestFeatures(REPORT_GEO.substations, cc.lat, cc.lon, 5, null, reportSubstationTitle);
+}
+
+function reportNearestProtection(scope) {
+  if (!scope.cell) return [];
+  var cc = reportCellCenter(scope.cell), out = [];
+  var labels = {nationalpark:"Nationalpark", nsg:"Naturschutzgebiet", ffh:"FFH/Natura 2000", biosphere:"Biosphärenreservat", lsg:"Landschaftsschutzgebiet", naturpark:"Naturpark"};
+  Object.keys(REPORT_GEO.protection).forEach(function(cat) {
+    var hits = reportNearestFeatures(REPORT_GEO.protection[cat], cc.lat, cc.lon, 3, 20, function(f) {
+      return reportFeatureTitle(f, labels[cat]) + " · " + labels[cat];
+    });
+    out = out.concat(hits);
+  });
+  out.sort(function(a, b) { return a.distance - b.distance; });
+  return out.slice(0, 5);
+}
+
+function reportLanduseInCell(cell) {
+  if (!cell) return null;
+  var cb = reportCellBounds(cell);
+  var llb = L.latLngBounds([cb.s, cb.w], [cb.n, cb.e]);
+  var labels = {industrial:"Industrie (GI)", commercial:"Gewerbe (GE)", brownfield:"Brownfield"};
+  var out = {};
+  Object.keys(labels).forEach(function(cat) {
+    var count = 0, names = [];
+    var group = REPORT_LAYERGROUPS.landuse[cat];
+    if (group && group.eachLayer) {
+      group.eachLayer(function(layer) {
+        var lb = layer.getBounds ? layer.getBounds() : null;
+        if (!lb || !lb.intersects(llb)) return;
+        count++;
+        var nm = reportFeatureTitle(layer.feature || {}, labels[cat]);
+        if (names.length < 8 && names.indexOf(nm) < 0) names.push(nm);
+      });
+    } else {
+      var feats = (REPORT_GEO.landuse[cat] && REPORT_GEO.landuse[cat].features) || [];
+      for (var i = 0; i < feats.length; i++) {
+        if (!reportBoundsIntersect(reportFeatureBounds(feats[i]), cb)) continue;
+        count++;
+        var nm = reportFeatureTitle(feats[i], labels[cat]);
+        if (names.length < 8 && names.indexOf(nm) < 0) names.push(nm);
+      }
+    }
+    out[cat] = {label:labels[cat], count:count, names:names};
+  });
+  return out;
+}
+
+function reportOperatorCandidates(subs) {
+  var seen = {}, out = [];
+  for (var i = 0; i < subs.length; i++) {
+    var op = reportCleanText(subs[i].feature.properties && subs[i].feature.properties.operator, "");
+    if (op && !seen[op]) { seen[op] = true; out.push(op); }
+  }
+  return out;
+}
+
+function reportLineRows(cell) {
+  if (!cell) return [];
+  return [
+    ["380-kV-Leitung", distKm(cell[4]), "Betreiber im exportierten OSM-Layer nicht belastbar hinterlegt"],
+    ["220-kV-Leitung", distKm(cell[5]), "Betreiber im exportierten OSM-Layer nicht belastbar hinterlegt"],
+    ["110-kV-Leitung", distKm(cell[6]), "Betreiber im exportierten OSM-Layer nicht belastbar hinterlegt"]
+  ];
+}
+
+function reportKreisRanking(limit, reverse) {
+  var groups = {};
+  for (var i = 0; i < CELLS.length; i++) {
+    var idx = CELLS[i][17], name = idx >= 0 && KRS_NAMES[idx] ? KRS_NAMES[idx] : "";
+    if (!name) continue;
+    if (!groups[name]) groups[name] = [];
+    groups[name].push(calcScore(CELLS[i]));
+  }
+  var rows = Object.keys(groups).map(function(name) {
+    var arr = groups[name].sort(function(a, b) { return a - b; });
+    var med = reportQuantile(arr, 0.5);
+    var high = arr.filter(function(v) { return v >= 0.8; }).length / arr.length;
+    return {name:name, n:arr.length, med:med, high:high};
+  });
+  rows.sort(function(a, b) { return reverse ? a.med - b.med : b.med - a.med; });
+  return rows.slice(0, limit || 10);
+}
+
+function reportTopSubstationOperators(limit) {
+  var feats = (REPORT_GEO.substations && REPORT_GEO.substations.features) || [];
+  var counts = {};
+  for (var i = 0; i < feats.length; i++) {
+    var op = reportCleanText(feats[i].properties && feats[i].properties.operator, "");
+    if (!op) continue;
+    counts[op] = (counts[op] || 0) + 1;
+  }
+  return Object.keys(counts).map(function(k) { return {name:k, n:counts[k]}; })
+    .sort(function(a, b) { return b.n - a.n; }).slice(0, limit || 8);
+}
+
+function reportExecutiveText(scope, stats, selectedScore, pct) {
+  if (scope.kind === "de") {
+    return "Der Deutschland-Report dient als Baseline für die Masterarbeit: Er zeigt die bundesweite Score-Verteilung, Hotspot-Kreise und die Menge sehr gut geeigneter Rasterzellen. Diese Sicht ist vor allem für Ergebnisdiskussion, Sensitivitäten und die Herleitung räumlicher Cluster sinnvoll.";
+  }
+  if (selectedScore !== null && selectedScore >= 0.8) {
+    return "Der betrachtete Standort liegt im sehr guten Eignungsbereich. Für ein Investment Memorandum sind besonders Netzanschluss, konkrete Grundstücksverfügbarkeit, Genehmigungsrecht und belastbare Betreiberabstimmung zu vertiefen.";
+  }
+  if (selectedScore !== null && selectedScore >= 0.6) {
+    return "Der betrachtete Standort ist grundsätzlich interessant, weist aber mindestens einen relevanten Engpass auf. Der Report sollte als Screening-Grundlage genutzt werden, bevor Netzanschluss und planungsrechtliche Details extern validiert werden.";
+  }
+  if (selectedScore !== null && selectedScore >= 0.45) {
+    return "Der betrachtete Standort liegt im mittleren Eignungsbereich. Für Developer kann er prüfenswert sein, wenn Grundstück, Netzanschluss oder Kunden-/Latenzanforderungen projektspezifisch stark sind; ohne solche Zusatzvorteile ist eine bessere Vergleichsfläche vorzuziehen.";
+  }
+  return "Der betrachtete Standort ist im aktuellen Szenario eher kritisch. Für Developer ist diese Lage nur dann plausibel, wenn außerhalb des Modells starke projektspezifische Vorteile bestehen, etwa gesicherte Netzzusage, Bestandsgebäude oder strategische Kundennähe.";
 }
 
 function reportTable(rows) {
@@ -1359,41 +1574,100 @@ function reportBuildHtml() {
   var selectedScore = selectedCell ? calcScore(selectedCell) : null;
   var z = selectedScore !== null && national.std > 0 ? (selectedScore - national.mean) / national.std : null;
   var pct = selectedScore !== null ? Math.round(CELLS.filter(function(c) { return calcScore(c) <= selectedScore; }).length / CELLS.length * 100) : null;
+  var nearestSubs = selectedCell ? reportNearestSubstations(scope) : [];
+  var operators = reportOperatorCandidates(nearestSubs);
+  var nearProt = selectedCell ? reportNearestProtection(scope) : [];
+  var luDetail = selectedCell ? reportLanduseInCell(selectedCell) : null;
   var html = '';
-  html += '<h1>MCDA-Standortreport</h1>';
+
+  html += '<h1>MCDA Standort- und Investorenreport</h1>';
   html += '<p><b>Untersuchungsbezug:</b> ' + escapeHtml(scope.label) + '<br><b>Erstellt:</b> ' + now.toLocaleString("de-DE") + '<br><b>Modellstand:</b> 2-km-Raster, sieben gewichtete Score-Kriterien; Flächennutzung und Schutzgebietspunktlage bei bestehenden Datacentern als Kontext.</p>';
+  if (!REPORT_LAYERS_READY) html += '<div class="report-warn"><b>Hinweis:</b> Einige GeoJSON-Layer laden noch. Infrastruktur-, Schutzgebiets- und Landuse-Listen können in diesem Report unvollständig sein. Bitte den Report nach Abschluss des Kartenladens erneut öffnen.</div>';
+  html += '<div class="report-callout"><b>Executive Summary:</b> ' + escapeHtml(reportExecutiveText(scope, stats, selectedScore, pct)) + '</div>';
   html += '<div class="report-kpis">';
   html += '<div class="report-kpi"><span>Zellen</span><b>' + stats.n.toLocaleString("de-DE") + '</b></div>';
   html += '<div class="report-kpi"><span>Median</span><b>' + reportRound(stats.med) + '</b></div>';
   html += '<div class="report-kpi"><span>Mittelwert</span><b>' + reportRound(stats.mean) + '</b></div>';
   html += '<div class="report-kpi"><span>Sehr gut (>=0,80)</span><b>' + classCounts.veryGood.toLocaleString("de-DE") + '</b></div>';
   html += '</div>';
-  html += '<h2>1. Statistische Einordnung</h2>';
-  html += '<p>Die Verteilung wird als robuste Standortdiagnostik interpretiert: Median und Quartile beschreiben die typische bundesweite bzw. regionale Eignung, während P90 und Maximalwert Hotspot-Lagen markieren. Für Einzelstandorte wird zusätzlich die Perzentilposition im bundesweiten Raster angegeben.</p>';
-  html += reportTable([
-    ["Kennzahl", "Wert im Untersuchungsbezug", "Bundesweiter Vergleich"],
-    ["Minimum", reportRound(stats.min), reportRound(national.min)],
-    ["1. Quartil", reportRound(stats.q25), reportRound(national.q25)],
-    ["Median", reportRound(stats.med), reportRound(national.med)],
-    ["Mittelwert", reportRound(stats.mean), reportRound(national.mean)],
-    ["Standardabweichung", reportRound(stats.std), reportRound(national.std)],
-    ["90%-Quantil", reportRound(stats.p90), reportRound(national.p90)],
-    ["Maximum", reportRound(stats.max), reportRound(national.max)]
-  ]);
+
+  html += '<h2>1. Ergebnislage und statistische Einordnung</h2>';
+  if (scope.kind === "de") {
+    html += '<p>Der bundesweite Report ist die Referenzverteilung der Arbeit. Ein Vergleich mit Deutschland selbst wäre methodisch redundant; deshalb werden hier die bundesweite Score-Verteilung, Hotspot-Kreise und schwächere Räume als Ergebnislage dargestellt.</p>';
+    html += reportTable([
+      ["Kennzahl", "Deutschlandweite Score-Verteilung"],
+      ["Minimum", reportRound(stats.min)],
+      ["1. Quartil", reportRound(stats.q25)],
+      ["Median", reportRound(stats.med)],
+      ["Mittelwert", reportRound(stats.mean)],
+      ["Standardabweichung", reportRound(stats.std)],
+      ["90%-Quantil", reportRound(stats.p90)],
+      ["Maximum", reportRound(stats.max)]
+    ]);
+    var topK = reportKreisRanking(8, false), lowK = reportKreisRanking(8, true);
+    var topRows = [["Rang", "Kreis", "Median-Score", "Anteil sehr gut"]];
+    for (var ti = 0; ti < topK.length; ti++) topRows.push([String(ti + 1), escapeHtml(topK[ti].name), reportRound(topK[ti].med), reportRound(topK[ti].high * 100, 1) + " %"]);
+    html += '<h3>Hotspot-Kreise nach Median-Score</h3>' + reportTable(topRows);
+    var lowRows = [["Rang", "Kreis", "Median-Score", "Anteil sehr gut"]];
+    for (var li = 0; li < lowK.length; li++) lowRows.push([String(li + 1), escapeHtml(lowK[li].name), reportRound(lowK[li].med), reportRound(lowK[li].high * 100, 1) + " %"]);
+    html += '<h3>Schwächere Kreise nach Median-Score</h3>' + reportTable(lowRows);
+  } else {
+    html += '<p>Die Vergleichsspalte zeigt die bundesweite Referenzverteilung. Dadurch lässt sich erkennen, ob der ausgewählte Kreis oder Standort über, unter oder nahe dem deutschlandweiten Screening-Niveau liegt.</p>';
+    html += reportTable([
+      ["Kennzahl", "Untersuchungsbezug", "Deutschland"],
+      ["Minimum", reportRound(stats.min), reportRound(national.min)],
+      ["1. Quartil", reportRound(stats.q25), reportRound(national.q25)],
+      ["Median", reportRound(stats.med), reportRound(national.med)],
+      ["Mittelwert", reportRound(stats.mean), reportRound(national.mean)],
+      ["Standardabweichung", reportRound(stats.std), reportRound(national.std)],
+      ["90%-Quantil", reportRound(stats.p90), reportRound(national.p90)],
+      ["Maximum", reportRound(stats.max), reportRound(national.max)]
+    ]);
+  }
+
+  html += '<h2>2. Standortsteckbrief und Score-Formel</h2>';
   if (selectedCell) {
-    html += '<h2>2. Einzelstandort / Rasterzelle</h2>';
+    var cc = reportCellCenter(selectedCell);
+    html += '<p>Referenzpunkt: <b>' + reportRound(cc.lat, 5) + ', ' + reportRound(cc.lon, 5) + '</b> · Rasterzelle [' + selectedCell[0] + ', ' + selectedCell[1] + '] · Kreis: <b>' + escapeHtml((selectedCell[17] >= 0 && KRS_NAMES[selectedCell[17]]) ? KRS_NAMES[selectedCell[17]] : 'n/a') + '</b>.</p>';
     html += '<p>Score der betrachteten Zelle: <b>' + reportRound(selectedScore) + '</b>. Bundesweite Perzentilposition: <b>P' + pct + '</b>. Z-Score gegenüber Deutschland: <b>' + reportRound(z, 2) + '</b>.</p>';
     html += '<div class="report-bar"><i style="width:' + Math.round(selectedScore * 100) + '%"></i></div>';
     var comps = reportScoreComponents(selectedCell);
-    var rows = [["Kriterium", "Score x_i", "Gewicht w_i", "Beitrag w_i x_i"]];
-    for (var i = 0; i < comps.length; i++) rows.push([comps[i].label, reportRound(comps[i].score), reportRound(comps[i].weight), reportRound(comps[i].score * comps[i].weight)]);
-    rows.push(["Kombinationsbonus", (selectedCell[3] * 10 < 2000 && selectedCell[4] * 10 < 5000) ? "0,050" : "0,000", "-", "-"]);
-    rows.push(["Schutzgebietswirkung", protLabelWithShare(selectedCell) || "keine", "-", "multiplikativ nach Modus"]);
-    rows.push(["Flächennutzung", luLabel(selectedCell[16] || 0), "Kontext", "nicht gewichtet"]);
+    var rows = [["Kriterium", "Bedeutung", "Score x_i", "Gewicht w_i", "Beitrag"]];
+    var expl = {sub:"Nähe zum physischen Hochspannungs-Anschlusspunkt", kv110:"Nähe zur üblichen Colo-/regionalen Anschluss-Spannung", kv220:"Zwischenebene; punktuell relevant", kv380:"Nähe zum Übertragungsnetz, besonders für sehr große Lasten", gb:"Kreisbezogene FTTB/H-Verfügbarkeit", pop:"Inverse Dichte: niedrige Nutzungskonflikte", labor:"Regionaler IT-Fachkräftepool"};
+    for (var i = 0; i < comps.length; i++) rows.push([comps[i].label, expl[comps[i].key], reportRound(comps[i].score), reportRound(comps[i].weight), reportRound(comps[i].score * comps[i].weight)]);
+    rows.push(["Kombinationsbonus", "Substation < 2 km und 380 kV < 5 km", (selectedCell[3] * 10 < 2000 && selectedCell[4] * 10 < 5000) ? "0,050" : "0,000", "additiv", "siehe Formel"]);
+    rows.push(["Schutzgebietswirkung", protLabelWithShare(selectedCell) || "keine", "Kontext/Multiplikator", "je Toggle", "nach Score"]);
+    rows.push(["Flächennutzung", luLabel(selectedCell[16] || 0), "Kontext", "nicht gewichtet", "0,000"]);
     html += reportTable(rows);
-    html += '<p><b>Formel mit eingesetzten Werten:</b><br>S = clamp(Σ w_i x_i + Bonus) × Schutzfaktor. Für diese Zelle ergibt sich vor Schutzgebietswirkung ein Basisscore von <b>' + reportRound(reportBaseScore(selectedCell)) + '</b> und nach aktiver Schutzgebietskonfiguration ein Endscore von <b>' + reportRound(selectedScore) + '</b>.</p>';
+    html += '<p><b>Formel:</b> S = clamp(Σ w_i x_i + Bonus) × Schutzfaktor. Für diese Zelle ergibt sich vor Schutzgebietswirkung ein Basisscore von <b>' + reportRound(reportBaseScore(selectedCell)) + '</b> und nach aktiver Schutzgebietskonfiguration ein Endscore von <b>' + reportRound(selectedScore) + '</b>.</p>';
+  } else {
+    html += '<p>Für den bundesweiten Bericht wird keine einzelne Rasterzelle referenziert. Die Formel- und Infrastrukturdetails werden sichtbar, sobald eine Adresse, ein Kreis oder eine Rasterzelle ausgewählt wird.</p>';
   }
-  html += '<h2>3. Eignungsklassen und Flächenkontext</h2>';
+
+  html += '<h2>3. Netzanschluss und Infrastruktur</h2>';
+  if (selectedCell) {
+    var subRows = [["Rang", "Nächstes Umspannwerk", "Entfernung", "Betreiberhinweis"]];
+    for (var si = 0; si < nearestSubs.length; si++) {
+      var sp = nearestSubs[si].feature.properties || {};
+      subRows.push([String(si + 1), escapeHtml(nearestSubs[si].label), reportRound(nearestSubs[si].distance, 2) + " km", escapeHtml(reportCleanText(sp.operator, "nicht in OSM hinterlegt"))]);
+    }
+    if (nearestSubs.length === 0) subRows.push(["-", "Substation-Layer noch nicht geladen", "-", "Report erneut öffnen, sobald Layer geladen sind"]);
+    html += '<h3>Fünf nächstgelegene HV-Umspannwerke</h3>' + reportTable(subRows);
+    html += '<h3>Nächstgelegene Leitungsebenen aus dem Rastermodell</h3>' + reportTable([["Leitungsebene", "Distanz", "Betreiberhinweis"]].concat(reportLineRows(selectedCell)));
+    if (operators.length) {
+      html += '<div class="report-callout"><b>Netzbetreiber-Kontaktkandidaten:</b> ' + operators.map(escapeHtml).join(', ') + '. Diese Betreiber stammen aus den nächstgelegenen OSM-Umspannwerken und sollten für ein Investment Memorandum durch Netzanschlussauskunft, Marktstammdatenregister und direkte Netzbetreiberprüfung validiert werden.</div>';
+    } else {
+      html += '<div class="report-warn"><b>Netzbetreiber nicht eindeutig ableitbar:</b> Die nächstgelegenen OSM-Objekte enthalten keine belastbare Betreiberangabe. Für ein IM sollte die Zuständigkeit über VNB-/ÜNB-Netzgebiet, MaStR und eine formale Netzanschlussvoranfrage geprüft werden.</div>';
+    }
+  } else {
+    var opRows = [["Betreiber aus OSM-Umspannwerken", "Anzahl Features"]];
+    var ops = reportTopSubstationOperators(10);
+    for (var oi = 0; oi < ops.length; oi++) opRows.push([escapeHtml(ops[oi].name), ops[oi].n.toLocaleString("de-DE")]);
+    html += '<p>Auf Bundesebene ist kein einzelner Netzanschlusspunkt sinnvoll. Die folgende Tabelle zeigt die häufigsten Betreiberangaben in den OSM-Umspannwerksdaten als Datenqualitäts- und Ansprechpartner-Kontext.</p>' + reportTable(opRows);
+  }
+
+  html += '<h2>4. Planungsrechtlicher Flächen- und Schutzkontext</h2>';
+  html += '<p>Flächennutzung wird nicht als Score-Faktor gewichtet. Sie ist dennoch für Developer wichtig, weil Industrie-, Gewerbe- und Brownfield-Flächen Hinweise auf planungsrechtliche Eignung, Bestandsnutzung und Entwicklungspotenzial geben.</p>';
   html += reportTable([
     ["Eignungsklasse", "Zellen", "Anteil"],
     ["< 0,20 sehr schwach", classCounts.veryLow.toLocaleString("de-DE"), reportRound(classCounts.veryLow / stats.n * 100, 1) + " %"],
@@ -1402,24 +1676,50 @@ function reportBuildHtml() {
     ["0,60-0,80 gut", classCounts.good.toLocaleString("de-DE"), reportRound(classCounts.good / stats.n * 100, 1) + " %"],
     [">= 0,80 sehr gut", classCounts.veryGood.toLocaleString("de-DE"), reportRound(classCounts.veryGood / stats.n * 100, 1) + " %"]
   ]);
-  var luRows = [["Flächennutzungskontext", "Zellen"]];
+  var luRows = [["Flächennutzungskontext am Zellzentroid", "Zellen"]];
   Object.keys(landuse).sort().forEach(function(k) { luRows.push([escapeHtml(k), landuse[k].toLocaleString("de-DE")]); });
   html += reportTable(luRows);
-  html += '<h2>4. Datacenter-Benchmark</h2>';
+  if (luDetail) {
+    var luDetailRows = [["Kategorie", "Layer-Features in/berührend Rasterzelle", "Beispiele"]];
+    Object.keys(luDetail).forEach(function(k) { luDetailRows.push([luDetail[k].label, luDetail[k].count.toLocaleString("de-DE"), luDetail[k].names.map(escapeHtml).join(', ') || 'keine benannten Features']); });
+    html += '<h3>Vorhandene Landuse-Features in der Rasterzelle</h3>' + reportTable(luDetailRows);
+    html += '<p class="report-small">Hinweis: Diese Liste ist ein Report-Kontext über die geladenen OSM-Layer und keine neue Landuse-Flächengewichtung für den Score.</p>';
+  }
+  if (selectedCell) {
+    var pRows = [["Rang", "Schutzgebiet", "Distanz zum Referenzpunkt"]];
+    for (var pi = 0; pi < nearProt.length; pi++) pRows.push([String(pi + 1), escapeHtml(nearProt[pi].label), reportRound(nearProt[pi].distance, 2) + " km"]);
+    if (!nearProt.length) pRows.push(["-", "Keine Schutzgebiete im 20-km-Umfeld aus geladenen Layern", "-"]);
+    html += '<h3>Naheliegende Schutzgebiete</h3>' + reportTable(pRows);
+  }
+
+  html += '<h2>5. Datacenter-Benchmark</h2>';
   var dcs = reportTopDcs(scope);
-  var dcRows = [["Standort", "Score", "MW-Klasse", "HV-Sub", "380 kV", "Flächennutzung"]];
+  var dcRows = [["Rang", "Standort", "Score", "MW-Klasse", "Entfernung", "HV-Sub", "380 kV", "Flächennutzung"]];
   for (var di = 0; di < dcs.length; di++) {
     dcRows.push([
+      String(di + 1),
       escapeHtml(dcs[di]._title || dcs[di].name || "RZ"),
       reportRound(dcScoreValue(dcs[di])),
       escapeHtml(dcs[di]._mwText || dcs[di].mw_label || ""),
+      dcs[di]._reportKm !== undefined ? reportRound(dcs[di]._reportKm, 1) + " km" : (scope.kind === "kreis" ? "im Kreis / nach Score" : "Top-Score Deutschland"),
       dcs[di].dsub_km !== undefined ? reportRound(dcs[di].dsub_km, 1) + " km" : "n/a",
       dcs[di].d380_km !== undefined ? reportRound(dcs[di].d380_km, 1) + " km" : "n/a",
       escapeHtml(dcLanduseLabel(dcs[di]) || "kein Kontext")
     ]);
   }
-  html += reportTable(dcRows);
-  html += '<h2>5. Methodischer Nachweis</h2>';
+  html += '<p>Die Tabelle nennt die fünf relevantesten Bestands-Rechenzentren: bei Einzelstandorten nach Entfernung, bei Kreisen nach Score im Kreis, bei Deutschland nach bundesweitem Punkt-MCDA-Score.</p>' + reportTable(dcRows);
+
+  html += '<h2>6. Investor-/Developer-Checkliste</h2>';
+  html += reportTable([
+    ["Prüffeld", "Warum es wichtig ist", "Nächster Schritt"],
+    ["Netzanschluss", "Score zeigt Nähe, ersetzt aber keine Anschlusszusage", "Voranfrage beim zuständigen VNB/ÜNB mit Lastprofil, Redundanzkonzept und Zeitplan"],
+    ["Grundstück / Planungsrecht", "Landuse ist OSM-Kontext, kein Bebauungsplan", "B-Plan/FNP, Eigentum, Altlasten und Erschließung prüfen"],
+    ["Naturschutz", "Raster-Malus zeigt Schutzgebietskonflikte für Neuprojekte", "Untere Naturschutzbehörde und Umweltprüfung einbinden"],
+    ["Konnektivität", "Gigabit-Kreiswert ist Proxy, keine Carrier-Zusage", "Carrier-Verfügbarkeit, Trassen und Dark-Fiber-Optionen validieren"],
+    ["Arbeitsmarkt", "IT-Fachkräfte sind regionaler Proxy", "Recruiting-Pool und Betriebsmodell prüfen"]
+  ]);
+
+  html += '<h2>7. Methodik, Quellen und Reproduzierbarkeit</h2>';
   html += '<p>Das Modell nutzt eine Weighted Linear Combination: <b>S = Σ w_i x_i</b>. Distanzkriterien werden mit inversen Potenzfunktionen standardisiert, Gigabit linear, Bevölkerungsdichte invers und IT-Fachkräfte mit einer sättigenden Hill-Funktion. Schutzgebiete wirken im Raster flächengewichtet und multiplikativ. Flächennutzung wird nicht als MCDA-Gewicht genutzt, sondern als Kontextinformation für die Interpretation konkreter Standorte.</p>';
   html += reportTable([
     ["Kriterium", "Aktuelles Gewicht"],
@@ -1431,12 +1731,10 @@ function reportBuildHtml() {
     ["Bevölkerungsdichte invers", reportRound(W.pop || 0)],
     ["IT-Fachkräfte", reportRound(W.labor || 0)]
   ]);
-  html += '<h2>6. Quellen und Reproduzierbarkeit</h2>';
   html += '<p>Datengrundlagen: OpenStreetMap/Geofabrik für Strominfrastruktur, Schutzgebiete, Flächennutzung und Datacenter; BNetzA Gigabit-Grundbuch; Destatis/Zensus 2022; Bundesagentur für Arbeit; GISCO/BKG Verwaltungsgrenzen. Die Karte rechnet die Scores clientseitig live, so dass dieser Report die aktuell eingestellten Szenario-Gewichte und Schutzgebietsmodi dokumentiert.</p>';
   html += '<p><a href="https://maximilianvberger.github.io/Deutschland-Karte-Rechenzentrum-Site/">Interaktive Karte öffnen</a></p>';
   return html;
 }
-
 function reportOpen() {
   CURRENT_REPORT_HTML = reportBuildHtml();
   document.getElementById("report-content").innerHTML = CURRENT_REPORT_HTML;
@@ -2311,6 +2609,7 @@ function initMap(dcs) {
     (function(cat) {
       layerPromises.push(
         loadGeoJSON("data/layers/protection_" + cat + ".geojson").then(function(gj) {
+          REPORT_GEO.protection[cat] = gj;
           var lyr = L.geoJSON(gj, {
             style:{color:protColors[cat], fillColor:protColors[cat], fillOpacity:0.25, weight:1},
             onEachFeature:function(f, layer) {
@@ -2325,6 +2624,7 @@ function initMap(dcs) {
               }, {maxWidth:340, className:"dark-popup"});
             }
           });
+          REPORT_LAYERGROUPS.protection[cat] = lyr;
           var protOrder = {nationalpark:70, nsg:71, ffh:72, biosphere:73, lsg:74, naturpark:75};
           registerOverlay(protOrder[cat] || 79, legendProtectionLabel(protLabelsUI[cat], (gj.features || []).length, protColors[cat]), lyr);
         }).catch(function(){})
@@ -2340,6 +2640,7 @@ function initMap(dcs) {
     (function(cat) {
       layerPromises.push(
         loadGeoJSON("data/layers/landuse_" + cat + ".geojson").then(function(gj) {
+          REPORT_GEO.landuse[cat] = gj;
           var lyr = L.geoJSON(gj, {
             style:{color:luColors[cat], fillColor:luColors[cat], fillOpacity:0.35, weight:1},
             onEachFeature:function(f, layer) {
@@ -2354,6 +2655,7 @@ function initMap(dcs) {
               }, {maxWidth:340, className:"dark-popup"});
             }
           });
+          REPORT_LAYERGROUPS.landuse[cat] = lyr;
           var luOrder = {industrial:80, commercial:81, brownfield:82};
           registerOverlay(luOrder[cat] || 89, legendLanduseLabel(luLabelsUI[cat], (gj.features || []).length, luColors[cat]), lyr);
         }).catch(function(){})
@@ -2369,6 +2671,7 @@ function initMap(dcs) {
     (function(v) {
       layerPromises.push(
         loadGeoJSON("data/layers/power_lines_" + v + ".geojson").then(function(gj) {
+          REPORT_GEO.lines[v] = gj;
           var lyr = L.geoJSON(gj, {
             style:{color:plColors[v], weight:plWeights[v], opacity:0.8},
             onEachFeature:function(f, layer) {
@@ -2393,6 +2696,7 @@ function initMap(dcs) {
   /* Substations */
   layerPromises.push(
     loadGeoJSON("data/layers/substations.geojson").then(function(gj) {
+      REPORT_GEO.substations = gj;
       var subGroups = {};
       var subAll = L.geoJSON(gj, {
         pointToLayer: function(f, latlng) {
@@ -2450,6 +2754,7 @@ function initMap(dcs) {
 
   /* Layer control */
   Promise.all(layerPromises).then(function() {
+    REPORT_LAYERS_READY = true;
     var overlays = {};
     overlayEntries.sort(function(a, b) { return a.order - b.order; });
     for (var oi = 0; oi < overlayEntries.length; oi++) overlays[overlayEntries[oi].label] = overlayEntries[oi].layer;
@@ -2470,6 +2775,15 @@ function initMap(dcs) {
       L.DomEvent.on(layerCtrlEl, "mouseleave", releaseLayerHover);
       L.DomEvent.on(layerCtrlEl, "touchstart", suppressLayerHover);
     }
+    try {
+      var reportParams = new URLSearchParams(window.location.search);
+      if (reportParams.get("report") === "1") {
+        var reportScope = reportParams.get("reportScope");
+        var reportSel = document.getElementById("report-scope");
+        if (reportScope && reportSel) reportSel.value = reportScope;
+        window.setTimeout(reportOpen, 100);
+      }
+    } catch (err) {}
   });
 
   /* ── Event handlers ── */
