@@ -601,7 +601,7 @@ var SOFT_FACTOR = 0.3;
 var PROT_MIN_SHARE = 0.001;
 var PROT_HARD_FULL_SHARE = 0.25;
 var PROT_SHARE_IDX = {nationalpark:23,nsg:24,ffh:25,biosphere:26,lsg:27,naturpark:28};
-var ASSET_VERSION = "2026-04-15-protection-area-share";
+var ASSET_VERSION = "2026-04-15-hover-lookup";
 var opacityRef = {value:0.68}, filterRef = {value:0.0};
 var map, heatLayer, kreisFg;
 var DC_DATA = [];
@@ -723,11 +723,33 @@ function scoreLabelDE(s) {
 
 /* ── Cell lookup ── */
 var CELL_MAP = {};
+var CELL_BUCKETS = {};
+var CELL_BOUNDS = null;
+var CELL_BUCKET_SIZE = 0.05;
 function buildCellMap() {
+  CELL_MAP = {};
+  CELL_BUCKETS = {};
+  CELL_BOUNDS = {south:Infinity, north:-Infinity, west:Infinity, east:-Infinity};
   for (var i = 0; i < CELLS.length; i++) {
-    var _r = CELLS[i][0], _c = CELLS[i][1];
+    var cell = CELLS[i];
+    var _r = cell[0], _c = cell[1];
     if (!CELL_MAP[_r]) CELL_MAP[_r] = {};
     CELL_MAP[_r][_c] = i;
+    var south = cell[18] / 1e5, north = cell[19] / 1e5;
+    var west = cell[20] / 1e5, east = cell[21] / 1e5;
+    CELL_BOUNDS.south = Math.min(CELL_BOUNDS.south, south);
+    CELL_BOUNDS.north = Math.max(CELL_BOUNDS.north, north);
+    CELL_BOUNDS.west = Math.min(CELL_BOUNDS.west, west);
+    CELL_BOUNDS.east = Math.max(CELL_BOUNDS.east, east);
+    var br0 = Math.floor(south / CELL_BUCKET_SIZE), br1 = Math.floor(north / CELL_BUCKET_SIZE);
+    var bc0 = Math.floor(west / CELL_BUCKET_SIZE), bc1 = Math.floor(east / CELL_BUCKET_SIZE);
+    for (var br = br0; br <= br1; br++) {
+      for (var bc = bc0; bc <= bc1; bc++) {
+        var key = br + ":" + bc;
+        if (!CELL_BUCKETS[key]) CELL_BUCKETS[key] = [];
+        CELL_BUCKETS[key].push(i);
+      }
+    }
   }
 }
 function _rowFor(lat) {
@@ -747,24 +769,26 @@ function _colFor(lon) {
   return c;
 }
 function findCell(lat, lon) {
-  var nr = LAT_EDGES.length - 1, nc = LON_EDGES.length - 1;
-  if (lat < LAT_EDGES[0] - 0.05 || lat > LAT_EDGES[nr] + 0.05 ||
-      lon < LON_EDGES[0] - 0.05 || lon > LON_EDGES[nc] + 0.05) return null;
-  var r = _rowFor(lat), c = _colFor(lon);
-  /* Check 5x5 neighborhood to compensate for metric→WGS84 grid mismatch */
-  for (var dr = -2; dr <= 2; dr++) {
-    for (var dc = -2; dc <= 2; dc++) {
-      var rr = r + dr, cc = c + dc;
-      var rm = CELL_MAP[rr];
-      if (!rm || rm[cc] === undefined) continue;
-      var cell = CELLS[rm[cc]];
-      if (lat >= cell[18] / 1e5 && lat <= cell[19] / 1e5 &&
-          lon >= cell[20] / 1e5 && lon <= cell[21] / 1e5) {
-        return cell;
+  if (!CELL_BOUNDS || lat < CELL_BOUNDS.south || lat > CELL_BOUNDS.north ||
+      lon < CELL_BOUNDS.west || lon > CELL_BOUNDS.east) return null;
+  var br = Math.floor(lat / CELL_BUCKET_SIZE), bc = Math.floor(lon / CELL_BUCKET_SIZE);
+  var best = null, bestD = Infinity;
+  for (var dr = -1; dr <= 1; dr++) {
+    for (var dc = -1; dc <= 1; dc++) {
+      var bucket = CELL_BUCKETS[(br + dr) + ":" + (bc + dc)];
+      if (!bucket) continue;
+      for (var bi = 0; bi < bucket.length; bi++) {
+        var cell = CELLS[bucket[bi]];
+        var south = cell[18] / 1e5, north = cell[19] / 1e5;
+        var west = cell[20] / 1e5, east = cell[21] / 1e5;
+        if (lat < south || lat > north || lon < west || lon > east) continue;
+        var latC = (south + north) / 2, lonC = (west + east) / 2;
+        var d = Math.pow(lat - latC, 2) + Math.pow(lon - lonC, 2);
+        if (d < bestD) { bestD = d; best = cell; }
       }
     }
   }
-  return null;
+  return best;
 }
 function candidatesForBounds(bounds) {
   var s = bounds.getSouth(), n = bounds.getNorth(), w = bounds.getWest(), e = bounds.getEast();
@@ -2131,7 +2155,10 @@ function initMap(dcs) {
 
   /* Track popup open/close to suppress hover tooltip when popup visible */
   map.on("popupopen", function() { popupOpen = true; hideTip(); });
-  map.on("popupclose", function() { popupOpen = false; });
+  map.on("popupclose", function() {
+    popupOpen = false;
+    resetKreisHL();
+  });
 
   map.on("click", function(e) {
     if (popupOpen) return; /* let Leaflet handle popup close first */
