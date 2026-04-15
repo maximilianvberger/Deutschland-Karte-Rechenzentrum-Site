@@ -172,6 +172,71 @@ input[type=range].pwr-sl::-webkit-slider-thumb:hover { transform:scale(1.25); }
 #dc-sb-btn .t { font-size:9px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:#64748b; display:block; }
 #dc-sb-btn .v { font-size:12px; font-weight:800; color:#93c5fd; }
 #dc-sb-btn .k { font-size:16px; color:#3b82f6; font-weight:700; }
+.report-box {
+  margin:10px 0 6px; padding:8px 10px;
+  background:rgba(34,197,94,0.08); border:1px solid rgba(34,197,94,0.16); border-radius:8px;
+}
+.report-row { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:6px; }
+.report-select {
+  min-width:0; padding:7px 8px; border-radius:6px;
+  background:#1e293b; color:#e2e8f0; border:1px solid rgba(255,255,255,0.1);
+  font-size:10px; font-family:inherit;
+}
+.report-btn {
+  padding:7px 10px; border-radius:6px; border:1px solid rgba(34,197,94,0.3);
+  background:rgba(34,197,94,0.16); color:#bbf7d0; font-size:10px; font-weight:800;
+  cursor:pointer; font-family:inherit; white-space:nowrap;
+}
+.report-btn:hover { background:rgba(34,197,94,0.26); color:#fff; }
+#report-modal {
+  position:fixed; inset:0; z-index:30000; display:none;
+  background:rgba(2,6,23,0.64); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+}
+#report-modal.open { display:block; }
+#report-shell {
+  position:absolute; inset:24px; max-width:1120px; margin:auto;
+  background:#f8fafc; color:#0f172a; border-radius:10px; overflow:hidden;
+  box-shadow:0 24px 90px rgba(0,0,0,0.55); display:flex; flex-direction:column;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+#report-toolbar {
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  padding:12px 16px; background:#0f172a; color:#e2e8f0;
+}
+#report-title { font-size:12px; font-weight:900; letter-spacing:.12em; text-transform:uppercase; }
+#report-actions { display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; }
+.report-action {
+  border:1px solid rgba(255,255,255,0.14); background:rgba(255,255,255,0.08); color:#e2e8f0;
+  border-radius:6px; padding:7px 10px; cursor:pointer; font-size:11px; font-weight:800;
+}
+.report-action:hover { background:rgba(59,130,246,0.28); }
+#report-content { overflow:auto; padding:28px; line-height:1.5; }
+#report-content h1 { margin:0 0 6px; font-size:28px; letter-spacing:-.02em; }
+#report-content h2 { margin:26px 0 8px; font-size:16px; border-bottom:1px solid #cbd5e1; padding-bottom:4px; }
+#report-content h3 { margin:18px 0 6px; font-size:13px; color:#334155; }
+#report-content p, #report-content li { font-size:12px; color:#334155; }
+#report-content table { width:100%; border-collapse:collapse; margin:10px 0 16px; font-size:11px; }
+#report-content th { background:#e2e8f0; color:#0f172a; text-align:left; font-weight:800; }
+#report-content th, #report-content td { border:1px solid #cbd5e1; padding:6px 7px; vertical-align:top; }
+.report-kpis { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; margin:16px 0; }
+.report-kpi { background:#fff; border:1px solid #cbd5e1; border-radius:8px; padding:10px; }
+.report-kpi span { display:block; font-size:10px; text-transform:uppercase; letter-spacing:.08em; color:#64748b; font-weight:800; }
+.report-kpi b { display:block; margin-top:4px; font-size:22px; color:#0f172a; }
+.report-bar { width:100%; height:8px; border-radius:5px; background:#e2e8f0; overflow:hidden; }
+.report-bar > i { display:block; height:100%; border-radius:5px; background:linear-gradient(90deg,#ef4444,#f59e0b,#84cc16,#22c55e); animation:reportGrow .8s ease-out both; }
+@keyframes reportGrow { from { width:0; } }
+@media (max-width:700px) {
+  #report-shell { inset:8px; }
+  #report-content { padding:18px; }
+  .report-kpis { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media print {
+  body > *:not(#report-modal) { display:none !important; }
+  #report-modal, #report-modal.open { position:static; display:block !important; background:#fff; }
+  #report-shell { position:static; inset:auto; box-shadow:none; max-width:none; border-radius:0; }
+  #report-toolbar { display:none; }
+  #report-content { overflow:visible; padding:0; }
+}
 #sl-scenario { font-family:inherit; }
 #sl-scenario:focus { outline:1px solid rgba(59,130,246,0.4); }
 #sl-scenario option { background:#1e293b; color:#e2e8f0; }
@@ -469,6 +534,17 @@ input[type=range].pwr-sl::-webkit-slider-thumb:hover { transform:scale(1.25); }
       <div class="pwr-stat-box"><span class="pwr-stat-label">&Oslash; Median</span><span class="pwr-stat-val" id="stat-med">&ndash;</span></div>
       <div class="pwr-stat-box"><span class="pwr-stat-label">Max</span><span class="pwr-stat-val" id="stat-max">&ndash;</span></div>
     </div>
+    <div class="report-box">
+      <div class="report-row">
+        <select id="report-scope" class="report-select" title="Report-Bezug">
+          <option value="de">Gesamtdeutschland</option>
+          <option value="address">Aktuelle Adresse</option>
+          <option value="kreis">Aktueller Kreis</option>
+          <option value="cell">Aktuelle Rasterzelle</option>
+        </select>
+        <button class="report-btn" onclick="reportOpen()">Report</button>
+      </div>
+    </div>
     <div style="margin:10px 0 6px;padding:8px 10px;background:rgba(59,130,246,0.08);border-radius:8px;border:1px solid rgba(59,130,246,0.15)">
       <button id="dc-sb-btn" onclick="dcSbToggle()" style="margin-bottom:0">
         <div><span class="t">&#127970; Datacenter Explorer</span><span class="v" id="dc-count-label">Standorte</span></div>
@@ -591,6 +667,20 @@ input[type=range].pwr-sl::-webkit-slider-thumb:hover { transform:scale(1.25); }
 <div id="pwr-tip"></div>
 <div id="pwr-cell-box" style="display:none"></div>
 
+<div id="report-modal" aria-hidden="true">
+  <div id="report-shell">
+    <div id="report-toolbar">
+      <div id="report-title">MCDA Standortreport</div>
+      <div id="report-actions">
+        <button class="report-action" onclick="reportDownloadWord()">Word herunterladen</button>
+        <button class="report-action" onclick="reportPrintPdf()">PDF / Drucken</button>
+        <button class="report-action" onclick="reportClose()">Schließen</button>
+      </div>
+    </div>
+    <div id="report-content"></div>
+  </div>
+</div>
+
 <div id="map"></div>
 
 <script>
@@ -602,7 +692,7 @@ var SOFT_FACTOR = 0.3;
 var PROT_MIN_SHARE = 0.001;
 var PROT_HARD_FULL_SHARE = 0.25;
 var PROT_SHARE_IDX = {nationalpark:23,nsg:24,ffh:25,biosphere:26,lsg:27,naturpark:28};
-var ASSET_VERSION = "2026-04-15-landuse-context";
+var ASSET_VERSION = "2026-04-15-report-v1";
 var opacityRef = {value:0.68}, filterRef = {value:0.0};
 var map, heatLayer, kreisFg;
 var DC_DATA = [];
@@ -611,6 +701,9 @@ var DC_EXPLORER_HIDDEN = 0;
 var geoSearchMarker = null;
 var cellHighlight = null;
 var layerControlHoverSuppressed = false;
+var LAST_CELL = null;
+var LAST_ADDRESS = null;
+var CURRENT_REPORT_HTML = "";
 
 /* ── Status helper ── */
 function updateStatus(msg) {
@@ -1030,6 +1123,7 @@ function buildCellHtml(c) {
     if (pl) html += '<span class="popup-chip" style="color:#fca5a5;border-color:rgba(239,68,68,0.25)">\u26d4 ' + pl + '</span>';
     html += '</div>';
   }
+  html += '<button class="report-btn" style="margin-top:10px;width:100%" onclick="reportSetScopeAndOpen(\'cell\')">Report f\u00fcr diese Rasterzelle</button>';
   html += '</div>';
   return html;
 }
@@ -1087,6 +1181,7 @@ function geoFeaturePopupHtml(f, type, color, latlng) {
 }
 
 function showCellPanel(c) {
+  LAST_CELL = c;
   var lat = (c[18]/1e5 + c[19]/1e5) / 2;
   var lon = (c[20]/1e5 + c[21]/1e5) / 2;
   hideTip();
@@ -1094,6 +1189,284 @@ function showCellPanel(c) {
     .setLatLng([lat, lon])
     .setContent(buildCellHtml(c))
     .openOn(map);
+}
+
+function reportSetScopeAndOpen(scope) {
+  var sel = document.getElementById("report-scope");
+  if (sel) sel.value = scope;
+  reportOpen();
+}
+
+function reportRound(v, n) {
+  if (v === null || v === undefined || isNaN(v)) return "n/a";
+  return Number(v).toFixed(n === undefined ? 3 : n).replace(".", ",");
+}
+
+function reportMean(arr) {
+  if (!arr.length) return 0;
+  var sum = 0;
+  for (var i = 0; i < arr.length; i++) sum += arr[i];
+  return sum / arr.length;
+}
+
+function reportStd(arr, mean) {
+  if (arr.length < 2) return 0;
+  var ss = 0;
+  for (var i = 0; i < arr.length; i++) ss += Math.pow(arr[i] - mean, 2);
+  return Math.sqrt(ss / (arr.length - 1));
+}
+
+function reportQuantile(sorted, q) {
+  if (!sorted.length) return 0;
+  var pos = (sorted.length - 1) * q;
+  var lo = Math.floor(pos), hi = Math.ceil(pos);
+  if (lo === hi) return sorted[lo];
+  return sorted[lo] + (sorted[hi] - sorted[lo]) * (pos - lo);
+}
+
+function reportCellCenter(c) {
+  return {
+    lat:(c[18]/1e5 + c[19]/1e5) / 2,
+    lon:(c[20]/1e5 + c[21]/1e5) / 2
+  };
+}
+
+function reportDistanceKm(aLat, aLon, bLat, bLon) {
+  var R = 6371, toRad = Math.PI / 180;
+  var dLat = (bLat - aLat) * toRad, dLon = (bLon - aLon) * toRad;
+  var x = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(aLat * toRad) * Math.cos(bLat * toRad) *
+    Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  return 2 * R * Math.atan2(Math.sqrt(x), Math.sqrt(1 - x));
+}
+
+function reportScoreComponents(c) {
+  return [
+    {key:"sub", label:"HV-Substation", score:decayScore(c[3],"sub"), weight:W.sub || 0, color:"#f59e0b"},
+    {key:"kv110", label:"110-kV-Leitung", score:decayScore(c[6],"kv110"), weight:W.kv110 || 0, color:"#2980b9"},
+    {key:"kv220", label:"220-kV-Leitung", score:decayScore(c[5],"kv220"), weight:W.kv220 || 0, color:"#8e44ad"},
+    {key:"kv380", label:"380-kV-Leitung", score:decayScore(c[4],"kv380"), weight:W.kv380 || 0, color:"#c0392b"},
+    {key:"gb", label:"Gigabit", score:(c[11] || 0) / 1000, weight:W.gb || 0, color:"#06b6d4"},
+    {key:"pop", label:"Bevölkerungsdichte invers", score:(c[12] || 0) / 1000, weight:W.pop || 0, color:"#64748b"},
+    {key:"labor", label:"IT-Fachkräfte", score:(c[22] || 0) / 1000, weight:W.labor || 0, color:"#059669"}
+  ];
+}
+
+function reportBaseScore(c) {
+  var comps = reportScoreComponents(c), total = 0;
+  for (var i = 0; i < comps.length; i++) total += comps[i].score * comps[i].weight;
+  if (c[3] >= 0 && c[3] * 10 < 2000 && c[4] >= 0 && c[4] * 10 < 5000) total += 0.05;
+  return clamp01(total);
+}
+
+function reportStats(cells) {
+  var values = [];
+  for (var i = 0; i < cells.length; i++) values.push(calcScore(cells[i]));
+  values.sort(function(a, b) { return a - b; });
+  var mean = reportMean(values), std = reportStd(values, mean);
+  return {
+    n: values.length,
+    min: values[0] || 0,
+    q25: reportQuantile(values, 0.25),
+    med: reportQuantile(values, 0.50),
+    q75: reportQuantile(values, 0.75),
+    p90: reportQuantile(values, 0.90),
+    max: values[values.length - 1] || 0,
+    mean: mean,
+    std: std,
+    high: values.filter(function(v) { return v >= 0.75; }).length,
+    veryHigh: values.filter(function(v) { return v >= 0.85; }).length
+  };
+}
+
+function reportScope() {
+  var sel = document.getElementById("report-scope");
+  var scope = sel ? sel.value : "de";
+  var centerCell = LAST_CELL;
+  if (!centerCell) centerCell = findCell(map.getCenter().lat, map.getCenter().lng);
+  if (scope === "cell") {
+    if (!centerCell) return {kind:"de", label:"Gesamtdeutschland", cells:CELLS};
+    return {kind:"cell", label:"Rasterzelle [" + centerCell[0] + ", " + centerCell[1] + "]", cells:[centerCell], cell:centerCell};
+  }
+  if (scope === "address") {
+    var ref = LAST_ADDRESS || {label:"Kartenmittelpunkt", lat:map.getCenter().lat, lon:map.getCenter().lng};
+    var c = findCell(ref.lat, ref.lon) || centerCell;
+    if (!c) return {kind:"de", label:"Gesamtdeutschland", cells:CELLS};
+    return {kind:"address", label:ref.label, cells:[c], cell:c, lat:ref.lat, lon:ref.lon};
+  }
+  if (scope === "kreis") {
+    if (!centerCell) return {kind:"de", label:"Gesamtdeutschland", cells:CELLS};
+    var kidx = centerCell[17], kname = (kidx >= 0 && KRS_NAMES[kidx]) ? KRS_NAMES[kidx] : "";
+    if (!kname) return {kind:"cell", label:"Rasterzelle [" + centerCell[0] + ", " + centerCell[1] + "]", cells:[centerCell], cell:centerCell};
+    var kc = CELLS.filter(function(c) { return c[17] === kidx; });
+    return {kind:"kreis", label:kname, cells:kc, cell:centerCell, kreis:kname};
+  }
+  return {kind:"de", label:"Gesamtdeutschland", cells:CELLS};
+}
+
+function reportClassCounts(cells) {
+  var out = {veryLow:0, low:0, mid:0, good:0, veryGood:0};
+  for (var i = 0; i < cells.length; i++) {
+    var s = calcScore(cells[i]);
+    if (s < 0.2) out.veryLow++;
+    else if (s < 0.4) out.low++;
+    else if (s < 0.6) out.mid++;
+    else if (s < 0.8) out.good++;
+    else out.veryGood++;
+  }
+  return out;
+}
+
+function reportLanduseCounts(cells) {
+  var out = {};
+  for (var i = 0; i < cells.length; i++) {
+    var label = luLabel(cells[i][16] || 0);
+    out[label] = (out[label] || 0) + 1;
+  }
+  return out;
+}
+
+function reportTopDcs(scope) {
+  var rows = DC_DATA.filter(function(d) { return !d._hideInExplorer; });
+  if (scope.kind === "kreis") rows = rows.filter(function(d) { return d.kreis === scope.kreis; });
+  if ((scope.kind === "cell" || scope.kind === "address") && scope.cell) {
+    var cc = reportCellCenter(scope.cell);
+    rows = rows.map(function(d) {
+      d._reportKm = reportDistanceKm(cc.lat, cc.lon, d.lat, d.lon);
+      return d;
+    }).sort(function(a, b) { return a._reportKm - b._reportKm; });
+  } else {
+    rows = rows.sort(function(a, b) { return (dcScoreValue(b) || 0) - (dcScoreValue(a) || 0); });
+  }
+  return rows.slice(0, 10);
+}
+
+function reportTable(rows) {
+  return '<table><thead><tr>' + rows[0].map(function(h) { return '<th>' + h + '</th>'; }).join("") +
+    '</tr></thead><tbody>' + rows.slice(1).map(function(r) {
+      return '<tr>' + r.map(function(c) { return '<td>' + c + '</td>'; }).join("") + '</tr>';
+    }).join("") + '</tbody></table>';
+}
+
+function reportBuildHtml() {
+  var scope = reportScope();
+  var stats = reportStats(scope.cells);
+  var national = reportStats(CELLS);
+  var classCounts = reportClassCounts(scope.cells);
+  var landuse = reportLanduseCounts(scope.cells);
+  var now = new Date();
+  var selectedCell = scope.cell || (scope.cells.length === 1 ? scope.cells[0] : null);
+  var selectedScore = selectedCell ? calcScore(selectedCell) : null;
+  var z = selectedScore !== null && national.std > 0 ? (selectedScore - national.mean) / national.std : null;
+  var pct = selectedScore !== null ? Math.round(CELLS.filter(function(c) { return calcScore(c) <= selectedScore; }).length / CELLS.length * 100) : null;
+  var html = '';
+  html += '<h1>MCDA-Standortreport</h1>';
+  html += '<p><b>Untersuchungsbezug:</b> ' + escapeHtml(scope.label) + '<br><b>Erstellt:</b> ' + now.toLocaleString("de-DE") + '<br><b>Modellstand:</b> 2-km-Raster, sieben gewichtete Score-Kriterien; Flächennutzung und Schutzgebietspunktlage bei bestehenden Datacentern als Kontext.</p>';
+  html += '<div class="report-kpis">';
+  html += '<div class="report-kpi"><span>Zellen</span><b>' + stats.n.toLocaleString("de-DE") + '</b></div>';
+  html += '<div class="report-kpi"><span>Median</span><b>' + reportRound(stats.med) + '</b></div>';
+  html += '<div class="report-kpi"><span>Mittelwert</span><b>' + reportRound(stats.mean) + '</b></div>';
+  html += '<div class="report-kpi"><span>Sehr gut (>=0,80)</span><b>' + classCounts.veryGood.toLocaleString("de-DE") + '</b></div>';
+  html += '</div>';
+  html += '<h2>1. Statistische Einordnung</h2>';
+  html += '<p>Die Verteilung wird als robuste Standortdiagnostik interpretiert: Median und Quartile beschreiben die typische bundesweite bzw. regionale Eignung, während P90 und Maximalwert Hotspot-Lagen markieren. Für Einzelstandorte wird zusätzlich die Perzentilposition im bundesweiten Raster angegeben.</p>';
+  html += reportTable([
+    ["Kennzahl", "Wert im Untersuchungsbezug", "Bundesweiter Vergleich"],
+    ["Minimum", reportRound(stats.min), reportRound(national.min)],
+    ["1. Quartil", reportRound(stats.q25), reportRound(national.q25)],
+    ["Median", reportRound(stats.med), reportRound(national.med)],
+    ["Mittelwert", reportRound(stats.mean), reportRound(national.mean)],
+    ["Standardabweichung", reportRound(stats.std), reportRound(national.std)],
+    ["90%-Quantil", reportRound(stats.p90), reportRound(national.p90)],
+    ["Maximum", reportRound(stats.max), reportRound(national.max)]
+  ]);
+  if (selectedCell) {
+    html += '<h2>2. Einzelstandort / Rasterzelle</h2>';
+    html += '<p>Score der betrachteten Zelle: <b>' + reportRound(selectedScore) + '</b>. Bundesweite Perzentilposition: <b>P' + pct + '</b>. Z-Score gegenüber Deutschland: <b>' + reportRound(z, 2) + '</b>.</p>';
+    html += '<div class="report-bar"><i style="width:' + Math.round(selectedScore * 100) + '%"></i></div>';
+    var comps = reportScoreComponents(selectedCell);
+    var rows = [["Kriterium", "Score x_i", "Gewicht w_i", "Beitrag w_i x_i"]];
+    for (var i = 0; i < comps.length; i++) rows.push([comps[i].label, reportRound(comps[i].score), reportRound(comps[i].weight), reportRound(comps[i].score * comps[i].weight)]);
+    rows.push(["Kombinationsbonus", (selectedCell[3] * 10 < 2000 && selectedCell[4] * 10 < 5000) ? "0,050" : "0,000", "-", "-"]);
+    rows.push(["Schutzgebietswirkung", protLabelWithShare(selectedCell) || "keine", "-", "multiplikativ nach Modus"]);
+    rows.push(["Flächennutzung", luLabel(selectedCell[16] || 0), "Kontext", "nicht gewichtet"]);
+    html += reportTable(rows);
+    html += '<p><b>Formel mit eingesetzten Werten:</b><br>S = clamp(Σ w_i x_i + Bonus) × Schutzfaktor. Für diese Zelle ergibt sich vor Schutzgebietswirkung ein Basisscore von <b>' + reportRound(reportBaseScore(selectedCell)) + '</b> und nach aktiver Schutzgebietskonfiguration ein Endscore von <b>' + reportRound(selectedScore) + '</b>.</p>';
+  }
+  html += '<h2>3. Eignungsklassen und Flächenkontext</h2>';
+  html += reportTable([
+    ["Eignungsklasse", "Zellen", "Anteil"],
+    ["< 0,20 sehr schwach", classCounts.veryLow.toLocaleString("de-DE"), reportRound(classCounts.veryLow / stats.n * 100, 1) + " %"],
+    ["0,20-0,40 schwach", classCounts.low.toLocaleString("de-DE"), reportRound(classCounts.low / stats.n * 100, 1) + " %"],
+    ["0,40-0,60 mittel", classCounts.mid.toLocaleString("de-DE"), reportRound(classCounts.mid / stats.n * 100, 1) + " %"],
+    ["0,60-0,80 gut", classCounts.good.toLocaleString("de-DE"), reportRound(classCounts.good / stats.n * 100, 1) + " %"],
+    [">= 0,80 sehr gut", classCounts.veryGood.toLocaleString("de-DE"), reportRound(classCounts.veryGood / stats.n * 100, 1) + " %"]
+  ]);
+  var luRows = [["Flächennutzungskontext", "Zellen"]];
+  Object.keys(landuse).sort().forEach(function(k) { luRows.push([escapeHtml(k), landuse[k].toLocaleString("de-DE")]); });
+  html += reportTable(luRows);
+  html += '<h2>4. Datacenter-Benchmark</h2>';
+  var dcs = reportTopDcs(scope);
+  var dcRows = [["Standort", "Score", "MW-Klasse", "HV-Sub", "380 kV", "Flächennutzung"]];
+  for (var di = 0; di < dcs.length; di++) {
+    dcRows.push([
+      escapeHtml(dcs[di]._title || dcs[di].name || "RZ"),
+      reportRound(dcScoreValue(dcs[di])),
+      escapeHtml(dcs[di]._mwText || dcs[di].mw_label || ""),
+      dcs[di].dsub_km !== undefined ? reportRound(dcs[di].dsub_km, 1) + " km" : "n/a",
+      dcs[di].d380_km !== undefined ? reportRound(dcs[di].d380_km, 1) + " km" : "n/a",
+      escapeHtml(dcLanduseLabel(dcs[di]) || "kein Kontext")
+    ]);
+  }
+  html += reportTable(dcRows);
+  html += '<h2>5. Methodischer Nachweis</h2>';
+  html += '<p>Das Modell nutzt eine Weighted Linear Combination: <b>S = Σ w_i x_i</b>. Distanzkriterien werden mit inversen Potenzfunktionen standardisiert, Gigabit linear, Bevölkerungsdichte invers und IT-Fachkräfte mit einer sättigenden Hill-Funktion. Schutzgebiete wirken im Raster flächengewichtet und multiplikativ. Flächennutzung wird nicht als MCDA-Gewicht genutzt, sondern als Kontextinformation für die Interpretation konkreter Standorte.</p>';
+  html += reportTable([
+    ["Kriterium", "Aktuelles Gewicht"],
+    ["HV-Substation", reportRound(W.sub || 0)],
+    ["110-kV-Leitung", reportRound(W.kv110 || 0)],
+    ["220-kV-Leitung", reportRound(W.kv220 || 0)],
+    ["380-kV-Leitung", reportRound(W.kv380 || 0)],
+    ["Gigabit", reportRound(W.gb || 0)],
+    ["Bevölkerungsdichte invers", reportRound(W.pop || 0)],
+    ["IT-Fachkräfte", reportRound(W.labor || 0)]
+  ]);
+  html += '<h2>6. Quellen und Reproduzierbarkeit</h2>';
+  html += '<p>Datengrundlagen: OpenStreetMap/Geofabrik für Strominfrastruktur, Schutzgebiete, Flächennutzung und Datacenter; BNetzA Gigabit-Grundbuch; Destatis/Zensus 2022; Bundesagentur für Arbeit; GISCO/BKG Verwaltungsgrenzen. Die Karte rechnet die Scores clientseitig live, so dass dieser Report die aktuell eingestellten Szenario-Gewichte und Schutzgebietsmodi dokumentiert.</p>';
+  html += '<p><a href="https://maximilianvberger.github.io/Deutschland-Karte-Rechenzentrum-Site/">Interaktive Karte öffnen</a></p>';
+  return html;
+}
+
+function reportOpen() {
+  CURRENT_REPORT_HTML = reportBuildHtml();
+  document.getElementById("report-content").innerHTML = CURRENT_REPORT_HTML;
+  var modal = document.getElementById("report-modal");
+  modal.classList.add("open");
+  modal.setAttribute("aria-hidden", "false");
+}
+
+function reportClose() {
+  var modal = document.getElementById("report-modal");
+  modal.classList.remove("open");
+  modal.setAttribute("aria-hidden", "true");
+}
+
+function reportPrintPdf() {
+  window.print();
+}
+
+function reportDownloadWord() {
+  if (!CURRENT_REPORT_HTML) CURRENT_REPORT_HTML = reportBuildHtml();
+  var doc = '<!DOCTYPE html><html><head><meta charset="utf-8"><title>MCDA Standortreport</title>' +
+    '<style>body{font-family:Arial,sans-serif;color:#111827}h1{font-size:24pt}h2{font-size:15pt;border-bottom:1px solid #999}table{width:100%;border-collapse:collapse;font-size:9pt}th,td{border:1px solid #999;padding:5px}th{background:#e5e7eb}.report-kpis{display:block}.report-kpi{border:1px solid #999;padding:8px;margin:4px 0}.report-bar{height:8px;background:#ddd}.report-bar i{display:block;height:8px;background:#22c55e}</style>' +
+    '</head><body>' + CURRENT_REPORT_HTML + '</body></html>';
+  var blob = new Blob(["\ufeff", doc], {type:"application/msword"});
+  var a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "MCDA_Standortreport_" + new Date().toISOString().slice(0,10) + ".doc";
+  document.body.appendChild(a);
+  a.click();
+  window.setTimeout(function() { URL.revokeObjectURL(a.href); document.body.removeChild(a); }, 0);
 }
 
 /* ── Kreis highlight ── */
@@ -1811,6 +2184,8 @@ function initGeoSearch() {
               if (geoSearchMarker) map.removeLayer(geoSearchMarker);
               geoSearchMarker = L.marker([lat, lon]).addTo(map).bindPopup(this.textContent).openPopup();
               input.value = this.textContent;
+              LAST_ADDRESS = {label:this.textContent, lat:lat, lon:lon};
+              LAST_CELL = findCell(lat, lon) || LAST_CELL;
               resultsDiv.style.display = "none";
             });
           }
@@ -1849,7 +2224,8 @@ var HeatTileLayer = L.GridLayer.extend({
       var x1 = Math.floor(nw.x - origin.x), y1 = Math.floor(nw.y - origin.y);
       var x2 = Math.ceil(se.x - origin.x), y2 = Math.ceil(se.y - origin.y);
       ctx.fillStyle = (s === 0 && (c[13] || 0) > 0) ? "rgba(100,0,0," + opacityRef.value + ")" : scoreColor(s, opacityRef.value);
-      ctx.fillRect(x1, y1, x2 - x1 || 1, y2 - y1 || 1);
+      /* One-pixel overlap prevents projection-rounding hairlines in northern Germany. */
+      ctx.fillRect(x1 - 1, y1 - 1, Math.max(1, x2 - x1 + 2), Math.max(1, y2 - y1 + 2));
     }
     return tile;
   }
