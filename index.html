@@ -565,7 +565,7 @@ var CELLS, LAT_EDGES, LON_EDGES, KRS_NAMES, DECAY, W, W_DEF, SCENARIOS;
 var PROT_MODES = {nationalpark:"hard",nsg:"hard",ffh:"hard",biosphere:"soft",lsg:"soft",naturpark:"off"};
 var PROT_BITS = {nationalpark:1,nsg:2,ffh:4,biosphere:8,lsg:16,naturpark:32};
 var SOFT_FACTOR = 0.3;
-var ASSET_VERSION = "2026-04-14-labor-weights";
+var ASSET_VERSION = "2026-04-15-point-dc-scores";
 var opacityRef = {value:0.68}, filterRef = {value:0.0};
 var map, heatLayer, kreisFg;
 var DC_DATA = [];
@@ -573,6 +573,7 @@ var DC_MARKERS = [];
 var DC_EXPLORER_HIDDEN = 0;
 var geoSearchMarker = null;
 var cellHighlight = null;
+var layerControlHoverSuppressed = false;
 
 /* ── Status helper ── */
 function updateStatus(msg) {
@@ -590,6 +591,11 @@ function decayScore(d_enc, key) {
   if (d_enc < 0) return 0;
   var d = d_enc * 10.0;
   return 1.0 / (1.0 + Math.pow(d / DECAY[key].d0, DECAY[key].p));
+}
+
+function decayScoreMeters(d_m, key) {
+  if (d_m === null || d_m === undefined || isNaN(d_m) || d_m < 0) return 0;
+  return 1.0 / (1.0 + Math.pow(d_m / DECAY[key].d0, DECAY[key].p));
 }
 
 function applyProtection(score, protMask) {
@@ -617,6 +623,25 @@ function calcScore(c) {
   var protMask = c[13] || 0;
   if (protMask > 0) total = applyProtection(total, protMask);
   return Math.max(0, Math.min(1, total));
+}
+
+function numericOrNull(v) {
+  if (v === null || v === undefined || v === "") return null;
+  var n = Number(v);
+  return isNaN(n) ? null : n;
+}
+
+function clamp01(v) {
+  return Math.max(0, Math.min(1, v || 0));
+}
+
+function isLayerControlExpanded() {
+  var el = document.querySelector(".leaflet-control-layers");
+  return !!(el && el.classList.contains("leaflet-control-layers-expanded"));
+}
+
+function shouldSuppressHover() {
+  return popupOpen || layerControlHoverSuppressed || isLayerControlExpanded();
 }
 
 function scoreColor(s, opacity) {
@@ -767,7 +792,7 @@ function tipBarHtml(label, val, color) {
 var _lastTipCellId = null;
 function showTip(c) {
   var tip = document.getElementById("pwr-tip");
-  if (popupOpen) { tip.style.display = "none"; return; }
+  if (shouldSuppressHover()) { hideTip(); return; }
   var cellId = c[0] + "_" + c[1];
   var s = calcScore(c);
   var lbl = scoreLabelDE(s);
@@ -1151,6 +1176,72 @@ function dcKmFromCell(cell, idx) {
   return (typeof raw === "number" && raw >= 0) ? (raw * 10.0 / 1000.0) : null;
 }
 
+function dcRawKmValue(d, key) {
+  var rawKey = "d" + key + "_km";
+  return (typeof d[rawKey] === "number" && !isNaN(d[rawKey])) ? d[rawKey] : null;
+}
+
+function dcSiteProtMask(d) {
+  var mask = numericOrNull(d.protection_mask);
+  if (mask !== null) return Math.max(0, Math.round(mask));
+  return d._cell ? (d._cell[13] || 0) : 0;
+}
+
+function dcCellProtMask(d) {
+  return d && d._cell ? (d._cell[13] || 0) : 0;
+}
+
+function dcScoreFromFieldOrDistance(d, scoreKey, kmKey, decayKey, cellIdx) {
+  var fromField = numericOrNull(d[scoreKey]);
+  if (fromField !== null) return clamp01(fromField);
+  var km = dcRawKmValue(d, kmKey);
+  if (km !== null) return decayScoreMeters(km * 1000.0, decayKey);
+  return d._cell ? decayScore(d._cell[cellIdx], decayKey) : 0;
+}
+
+function dcSiteFactors(d) {
+  return {
+    sub: dcScoreFromFieldOrDistance(d, "score_sub", "sub", "sub", 3),
+    kv380: dcScoreFromFieldOrDistance(d, "score_380", "380", "kv380", 4),
+    kv220: dcScoreFromFieldOrDistance(d, "score_220", "220", "kv220", 5),
+    kv110: dcScoreFromFieldOrDistance(d, "score_110", "110", "kv110", 6),
+    gb: clamp01(numericOrNull(d.gigabit_score) !== null ? numericOrNull(d.gigabit_score) : (d._cell ? (d._cell[11] || 0) / 1000 : 0)),
+    pop: clamp01(numericOrNull(d.pop_score) !== null ? numericOrNull(d.pop_score) : (d._cell ? (d._cell[12] || 0) / 1000 : 0)),
+    lu: clamp01(numericOrNull(d.landuse_score) !== null ? numericOrNull(d.landuse_score) : (d._cell ? (d._cell[16] || 0) / 1000 : 0)),
+    labor: clamp01(numericOrNull(d.labor_score) !== null ? numericOrNull(d.labor_score) : (d._cell ? (d._cell[22] || 0) / 1000 : 0))
+  };
+}
+
+function dcSiteComponents(d) {
+  var f = dcSiteFactors(d);
+  return [
+    {l:"Substation", val:f.sub, color:"#f59e0b", w:W.sub},
+    {l:"380 kV", val:f.kv380, color:"#c0392b", w:W.kv380},
+    {l:"220 kV", val:f.kv220, color:"#8e44ad", w:W.kv220},
+    {l:"110 kV", val:f.kv110, color:"#2980b9", w:W.kv110},
+    {l:"Gigabit", val:f.gb, color:"#06b6d4", w:W.gb},
+    {l:"Bev.-Dichte", val:f.pop, color:"#64748b", w:W.pop},
+    {l:"Gewerbefl.", val:f.lu, color:"#d97706", w:W.lu},
+    {l:"IT-Fachkr.", val:f.labor, color:"#059669", w:W.labor}
+  ];
+}
+
+function dcCalcPointBaseScore(d) {
+  var f = dcSiteFactors(d);
+  var total = (W.sub || 0) * f.sub + (W.kv380 || 0) * f.kv380 + (W.kv220 || 0) * f.kv220 +
+              (W.kv110 || 0) * f.kv110 + (W.gb || 0) * f.gb + (W.pop || 0) * f.pop +
+              (W.lu || 0) * f.lu + (W.labor || 0) * f.labor;
+  var dsub = dcRawKmValue(d, "sub"), d380 = dcRawKmValue(d, "380");
+  if (dsub !== null && dsub < 2 && d380 !== null && d380 < 5) total += 0.05;
+  return clamp01(total);
+}
+
+function dcCalcPointScore(d) {
+  if (!d) return null;
+  var base = dcCalcPointBaseScore(d);
+  return clamp01(applyProtection(base, dcSiteProtMask(d)));
+}
+
 function dcScoreValue(d) {
   if (typeof d._scoreLive === "number" && !isNaN(d._scoreLive)) return d._scoreLive;
   return (typeof d.score === "number" && !isNaN(d.score)) ? d.score : null;
@@ -1159,8 +1250,7 @@ function dcScoreValue(d) {
 function dcDistValue(d, key) {
   var liveKey = "_d" + key + "_km_live";
   if (typeof d[liveKey] === "number" && !isNaN(d[liveKey])) return d[liveKey];
-  var rawKey = "d" + key + "_km";
-  return (typeof d[rawKey] === "number" && !isNaN(d[rawKey])) ? d[rawKey] : null;
+  return dcRawKmValue(d, key);
 }
 
 function dcScoreBarColor(score) {
@@ -1222,10 +1312,14 @@ function dcPrepareData(data) {
     var match = dcFindCellMatch(d.lat, d.lon);
     d._cell = match ? match.cell : null;
     d._cellMatch = match ? match.mode : null;
-    d._dsub_km_live = d._cell ? dcKmFromCell(d._cell, 3) : null;
-    d._d380_km_live = d._cell ? dcKmFromCell(d._cell, 4) : null;
-    d._d220_km_live = d._cell ? dcKmFromCell(d._cell, 5) : null;
-    d._d110_km_live = d._cell ? dcKmFromCell(d._cell, 6) : null;
+    d._dsub_km_live = dcRawKmValue(d, "sub");
+    d._d380_km_live = dcRawKmValue(d, "380");
+    d._d220_km_live = dcRawKmValue(d, "220");
+    d._d110_km_live = dcRawKmValue(d, "110");
+    if (d._dsub_km_live === null && d._cell) d._dsub_km_live = dcKmFromCell(d._cell, 3);
+    if (d._d380_km_live === null && d._cell) d._d380_km_live = dcKmFromCell(d._cell, 4);
+    if (d._d220_km_live === null && d._cell) d._d220_km_live = dcKmFromCell(d._cell, 5);
+    if (d._d110_km_live === null && d._cell) d._d110_km_live = dcKmFromCell(d._cell, 6);
     d._mwActual = dcParseActualMw(d);
     d._mwKey = d._mwActual !== null ? dcMwKeyFromActual(d._mwActual) : dcInferMwKey(d._dsub_km_live, d._d380_km_live, d._d220_km_live, d._d110_km_live);
     d._mwMeta = dcClassMetaByKey(d._mwKey);
@@ -1244,7 +1338,8 @@ function dcRefreshComputed() {
   var explorerVisible = 0;
   for (var i = 0; i < DC_DATA.length; i++) {
     var d = DC_DATA[i];
-    d._scoreLive = d._cell ? calcScore(d._cell) : ((typeof d.score === "number" && !isNaN(d.score)) ? d.score : null);
+    d._scoreBaseLive = dcCalcPointBaseScore(d);
+    d._scoreLive = dcCalcPointScore(d);
     if (!d._hideInExplorer) explorerVisible++;
     if (d._marker) dcRefreshMarker(d);
   }
@@ -1257,6 +1352,7 @@ function dcRefreshComputed() {
     var notes = [];
     if (DC_EXPLORER_HIDDEN > 0) notes.push(DC_EXPLORER_HIDDEN + " Punkte ohne Namen, Betreiber oder Adresse sind im Explorer ausgeblendet.");
     notes.push("MW-Klassen basieren auf bekannten MW-Werten oder, falls diese fehlen, auf der Netzanbindung.");
+    notes.push("Scores nutzen den tatsächlichen Punktstandort; rote Rasterzellen bleiben nur Heatmap-Kontext.");
     noteEl.innerHTML = notes.join("<br>");
     noteEl.style.display = notes.length ? "block" : "none";
   }
@@ -1270,7 +1366,7 @@ function dcMarkerTooltip(d) {
   var title = d._title || d.name || "Datacenter";
   var suffix = d._subtitle ? " \u00b7 " + d._subtitle : "";
   var scoreTxt = score !== null ? fmtScore(score) : "\u2013";
-  return title + suffix + " \u00b7 " + d._mwText + " \u00b7 Score " + scoreTxt;
+  return title + suffix + " \u00b7 " + d._mwText + " \u00b7 Punkt-Score " + scoreTxt;
 }
 
 function dcMarkerRadiusByClass(mwClass) {
@@ -1326,6 +1422,13 @@ function dcPopupHtml(d) {
     html += '<div style="height:6px;background:rgba(255,255,255,0.08);border-radius:3px;overflow:hidden;margin-bottom:10px">';
     html += '<div style="width:' + scoreBar + '%;height:100%;background:' + barColor + ';border-radius:3px;transition:width .4s"></div></div>';
 
+    var comps = dcSiteComponents(d).sort(function(a, b) { return (b.val * b.w) - (a.val * a.w); });
+    html += '<div class="popup-section">Punkt-Score-Komponenten</div>';
+    for (var ci = 0; ci < Math.min(4, comps.length); ci++) {
+      if (comps[ci].w <= 0) continue;
+      html += popupBarHtml(comps[ci].l, comps[ci].val, comps[ci].color);
+    }
+
     /* Distances (only show if score exists) */
     var dsubKm = dcDistValue(d, "sub");
     var d380Km = dcDistValue(d, "380");
@@ -1344,7 +1447,9 @@ function dcPopupHtml(d) {
 
   /* Additional info: capacity, address, website */
   var details = [];
+  details.push('Methode: <b>Punkt-MCDA am tatsächlichen Standort</b>');
   details.push('⚡ ' + escapeHtml(d._mwFieldLabel) + ': <b>' + escapeHtml(d._mwText) + '</b>');
+  if (d.kreis) details.push('Kreis: <b>' + escapeHtml(d.kreis) + '</b>');
   if (d.address && typeof d.address === 'string') details.push('📌 Adresse: <b>' + escapeHtml(d.address) + '</b>');
   if (d.website && typeof d.website === 'string') {
     var domain = d.website.replace(/^https?:\/\//, '').split('/')[0];
@@ -1352,7 +1457,10 @@ function dcPopupHtml(d) {
   }
   if (d.email && typeof d.email === 'string') details.push('✉️ <a href="mailto:' + d.email + '" style="color:#3b82f6;text-decoration:none">' + d.email + '</a>');
   if (d.phone && typeof d.phone === 'string') details.push('📞 ' + d.phone);
-  if (d._cellMatch === "nearest") details.push('📐 Score-Raster: <b>nächstgelegene Zelle</b>');
+  var pointProt = protLabel(dcSiteProtMask(d));
+  var rasterProt = protLabel(dcCellProtMask(d));
+  if (pointProt) details.push('Schutz am Punkt: <b>' + escapeHtml(pointProt) + '</b>');
+  if (rasterProt && rasterProt !== pointProt) details.push('Rasterzelle gefärbt: <b>' + escapeHtml(rasterProt) + '</b> (nicht für den DC-Score genutzt)');
   if (d._mwActual === null) details.push('🧭 MW-Klasse: <b>aus Netzanbindung abgeleitet</b>');
 
   if (details.length > 0) {
@@ -1402,9 +1510,10 @@ function dcSbRender(mapRef, data) {
     var meta = [];
     var dsub = dcDistValue(d, "sub");
     var d380 = dcDistValue(d, "380");
+    meta.push('<span>Score <b>Punkt</b></span>');
     if (dsub !== null) meta.push('<span>HV-Sub <b>' + fmtKmValue(dsub) + '</b></span>');
     if (d380 !== null) meta.push('<span>380-kV <b>' + fmtKmValue(d380) + '</b></span>');
-    if (d._cellMatch === "nearest") meta.push('<span>Raster <b>angenähert</b></span>');
+    if (dcSiteProtMask(d) !== dcCellProtMask(d) && dcCellProtMask(d) > 0) meta.push('<span>Rasterfarbe <b>abweichend</b></span>');
     html += '<div class="dc-row" data-idx="' + d._id + '" onclick="dcRowClick(' + d._id + ')">';
     html += '<div class="dc-row-top"><div class="dc-head">';
     html += '<div class="dc-name">' + escapeHtml(d._title) + '</div>';
@@ -1412,7 +1521,7 @@ function dcSbRender(mapRef, data) {
     html += '<div class="dc-context">';
     html += '<span class="dc-pill dc-pill--mw" style="background:' + dcBadgeColor(d._mwClass) + '">' + escapeHtml(d._mwText) + '</span>';
     if (!d._hasProperName) html += '<span class="dc-pill dc-pill--muted">Ohne Standortname</span>';
-    if (d._cellMatch === "nearest") html += '<span class="dc-pill dc-pill--approx">Score angenähert</span>';
+    html += '<span class="dc-pill dc-pill--approx">Punkt-Score</span>';
     html += '</div>';
     html += '</div>';
     html += '<div class="dc-score-box"><div class="dc-score-num">' + (sv !== null ? fmtScore(sv) : '\u2013') + '</div>';
@@ -1878,13 +1987,33 @@ function initMap(dcs) {
     var overlays = {};
     overlayEntries.sort(function(a, b) { return a.order - b.order; });
     for (var oi = 0; oi < overlayEntries.length; oi++) overlays[overlayEntries[oi].label] = overlayEntries[oi].layer;
-    L.control.layers(baseMaps, overlays, {collapsed:true, position:"topleft"}).addTo(map);
+    var layerCtrl = L.control.layers(baseMaps, overlays, {collapsed:true, position:"topleft"}).addTo(map);
+    var layerCtrlEl = layerCtrl.getContainer();
+    if (layerCtrlEl) {
+      var suppressLayerHover = function() {
+        layerControlHoverSuppressed = true;
+        hideTip();
+      };
+      var releaseLayerHover = function() {
+        window.setTimeout(function() {
+          layerControlHoverSuppressed = isLayerControlExpanded();
+          hideTip();
+        }, 60);
+      };
+      L.DomEvent.on(layerCtrlEl, "mouseenter mouseover click", suppressLayerHover);
+      L.DomEvent.on(layerCtrlEl, "mouseleave", releaseLayerHover);
+      L.DomEvent.on(layerCtrlEl, "touchstart", suppressLayerHover);
+    }
   });
 
   /* ── Event handlers ── */
   var tip = document.getElementById("pwr-tip");
 
   map.on("mousemove", function(e) {
+    if (shouldSuppressHover()) {
+      hideTip();
+      return;
+    }
     var c = findCell(e.latlng.lat, e.latlng.lng);
     if (c) {
       showTip(c);
