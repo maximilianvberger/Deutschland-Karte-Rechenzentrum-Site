@@ -270,6 +270,9 @@ input[type=range].pwr-sl::-webkit-slider-thumb:hover { transform:scale(1.25); }
 .dc-pill--approx {
   background:rgba(245,158,11,0.12); color:#fcd34d; border-color:rgba(245,158,11,0.24);
 }
+.dc-pill--landuse {
+  background:rgba(217,119,6,0.12); color:#fbbf24; border-color:rgba(217,119,6,0.24);
+}
 .dc-pill--mw { color:#fff; border-color:rgba(255,255,255,0.12); }
 .dc-score-box { min-width:82px; text-align:right; flex-shrink:0; }
 .dc-score-num {
@@ -490,13 +493,11 @@ input[type=range].pwr-sl::-webkit-slider-thumb:hover { transform:scale(1.25); }
     <input type="range" class="pwr-sl" id="sl-w-220" min="0" max="100" value="5">
     <div class="pwr-weight-row"><span class="pwr-weight-icon">&#128308;</span><span class="pwr-weight-label">380-kV-Leitung</span><span class="pwr-weight-val" id="lbl-w-380">23 %</span></div>
     <input type="range" class="pwr-sl" id="sl-w-380" min="0" max="100" value="23">
-    <div class="pwr-section-title">&#127760; Digital, Demografie &amp; Fl&auml;che</div>
+    <div class="pwr-section-title">&#127760; Digital, Demografie &amp; Fachkr&auml;fte</div>
     <div class="pwr-weight-row"><span class="pwr-weight-icon">&#128225;</span><span class="pwr-weight-label">Gigabit (FTTB/H)</span><span class="pwr-weight-val" id="lbl-w-gb">0 %</span></div>
     <input type="range" class="pwr-sl" id="sl-w-gb" min="0" max="100" value="0">
     <div class="pwr-weight-row"><span class="pwr-weight-icon">&#128101;</span><span class="pwr-weight-label">Bev.-Dichte (inv.)</span><span class="pwr-weight-val" id="lbl-w-pop">0 %</span></div>
     <input type="range" class="pwr-sl" id="sl-w-pop" min="0" max="100" value="0">
-    <div class="pwr-weight-row"><span class="pwr-weight-icon">&#127959;</span><span class="pwr-weight-label">Gewerbe/Industrie</span><span class="pwr-weight-val" id="lbl-w-lu">0 %</span></div>
-    <input type="range" class="pwr-sl" id="sl-w-lu" min="0" max="100" value="0">
     <div class="pwr-weight-row"><span class="pwr-weight-icon">&#128187;</span><span class="pwr-weight-label">IT-Fachkr&auml;fte</span><span class="pwr-weight-val" id="lbl-w-labor">15 %</span></div>
     <input type="range" class="pwr-sl" id="sl-w-labor" min="0" max="100" value="15">
     <div id="pwr-sigma-row">
@@ -601,7 +602,7 @@ var SOFT_FACTOR = 0.3;
 var PROT_MIN_SHARE = 0.001;
 var PROT_HARD_FULL_SHARE = 0.25;
 var PROT_SHARE_IDX = {nationalpark:23,nsg:24,ffh:25,biosphere:26,lsg:27,naturpark:28};
-var ASSET_VERSION = "2026-04-15-precise-kreise";
+var ASSET_VERSION = "2026-04-15-landuse-context";
 var opacityRef = {value:0.68}, filterRef = {value:0.0};
 var map, heatLayer, kreisFg;
 var DC_DATA = [];
@@ -675,10 +676,10 @@ function calcScore(c) {
   var s_sub = decayScore(c[3], "sub"), s_380 = decayScore(c[4], "kv380");
   var s_220 = decayScore(c[5], "kv220"), s_110 = decayScore(c[6], "kv110");
   var s_gb = (c[11] || 0) / 1000.0, s_pop = (c[12] || 0) / 1000.0;
-  var s_lu = (c[16] || 0) / 1000.0, s_labor = (c[22] || 0) / 1000.0;
+  var s_labor = (c[22] || 0) / 1000.0;
   var total = (W.sub || 0) * s_sub + (W.kv380 || 0) * s_380 + (W.kv220 || 0) * s_220 +
               (W.kv110 || 0) * s_110 + (W.gb || 0) * s_gb + (W.pop || 0) * s_pop +
-              (W.lu || 0) * s_lu + (W.labor || 0) * s_labor;
+              (W.labor || 0) * s_labor;
   if (c[3] >= 0 && c[3] * 10 < 2000 && c[4] >= 0 && c[4] * 10 < 5000) total += 0.05;
   total = Math.max(0, Math.min(1, total));
   var protMask = c[13] || 0;
@@ -824,6 +825,14 @@ function fmtCount(n) {
 function fmtScore(s) { return s.toFixed(3).replace(".", ","); }
 var LU_LABELS = {0:"Keine", 500:"Brownfield", 700:"Gewerbe (GE)", 1000:"Industrie (GI)"};
 function luLabel(v) { return LU_LABELS[v] || ((v > 0) ? "Gewerbe" : "Keine"); }
+var DC_LU_LABELS = {industrial:"Industrie (GI)", commercial:"Gewerbe (GE)", brownfield:"Brownfield"};
+function dcLanduseLabel(d) {
+  var cat = d && d.landuse_cat ? String(d.landuse_cat).toLowerCase() : "";
+  if (cat && DC_LU_LABELS[cat]) return DC_LU_LABELS[cat];
+  var score = numericOrNull(d && d.landuse_score);
+  if (score !== null && score > 0) return luLabel(Math.round(score * 1000));
+  return "";
+}
 var PROT_NAMES = {1:"Nationalpark", 2:"NSG", 4:"FFH", 8:"Biosph\u00e4re", 16:"LSG", 32:"Naturpark"};
 function protLabel(mask) {
   if (!mask) return null;
@@ -896,7 +905,6 @@ function showTip(c) {
     {label:"110 kV",     val:decayScore(c[6],"kv110"), color:"#2980b9", w:W.kv110},
     {label:"Gigabit",    val:(c[11]||0)/1000, color:"#06b6d4", w:W.gb},
     {label:"Bev.inv.",   val:(c[12]||0)/1000, color:"#64748b", w:W.pop},
-    {label:"Gewerbe",    val:(c[16]||0)/1000, color:"#d97706", w:W.lu},
     {label:"IT-Fachkr.", val:(c[22]||0)/1000, color:"#059669", w:W.labor}
   ];
 
@@ -983,7 +991,7 @@ function buildCellHtml(c) {
   var lbl = scoreLabelDE(s);
   var s_sub = decayScore(c[3],"sub"), s_380 = decayScore(c[4],"kv380");
   var s_220 = decayScore(c[5],"kv220"), s_110 = decayScore(c[6],"kv110");
-  var s_gb = (c[11]||0)/1000, s_pop = (c[12]||0)/1000, s_lu = (c[16]||0)/1000, s_labor = (c[22]||0)/1000;
+  var s_gb = (c[11]||0)/1000, s_pop = (c[12]||0)/1000, s_labor = (c[22]||0)/1000;
   var kreis = (c[17]>=0 && KRS_NAMES[c[17]]) ? KRS_NAMES[c[17]] : "";
   var latC = ((c[18]/1e5+c[19]/1e5)/2).toFixed(5);
   var lonC = ((c[20]/1e5+c[21]/1e5)/2).toFixed(5);
@@ -1003,7 +1011,6 @@ function buildCellHtml(c) {
   html += popupBarHtml("110 kV", s_110, "#2980b9");
   html += popupBarHtml("Gigabit", s_gb, "#06b6d4");
   html += popupBarHtml("Bev.-Dichte", s_pop, "#64748b");
-  html += popupBarHtml("Gewerbefl.", s_lu, "#d97706");
   html += popupBarHtml("IT-Fachkr.", s_labor, "#059669");
 
   html += '<div class="popup-section">Entfernungen</div>';
@@ -1292,7 +1299,6 @@ function dcSiteFactors(d) {
     kv110: dcScoreFromFieldOrDistance(d, "score_110", "110", "kv110", 6),
     gb: clamp01(numericOrNull(d.gigabit_score) !== null ? numericOrNull(d.gigabit_score) : (d._cell ? (d._cell[11] || 0) / 1000 : 0)),
     pop: clamp01(numericOrNull(d.pop_score) !== null ? numericOrNull(d.pop_score) : (d._cell ? (d._cell[12] || 0) / 1000 : 0)),
-    lu: clamp01(numericOrNull(d.landuse_score) !== null ? numericOrNull(d.landuse_score) : (d._cell ? (d._cell[16] || 0) / 1000 : 0)),
     labor: clamp01(numericOrNull(d.labor_score) !== null ? numericOrNull(d.labor_score) : (d._cell ? (d._cell[22] || 0) / 1000 : 0))
   };
 }
@@ -1306,7 +1312,6 @@ function dcSiteComponents(d) {
     {l:"110 kV", val:f.kv110, color:"#2980b9", w:W.kv110},
     {l:"Gigabit", val:f.gb, color:"#06b6d4", w:W.gb},
     {l:"Bev.-Dichte", val:f.pop, color:"#64748b", w:W.pop},
-    {l:"Gewerbefl.", val:f.lu, color:"#d97706", w:W.lu},
     {l:"IT-Fachkr.", val:f.labor, color:"#059669", w:W.labor}
   ];
 }
@@ -1315,7 +1320,7 @@ function dcCalcPointBaseScore(d) {
   var f = dcSiteFactors(d);
   var total = (W.sub || 0) * f.sub + (W.kv380 || 0) * f.kv380 + (W.kv220 || 0) * f.kv220 +
               (W.kv110 || 0) * f.kv110 + (W.gb || 0) * f.gb + (W.pop || 0) * f.pop +
-              (W.lu || 0) * f.lu + (W.labor || 0) * f.labor;
+              (W.labor || 0) * f.labor;
   var dsub = dcRawKmValue(d, "sub"), d380 = dcRawKmValue(d, "380");
   if (dsub !== null && dsub < 2 && d380 !== null && d380 < 5) total += 0.05;
   return clamp01(total);
@@ -1436,7 +1441,7 @@ function dcRefreshComputed() {
     var notes = [];
     if (DC_EXPLORER_HIDDEN > 0) notes.push(DC_EXPLORER_HIDDEN + " Punkte ohne Namen, Betreiber oder Adresse sind im Explorer ausgeblendet.");
     notes.push("MW-Klassen basieren auf bekannten MW-Werten oder, falls diese fehlen, auf der Netzanbindung.");
-    notes.push("Scores nutzen den tatsächlichen Punktstandort; Schutzgebiete bleiben bei bestehenden DCs nur Kontext.");
+    notes.push("Scores nutzen den tatsächlichen Punktstandort; Schutzgebiete und Flächennutzung bleiben bei bestehenden DCs Kontext.");
     noteEl.innerHTML = notes.join("<br>");
     noteEl.style.display = notes.length ? "block" : "none";
   }
@@ -1506,10 +1511,9 @@ function dcPopupHtml(d) {
     html += '<div style="height:6px;background:rgba(255,255,255,0.08);border-radius:3px;overflow:hidden;margin-bottom:10px">';
     html += '<div style="width:' + scoreBar + '%;height:100%;background:' + barColor + ';border-radius:3px;transition:width .4s"></div></div>';
 
-    var comps = dcSiteComponents(d).sort(function(a, b) { return (b.val * b.w) - (a.val * a.w); });
+    var comps = dcSiteComponents(d);
     html += '<div class="popup-section">Punkt-Score-Komponenten</div>';
-    for (var ci = 0; ci < Math.min(4, comps.length); ci++) {
-      if (comps[ci].w <= 0) continue;
+    for (var ci = 0; ci < comps.length; ci++) {
       html += popupBarHtml(comps[ci].l, comps[ci].val, comps[ci].color);
     }
 
@@ -1545,6 +1549,8 @@ function dcPopupHtml(d) {
   var rasterProt = protLabel(dcCellProtMask(d));
   if (pointProt) details.push('Schutz am Punkt (Kontext): <b>' + escapeHtml(pointProt) + '</b>');
   if (rasterProt && rasterProt !== pointProt) details.push('Rasterzelle gefärbt: <b>' + escapeHtml(rasterProt) + '</b> (nicht für den DC-Score genutzt)');
+  var dcLu = dcLanduseLabel(d);
+  if (dcLu) details.push('Flächennutzung am Punkt (Kontext): <b>' + escapeHtml(dcLu) + '</b>');
   if (d._mwActual === null) details.push('🧭 MW-Klasse: <b>aus Netzanbindung abgeleitet</b>');
 
   if (details.length > 0) {
@@ -1597,6 +1603,8 @@ function dcSbRender(mapRef, data) {
     meta.push('<span>Score <b>Punkt</b></span>');
     if (dsub !== null) meta.push('<span>HV-Sub <b>' + fmtKmValue(dsub) + '</b></span>');
     if (d380 !== null) meta.push('<span>380-kV <b>' + fmtKmValue(d380) + '</b></span>');
+    var dcLu = dcLanduseLabel(d);
+    if (dcLu) meta.push('<span>Fläche <b>' + escapeHtml(dcLu) + '</b></span>');
     if (dcSiteProtMask(d) !== dcCellProtMask(d) && dcCellProtMask(d) > 0) meta.push('<span>Rasterfarbe <b>abweichend</b></span>');
     html += '<div class="dc-row" data-idx="' + d._id + '" onclick="dcRowClick(' + d._id + ')">';
     html += '<div class="dc-row-top"><div class="dc-head">';
@@ -1606,6 +1614,7 @@ function dcSbRender(mapRef, data) {
     html += '<span class="dc-pill dc-pill--mw" style="background:' + dcBadgeColor(d._mwClass) + '">' + escapeHtml(d._mwText) + '</span>';
     if (!d._hasProperName) html += '<span class="dc-pill dc-pill--muted">Ohne Standortname</span>';
     html += '<span class="dc-pill dc-pill--approx">Punkt-Score</span>';
+    if (dcLu) html += '<span class="dc-pill dc-pill--landuse">' + escapeHtml(dcLu) + '</span>';
     html += '</div>';
     html += '</div>';
     html += '<div class="dc-score-box"><div class="dc-score-num">' + (sv !== null ? fmtScore(sv) : '\u2013') + '</div>';
@@ -1632,9 +1641,8 @@ function updateWeights() {
   var raw_380 = +document.getElementById("sl-w-380").value;
   var raw_gb = +document.getElementById("sl-w-gb").value;
   var raw_pop = +document.getElementById("sl-w-pop").value;
-  var raw_lu = +document.getElementById("sl-w-lu").value;
   var raw_labor = +document.getElementById("sl-w-labor").value;
-  var total = raw_sub + raw_110 + raw_220 + raw_380 + raw_gb + raw_pop + raw_lu + raw_labor;
+  var total = raw_sub + raw_110 + raw_220 + raw_380 + raw_gb + raw_pop + raw_labor;
   if (total === 0) total = 1;
   W.sub = raw_sub / total;
   W.kv110 = raw_110 / total;
@@ -1642,7 +1650,7 @@ function updateWeights() {
   W.kv380 = raw_380 / total;
   W.gb = raw_gb / total;
   W.pop = raw_pop / total;
-  W.lu = raw_lu / total;
+  W.lu = 0;
   W.labor = raw_labor / total;
   document.getElementById("lbl-w-sub").textContent = Math.round(W.sub * 100) + " %";
   document.getElementById("lbl-w-110").textContent = Math.round(W.kv110 * 100) + " %";
@@ -1650,10 +1658,9 @@ function updateWeights() {
   document.getElementById("lbl-w-380").textContent = Math.round(W.kv380 * 100) + " %";
   document.getElementById("lbl-w-gb").textContent = Math.round(W.gb * 100) + " %";
   document.getElementById("lbl-w-pop").textContent = Math.round(W.pop * 100) + " %";
-  document.getElementById("lbl-w-lu").textContent = Math.round(W.lu * 100) + " %";
   document.getElementById("lbl-w-labor").textContent = Math.round(W.labor * 100) + " %";
   var sigmaEl = document.getElementById("pwr-sigma");
-  var sigma = Math.round((W.sub + W.kv110 + W.kv220 + W.kv380 + W.gb + W.pop + W.lu + W.labor) * 100);
+  var sigma = Math.round((W.sub + W.kv110 + W.kv220 + W.kv380 + W.gb + W.pop + W.labor) * 100);
   sigmaEl.textContent = "\u03A3 = " + sigma + " %";
   sigmaEl.style.color = (sigma >= 99 && sigma <= 101) ? "#22c55e" : "#ef4444";
   updateStats();
@@ -1688,7 +1695,6 @@ function setWeightSliderValues(weightMap) {
   document.getElementById("sl-w-380").value = Math.round(scenarioSliderValue(weightMap, "kv380"));
   document.getElementById("sl-w-gb").value = Math.round(scenarioSliderValue(weightMap, "gb"));
   document.getElementById("sl-w-pop").value = Math.round(scenarioSliderValue(weightMap, "pop"));
-  document.getElementById("sl-w-lu").value = Math.round(scenarioSliderValue(weightMap, "lu"));
   document.getElementById("sl-w-labor").value = Math.round(scenarioSliderValue(weightMap, "labor"));
 }
 
@@ -2166,7 +2172,7 @@ function initMap(dcs) {
   });
 
   /* Sliders */
-  var sliderIds = ["sl-w-sub","sl-w-110","sl-w-220","sl-w-380","sl-w-gb","sl-w-pop","sl-w-lu","sl-w-labor"];
+  var sliderIds = ["sl-w-sub","sl-w-110","sl-w-220","sl-w-380","sl-w-gb","sl-w-pop","sl-w-labor"];
   for (var si = 0; si < sliderIds.length; si++) {
     document.getElementById(sliderIds[si]).addEventListener("input", onSliderManualChange);
   }

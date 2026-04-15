@@ -1,13 +1,12 @@
 {
   "weights": {
-    "sub": 0.3,
-    "kv110": 0.2,
-    "kv220": 0.05,
-    "kv380": 0.1,
-    "gb": 0.1,
+    "sub": 0.3333333333,
+    "kv110": 0.2222222222,
+    "kv220": 0.0555555556,
+    "kv380": 0.1111111111,
+    "gb": 0.1111111111,
     "pop": 0.0,
-    "lu": 0.1,
-    "labor": 0.15
+    "labor": 0.1666666667
   },
   "decay": {
     "sub": {
@@ -30,58 +29,54 @@
   "scenarios": {
     "edge": {
       "label": "Edge / Enterprise (1-5 MW)",
-      "desc": "Nutzernahe kleinere Standorte: Energie bleibt wichtig, Gigabit, Gewerbe-/Industrieflaechen und IT-Fachkraefte werden stark gewichtet.",
+      "desc": "Nutzernahe kleinere Standorte: Energie bleibt wichtig; Gigabit und IT-Fachkräfte werden stark gewichtet. Flächennutzung bleibt als Kontext sichtbar, fließt aber nicht in den Score ein.",
       "weights": {
-        "sub": 0.25,
-        "kv110": 0.15,
-        "kv220": 0.05,
-        "kv380": 0.05,
-        "gb": 0.2,
+        "sub": 0.2941176471,
+        "kv110": 0.1764705882,
+        "kv220": 0.0588235294,
+        "kv380": 0.0588235294,
+        "gb": 0.2352941176,
         "pop": 0.0,
-        "lu": 0.15,
-        "labor": 0.15
+        "labor": 0.1764705882
       }
     },
     "colo": {
       "label": "Colocation (10-50 MW)",
-      "desc": "Multi-Tenant-Standorte mit Fokus auf Umspannwerk, 110-kV-Anbindung, Konnektivitaet, Flaechen und stabilem IT-Fachkraeftepool.",
+      "desc": "Multi-Tenant-Standorte mit Fokus auf Umspannwerk, 110-kV-Anbindung, Konnektivität und stabilem IT-Fachkräftepool. Flächennutzung wird nur als Kontext angezeigt.",
       "weights": {
-        "sub": 0.3,
-        "kv110": 0.2,
-        "kv220": 0.05,
-        "kv380": 0.1,
-        "gb": 0.1,
+        "sub": 0.3333333333,
+        "kv110": 0.2222222222,
+        "kv220": 0.0555555556,
+        "kv380": 0.1111111111,
+        "gb": 0.1111111111,
         "pop": 0.0,
-        "lu": 0.1,
-        "labor": 0.15
+        "labor": 0.1666666667
       }
     },
     "hyper": {
       "label": "Hyperscale (> 100 MW)",
-      "desc": "Sehr grosse Campus-Standorte: 380-kV-Naehe, Umspannwerk, niedrige Bevoelkerungsdichte, Flaechenverfuegbarkeit und IT-Fachkraefte zaehlen.",
+      "desc": "Sehr große Campus-Standorte: 380-kV-Nähe, Umspannwerk, niedrige Bevölkerungsdichte und IT-Fachkräfte zählen. Flächennutzung bleibt Kontext.",
       "weights": {
-        "sub": 0.15,
-        "kv110": 0.05,
-        "kv220": 0.05,
-        "kv380": 0.3,
-        "gb": 0.05,
-        "pop": 0.1,
-        "lu": 0.15,
-        "labor": 0.15
+        "sub": 0.1764705882,
+        "kv110": 0.0588235294,
+        "kv220": 0.0588235294,
+        "kv380": 0.3529411765,
+        "gb": 0.0588235294,
+        "pop": 0.1176470588,
+        "labor": 0.1764705882
       }
     },
     "equal": {
       "label": "Gleichgewichtet",
-      "desc": "Alle acht Faktorkriterien werden mit je 12,5 Prozent beruecksichtigt; als neutraler Vergleich ohne Szenario-Schwerpunkt.",
+      "desc": "Alle sieben Score-Kriterien werden gleich gewichtet; Flächennutzung wird als Kontext, nicht als Score-Faktor genutzt.",
       "weights": {
-        "sub": 0.125,
-        "kv110": 0.125,
-        "kv220": 0.125,
-        "kv380": 0.125,
-        "gb": 0.125,
-        "pop": 0.125,
-        "lu": 0.125,
-        "labor": 0.125
+        "sub": 0.14285714285714285,
+        "kv110": 0.14285714285714285,
+        "kv220": 0.14285714285714285,
+        "kv380": 0.14285714285714285,
+        "gb": 0.14285714285714285,
+        "pop": 0.14285714285714285,
+        "labor": 0.14285714285714285
       }
     }
   }

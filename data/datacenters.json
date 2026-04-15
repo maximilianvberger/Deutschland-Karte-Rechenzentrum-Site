@@ -39,7 +39,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Digital Realty FRA15",
@@ -81,7 +82,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Digital Realty FRA16",
@@ -123,7 +125,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Digital Realty FRA3",
@@ -165,7 +168,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Digital Realty FRA30",
@@ -206,7 +210,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Digital Realty FRA32",
@@ -247,7 +252,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Digital Realty FRA5",
@@ -289,7 +295,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Equinix FR4",
@@ -332,7 +339,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Equinix FR8.1",
@@ -375,7 +383,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Equinix FR9",
@@ -417,7 +426,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Equinix Frankfurt FR2",
@@ -459,7 +469,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Equinix Germany GmbH",
@@ -502,7 +513,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "FKQ I Data Center",
@@ -539,7 +551,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "NTT",
@@ -575,7 +588,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "NTT",
@@ -611,7 +625,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "NTT Global Data Centers Campus",
@@ -647,7 +662,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "telecom": "data_center",
@@ -687,7 +703,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "operator": "TE Connectivety",
@@ -723,7 +740,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "TelemaxX IPC1",
@@ -766,7 +784,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "GAD-Rechenzentrum 2",
@@ -784,8 +803,8 @@
     "ref": "2",
     "lat": 51.89345355,
     "lon": 7.59630673,
-    "score": 0.996,
-    "site_base_score": 0.996,
+    "score": 0.99,
+    "site_base_score": 0.99,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 1.0,
@@ -809,7 +828,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Colt FRA74",
@@ -825,8 +845,8 @@
     "building": "data_center",
     "lat": 50.12551313,
     "lon": 8.58776672,
-    "score": 0.993,
-    "site_base_score": 0.993,
+    "score": 1.0,
+    "site_base_score": 1.0,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -850,7 +870,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "CyrusOne FRA 4",
@@ -867,8 +888,8 @@
     "building": "commercial",
     "lat": 50.13259672,
     "lon": 8.57850412,
-    "score": 0.991,
-    "site_base_score": 0.991,
+    "score": 1.0,
+    "site_base_score": 1.0,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -892,7 +913,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "operator": "Telehouse",
@@ -903,8 +925,8 @@
     "name": "Telehouse Rechenzentrum",
     "lat": 50.09566645,
     "lon": 8.62833672,
-    "score": 0.991,
-    "site_base_score": 0.991,
+    "score": 1.0,
+    "site_base_score": 1.0,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -928,7 +950,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "operator": "Telehouse",
@@ -939,8 +962,8 @@
     "name": "Telehouse Rechenzentrum",
     "lat": 50.09554215,
     "lon": 8.62938607,
-    "score": 0.99,
-    "site_base_score": 0.99,
+    "score": 1.0,
+    "site_base_score": 1.0,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -964,7 +987,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "CyrusOne FRA2",
@@ -981,8 +1005,8 @@
     "building": "data_center",
     "lat": 50.12766335,
     "lon": 8.58265967,
-    "score": 0.989,
-    "site_base_score": 0.989,
+    "score": 1.0,
+    "site_base_score": 1.0,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -1006,7 +1030,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "CyrusOne FRA3",
@@ -1022,8 +1047,8 @@
     "building": "commercial",
     "lat": 50.12886883,
     "lon": 8.57704265,
-    "score": 0.987,
-    "site_base_score": 0.987,
+    "score": 1.0,
+    "site_base_score": 1.0,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -1047,7 +1072,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "IPB Internet Provider in Berlin GmbH",
@@ -1064,8 +1090,8 @@
     "phone": "+49 30 9203739-00",
     "lat": 52.5020344,
     "lon": 13.3693009,
-    "score": 0.986,
-    "site_base_score": 0.986,
+    "score": 1.0,
+    "site_base_score": 1.0,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -1089,7 +1115,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "source_raw_idx": "129",
@@ -1104,8 +1131,8 @@
     "name": "Rechenzentrum Dortmund",
     "lat": 51.5204206,
     "lon": 7.48817401,
-    "score": 0.985,
-    "site_base_score": 0.985,
+    "score": 0.978,
+    "site_base_score": 0.978,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 1.0,
@@ -1129,7 +1156,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "operator": "NTT Global Data Centers EMEA GmbH",
@@ -1148,8 +1176,8 @@
     "name": "NTT Global Data Centers EMEA GmbH Rechenzentrum",
     "lat": 52.53750365,
     "lon": 13.23761153,
-    "score": 0.984,
-    "site_base_score": 0.984,
+    "score": 1.0,
+    "site_base_score": 1.0,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -1173,7 +1201,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Rechenzentrum Garching",
@@ -1186,8 +1215,8 @@
     "building": "commercial",
     "lat": 48.26273985,
     "lon": 11.67308764,
-    "score": 0.98,
-    "site_base_score": 0.98,
+    "score": 0.972,
+    "site_base_score": 0.972,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 1.0,
@@ -1211,7 +1240,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Digital Realty FRA18",
@@ -1222,8 +1252,8 @@
     "building": "commercial",
     "lat": 50.12450995,
     "lon": 8.75213058,
-    "score": 0.979,
-    "site_base_score": 0.979,
+    "score": 1.0,
+    "site_base_score": 1.0,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -1247,7 +1277,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Digital Realty FRA17",
@@ -1258,8 +1289,8 @@
     "building": "commercial",
     "lat": 50.12512445,
     "lon": 8.75404908,
-    "score": 0.975,
-    "site_base_score": 0.975,
+    "score": 0.999,
+    "site_base_score": 0.999,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -1283,7 +1314,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "NTT Data Inc, München Data Center",
@@ -1294,8 +1326,8 @@
     "landuse": "industrial",
     "lat": 48.292453,
     "lon": 11.5738444,
-    "score": 0.971,
-    "site_base_score": 0.971,
+    "score": 0.963,
+    "site_base_score": 0.963,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 1.0,
@@ -1319,7 +1351,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "RZ5 Dortmund-Huckarde",
@@ -1335,8 +1368,8 @@
     "building": "data_center",
     "lat": 51.53503455,
     "lon": 7.418276,
-    "score": 0.97,
-    "site_base_score": 0.97,
+    "score": 0.961,
+    "site_base_score": 0.961,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 1.0,
@@ -1360,7 +1393,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "LRZ SuperMUC-NG",
@@ -1371,8 +1405,8 @@
     "building": "university",
     "lat": 48.26179746,
     "lon": 11.66648363,
-    "score": 0.958,
-    "site_base_score": 0.958,
+    "score": 0.981,
+    "site_base_score": 0.981,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -1396,7 +1430,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "operator": "Vodafone",
@@ -1407,8 +1442,8 @@
     "name": "Vodafone Rechenzentrum",
     "lat": 52.44918961,
     "lon": 13.36199558,
-    "score": 0.946,
-    "site_base_score": 0.946,
+    "score": 0.94,
+    "site_base_score": 0.94,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 1.0,
@@ -1432,7 +1467,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Equinix DU1",
@@ -1450,8 +1486,8 @@
     "building": "industrial",
     "lat": 51.21983665,
     "lon": 6.80695786,
-    "score": 0.941,
-    "site_base_score": 0.941,
+    "score": 0.934,
+    "site_base_score": 0.934,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 1.0,
@@ -1475,7 +1511,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "operator": "GRASS-MERKUR GmbH & Co. KG",
@@ -1493,8 +1530,8 @@
     "name": "GRASS-MERKUR GmbH & Co. KG Rechenzentrum",
     "lat": 52.36846133,
     "lon": 9.86354667,
-    "score": 0.921,
-    "site_base_score": 0.921,
+    "score": 0.912,
+    "site_base_score": 0.912,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 1.0,
@@ -1518,7 +1555,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Interwerk Rechenzentrum",
@@ -1535,8 +1573,8 @@
     "building": "commercial",
     "lat": 50.1225632,
     "lon": 8.74481774,
-    "score": 0.921,
-    "site_base_score": 0.921,
+    "score": 1.0,
+    "site_base_score": 1.0,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.0,
@@ -1560,7 +1598,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Siemens EAGLE Data Center",
@@ -1572,8 +1611,8 @@
     "building": "industrial",
     "lat": 48.09490935,
     "lon": 11.53013723,
-    "score": 0.921,
-    "site_base_score": 0.921,
+    "score": 0.912,
+    "site_base_score": 0.912,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 1.0,
@@ -1597,7 +1636,8 @@
     "mw_class": 3,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Iron Mountain FRA-1",
@@ -1617,8 +1657,8 @@
     "capacity": "27MW",
     "lat": 50.1336825,
     "lon": 8.73987376,
-    "score": 0.92,
-    "site_base_score": 0.92,
+    "score": 1.0,
+    "site_base_score": 1.0,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.0,
@@ -1642,7 +1682,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Iron Mountain FRA-2",
@@ -1659,8 +1700,8 @@
     "ref": "FRA-2",
     "lat": 50.195252,
     "lon": 8.6397882,
-    "score": 0.92,
-    "site_base_score": 0.92,
+    "score": 1.0,
+    "site_base_score": 1.0,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.0,
@@ -1684,7 +1725,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "MU4",
@@ -1694,8 +1736,8 @@
     "landuse": "construction",
     "lat": 48.14702072,
     "lon": 11.68238088,
-    "score": 0.92,
-    "site_base_score": 0.92,
+    "score": 0.939,
+    "site_base_score": 0.939,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -1719,7 +1761,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Maincubes  FRA03A",
@@ -1731,8 +1774,8 @@
     "ref": "FRA03A",
     "lat": 50.16051909,
     "lon": 8.5347429,
-    "score": 0.92,
-    "site_base_score": 0.92,
+    "score": 0.939,
+    "site_base_score": 0.939,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -1756,7 +1799,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Equinix FR13",
@@ -1773,8 +1817,8 @@
     "building": "commercial",
     "lat": 50.13911084,
     "lon": 8.73963851,
-    "score": 0.919,
-    "site_base_score": 0.919,
+    "score": 1.0,
+    "site_base_score": 1.0,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.0,
@@ -1798,7 +1842,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "MK Netzdienste GmbH FRA2",
@@ -1814,8 +1859,8 @@
     "building": "data_center",
     "lat": 50.12657771,
     "lon": 8.58188875,
-    "score": 0.919,
-    "site_base_score": 0.919,
+    "score": 1.0,
+    "site_base_score": 1.0,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.0,
@@ -1839,7 +1884,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Maincubes FRA02",
@@ -1852,8 +1898,8 @@
     "ref": "Frankfurt-02",
     "lat": 50.16549856,
     "lon": 8.53157532,
-    "score": 0.918,
-    "site_base_score": 0.918,
+    "score": 0.937,
+    "site_base_score": 0.937,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -1877,7 +1923,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "operator": "NTT Global Data Centers EMEA GmbH",
@@ -1896,8 +1943,8 @@
     "name": "NTT Global Data Centers EMEA GmbH Rechenzentrum",
     "lat": 52.43845081,
     "lon": 13.37448947,
-    "score": 0.917,
-    "site_base_score": 0.917,
+    "score": 0.941,
+    "site_base_score": 0.941,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -1921,7 +1968,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Equinix FR5",
@@ -1938,8 +1986,8 @@
     "building": "commercial",
     "lat": 50.09877943,
     "lon": 8.63204245,
-    "score": 0.914,
-    "site_base_score": 0.914,
+    "score": 1.0,
+    "site_base_score": 1.0,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.0,
@@ -1963,7 +2011,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "aixit GmbH",
@@ -1980,8 +2029,8 @@
     "building": "commercial",
     "lat": 50.10054835,
     "lon": 8.6290626,
-    "score": 0.914,
-    "site_base_score": 0.914,
+    "score": 1.0,
+    "site_base_score": 1.0,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.0,
@@ -2005,7 +2054,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "CarrierColo Berlin K",
@@ -2021,8 +2071,8 @@
     "website": "https://www.carrier-colo.com/de/datacenter/location-k.html",
     "lat": 52.4326183,
     "lon": 13.3738355,
-    "score": 0.912,
-    "site_base_score": 0.912,
+    "score": 0.936,
+    "site_base_score": 0.936,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -2046,7 +2096,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Vantage Data Center (FRA1)",
@@ -2063,8 +2114,8 @@
     "building": "data_center",
     "lat": 50.10911455,
     "lon": 8.74377341,
-    "score": 0.91,
-    "site_base_score": 0.91,
+    "score": 0.894,
+    "site_base_score": 0.894,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 1.0,
@@ -2088,7 +2139,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Equinix MU1",
@@ -2103,8 +2155,8 @@
     "ref": "MU1",
     "lat": 48.142709,
     "lon": 11.5558571,
-    "score": 0.907,
-    "site_base_score": 0.907,
+    "score": 0.929,
+    "site_base_score": 0.929,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -2128,7 +2180,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Wiit AG DUS",
@@ -2145,8 +2198,8 @@
     "website": "https://www.wiit.cloud/de/",
     "lat": 51.2667997,
     "lon": 6.8172593,
-    "score": 0.904,
-    "site_base_score": 0.904,
+    "score": 0.894,
+    "site_base_score": 0.894,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 1.0,
@@ -2170,7 +2223,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Datacenter One GmbH",
@@ -2187,8 +2241,8 @@
     "ref": "DUS1",
     "lat": 51.19122145,
     "lon": 6.93881295,
-    "score": 0.901,
-    "site_base_score": 0.901,
+    "score": 0.918,
+    "site_base_score": 0.918,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -2212,7 +2266,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "operator": "NTT Global Data Centers",
@@ -2226,8 +2281,8 @@
     "name": "NTT Global Data Centers Rechenzentrum",
     "lat": 50.12903507,
     "lon": 8.60453116,
-    "score": 0.899,
-    "site_base_score": 0.899,
+    "score": 0.994,
+    "site_base_score": 0.994,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.0,
@@ -2251,7 +2306,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "telecom": "data_center",
@@ -2266,8 +2322,8 @@
     "name": "Rechenzentrum Frankfurt am Main",
     "lat": 50.12792337,
     "lon": 8.6049265,
-    "score": 0.899,
-    "site_base_score": 0.899,
+    "score": 0.993,
+    "site_base_score": 0.993,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.0,
@@ -2291,7 +2347,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "TelemaxX IPC2",
@@ -2308,8 +2365,8 @@
     "description": "Rechenzentrum IPC2 der TelemaxX Telekommunikation GmbH",
     "lat": 49.019584,
     "lon": 8.4398031,
-    "score": 0.897,
-    "site_base_score": 0.897,
+    "score": 0.919,
+    "site_base_score": 0.919,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -2333,7 +2390,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Digital Reality DUS2",
@@ -2351,8 +2409,8 @@
     "ref": "DUS2",
     "lat": 51.187765,
     "lon": 6.8667225,
-    "score": 0.888,
-    "site_base_score": 0.888,
+    "score": 0.908,
+    "site_base_score": 0.908,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -2376,7 +2434,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "ColocationIX",
@@ -2385,8 +2444,8 @@
     "dc_evidence": "telecom=data_center + expliziter DC-Name/Betreiber/Webseite",
     "lat": 53.0938935,
     "lon": 8.7905596,
-    "score": 0.883,
-    "site_base_score": 0.883,
+    "score": 0.903,
+    "site_base_score": 0.903,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -2410,7 +2469,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Yondr - Rechenzentrum",
@@ -2427,8 +2487,8 @@
     "building": "commercial",
     "lat": 49.99092291,
     "lon": 8.33693263,
-    "score": 0.879,
-    "site_base_score": 0.879,
+    "score": 0.86,
+    "site_base_score": 0.86,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 1.0,
@@ -2452,7 +2512,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "source_raw_idx": "254",
@@ -2461,8 +2522,8 @@
     "name": "Rechenzentrum",
     "lat": 48.46473077,
     "lon": 7.93756851,
-    "score": 0.874,
-    "site_base_score": 0.874,
+    "score": 0.888,
+    "site_base_score": 0.888,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -2486,7 +2547,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Digital Realty FRA33",
@@ -2496,8 +2558,8 @@
     "building": "yes",
     "lat": 50.05471109,
     "lon": 8.45774289,
-    "score": 0.868,
-    "site_base_score": 0.868,
+    "score": 0.959,
+    "site_base_score": 0.959,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.0,
@@ -2521,7 +2583,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "R-KOM Datacenter Ostbayern 2",
@@ -2538,8 +2601,8 @@
     "building": "industrial",
     "lat": 49.01346763,
     "lon": 12.14741195,
-    "score": 0.868,
-    "site_base_score": 0.868,
+    "score": 0.853,
+    "site_base_score": 0.853,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 1.0,
@@ -2563,7 +2626,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Rechenzentrum Nürnberg Süd",
@@ -2576,8 +2640,8 @@
     "landuse": "industrial",
     "lat": 49.41015069,
     "lon": 11.13172765,
-    "score": 0.867,
-    "site_base_score": 0.867,
+    "score": 0.852,
+    "site_base_score": 0.852,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 1.0,
@@ -2601,7 +2665,8 @@
     "mw_class": 3,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Digital Realty FRA33",
@@ -2613,8 +2678,8 @@
     "ref": "FRA33",
     "lat": 50.06253364,
     "lon": 8.48788396,
-    "score": 0.865,
-    "site_base_score": 0.865,
+    "score": 0.956,
+    "site_base_score": 0.956,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.0,
@@ -2638,7 +2703,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Höchstleistungsrechenzentrum der Universität Stuttgart",
@@ -2656,8 +2722,8 @@
     "building": "university",
     "lat": 48.73948583,
     "lon": 9.09730799,
-    "score": 0.865,
-    "site_base_score": 0.865,
+    "score": 0.956,
+    "site_base_score": 0.956,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.0,
@@ -2681,7 +2747,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Digital Realty",
@@ -2692,8 +2759,8 @@
     "building": "construction",
     "lat": 50.06446295,
     "lon": 8.48687801,
-    "score": 0.864,
-    "site_base_score": 0.864,
+    "score": 0.954,
+    "site_base_score": 0.954,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.0,
@@ -2717,7 +2784,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Nepustil RZ4",
@@ -2726,8 +2794,8 @@
     "dc_evidence": "telecom=data_center + expliziter DC-Name/Betreiber/Webseite",
     "lat": 48.7088377,
     "lon": 9.1707248,
-    "score": 0.864,
-    "site_base_score": 0.864,
+    "score": 0.882,
+    "site_base_score": 0.882,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -2751,7 +2819,8 @@
     "mw_class": 3,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "operator": "Fiducia & GAD IT AG",
@@ -2768,8 +2837,8 @@
     "name": "Fiducia & GAD IT AG Rechenzentrum",
     "lat": 52.00525146,
     "lon": 7.53862669,
-    "score": 0.863,
-    "site_base_score": 0.863,
+    "score": 0.847,
+    "site_base_score": 0.847,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 1.0,
@@ -2793,7 +2862,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Rechenzentrum Nürnberg Zentrum",
@@ -2805,8 +2875,8 @@
     "ref": "NBG2;NBG3;NBG4",
     "lat": 49.453733,
     "lon": 11.0638651,
-    "score": 0.863,
-    "site_base_score": 0.863,
+    "score": 0.881,
+    "site_base_score": 0.881,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -2830,7 +2900,8 @@
     "mw_class": 3,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "TelemaxX IPC5",
@@ -2848,8 +2919,8 @@
     "building": "data_center",
     "lat": 49.07776226,
     "lon": 8.45822991,
-    "score": 0.862,
-    "site_base_score": 0.862,
+    "score": 0.874,
+    "site_base_score": 0.874,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -2873,7 +2944,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Servergebäude",
@@ -2884,8 +2956,8 @@
     "building": "university",
     "lat": 51.96625118,
     "lon": 7.60381474,
-    "score": 0.861,
-    "site_base_score": 0.861,
+    "score": 0.952,
+    "site_base_score": 0.952,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.0,
@@ -2909,7 +2981,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "operator": "EWE TEL GmbH",
@@ -2925,8 +2998,8 @@
     "name": "EWE TEL GmbH Rechenzentrum",
     "lat": 53.13710468,
     "lon": 8.24696584,
-    "score": 0.86,
-    "site_base_score": 0.86,
+    "score": 0.844,
+    "site_base_score": 0.844,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 1.0,
@@ -2950,7 +3023,8 @@
     "mw_class": 3,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Rechenzentrum Citeq",
@@ -2960,8 +3034,8 @@
     "dc_evidence": "telecom=data_center + expliziter DC-Name/Betreiber/Webseite",
     "lat": 51.9746919,
     "lon": 7.6102911,
-    "score": 0.854,
-    "site_base_score": 0.854,
+    "score": 0.944,
+    "site_base_score": 0.944,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.0,
@@ -2985,7 +3059,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Gauß-IT-Zentrum",
@@ -3000,8 +3075,8 @@
     "official_name": "Technische Universität Braunschweig – Gauß-IT-Zentrum",
     "lat": 52.2765022,
     "lon": 10.5417274,
-    "score": 0.85,
-    "site_base_score": 0.85,
+    "score": 0.939,
+    "site_base_score": 0.939,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.0,
@@ -3025,7 +3100,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "source_raw_idx": "317",
@@ -3035,8 +3111,8 @@
     "name": "Rechenzentrum",
     "lat": 52.43960341,
     "lon": 13.37333256,
-    "score": 0.848,
-    "site_base_score": 0.848,
+    "score": 0.942,
+    "site_base_score": 0.942,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.0,
@@ -3060,7 +3136,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "ForHLR II",
@@ -3072,8 +3149,8 @@
     "dc_evidence": "man_made=supercomputer",
     "lat": 49.0960368,
     "lon": 8.4334306,
-    "score": 0.839,
-    "site_base_score": 0.839,
+    "score": 0.927,
+    "site_base_score": 0.927,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.0,
@@ -3097,7 +3174,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Kyndryl Data Center",
@@ -3114,8 +3192,8 @@
     "building": "industrial",
     "lat": 50.19253145,
     "lon": 8.59228763,
-    "score": 0.838,
-    "site_base_score": 0.838,
+    "score": 0.925,
+    "site_base_score": 0.925,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.0,
@@ -3139,7 +3217,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "LEITWERK Rechenzentrum Appenweier",
@@ -3155,8 +3234,8 @@
     "building": "data_center",
     "lat": 48.54997121,
     "lon": 7.97344967,
-    "score": 0.836,
-    "site_base_score": 0.836,
+    "score": 0.818,
+    "site_base_score": 0.818,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 1.0,
@@ -3180,7 +3259,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "SAP WDF51",
@@ -3192,8 +3272,8 @@
     "building": "data_center",
     "lat": 49.2935288,
     "lon": 8.63163061,
-    "score": 0.835,
-    "site_base_score": 0.835,
+    "score": 0.85,
+    "site_base_score": 0.85,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -3217,7 +3297,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "noris Munich MUC5",
@@ -3230,8 +3311,8 @@
     "landuse": "commercial",
     "lat": 48.16126554,
     "lon": 11.73767482,
-    "score": 0.83,
-    "site_base_score": 0.83,
+    "score": 0.845,
+    "site_base_score": 0.845,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -3255,7 +3336,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Kyndryl Data Center",
@@ -3271,8 +3353,8 @@
     "building": "industrial",
     "lat": 50.14426349,
     "lon": 8.55332312,
-    "score": 0.824,
-    "site_base_score": 0.824,
+    "score": 0.91,
+    "site_base_score": 0.91,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.0,
@@ -3296,7 +3378,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "OVHcloud LIM1-3 Rechenzentrum",
@@ -3313,8 +3396,8 @@
     "ref": "eu-west-lim-a",
     "lat": 50.40883082,
     "lon": 8.06239633,
-    "score": 0.823,
-    "site_base_score": 0.823,
+    "score": 0.832,
+    "site_base_score": 0.832,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -3338,7 +3421,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Equinix",
@@ -3356,8 +3440,8 @@
     "ref": "HH1",
     "lat": 53.64447867,
     "lon": 9.9751656,
-    "score": 0.822,
-    "site_base_score": 0.822,
+    "score": 0.836,
+    "site_base_score": 0.836,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -3381,7 +3465,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "SAP Building 13",
@@ -3395,8 +3480,8 @@
     "building": "data_center",
     "lat": 49.24049538,
     "lon": 8.64362861,
-    "score": 0.816,
-    "site_base_score": 0.816,
+    "score": 0.829,
+    "site_base_score": 0.829,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -3420,7 +3505,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "NorthC Nürnberg 1",
@@ -3437,8 +3523,8 @@
     "website": "https://www.northcdatacenters.com/de/northc-datacenters/nuernberg/",
     "lat": 49.3896407,
     "lon": 11.1766281,
-    "score": 0.813,
-    "site_base_score": 0.813,
+    "score": 0.792,
+    "site_base_score": 0.792,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 1.0,
@@ -3462,7 +3548,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "SAP Building 6 / 16",
@@ -3476,8 +3563,8 @@
     "building": "data_center",
     "lat": 49.2431773,
     "lon": 8.64324299,
-    "score": 0.813,
-    "site_base_score": 0.813,
+    "score": 0.826,
+    "site_base_score": 0.826,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -3501,7 +3588,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "CloudHQ",
@@ -3516,8 +3604,8 @@
     "building": "construction",
     "lat": 50.10827962,
     "lon": 8.80438761,
-    "score": 0.807,
-    "site_base_score": 0.807,
+    "score": 0.891,
+    "site_base_score": 0.891,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.0,
@@ -3541,7 +3629,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Rechenzentrum Thüringer Netkom",
@@ -3557,8 +3646,8 @@
     "building": "data_center",
     "lat": 50.68493725,
     "lon": 10.94860118,
-    "score": 0.804,
-    "site_base_score": 0.804,
+    "score": 0.81,
+    "site_base_score": 0.81,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -3582,7 +3671,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Vantage Data Center FRA22",
@@ -3595,8 +3685,8 @@
     "ref": "FRA22",
     "lat": 50.01234709,
     "lon": 8.46206033,
-    "score": 0.804,
-    "site_base_score": 0.804,
+    "score": 0.782,
+    "site_base_score": 0.782,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 1.0,
@@ -3620,7 +3710,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Vantage Data Center FRA31",
@@ -3632,8 +3723,8 @@
     "ref": "FRA31",
     "lat": 50.01647326,
     "lon": 8.45644652,
-    "score": 0.801,
-    "site_base_score": 0.801,
+    "score": 0.779,
+    "site_base_score": 0.779,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 1.0,
@@ -3657,7 +3748,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Hetzner Online GmbH - NBG1",
@@ -3675,8 +3767,8 @@
     "website": "https://www.hetzner.com/",
     "lat": 49.44988033,
     "lon": 11.01455953,
-    "score": 0.799,
-    "site_base_score": 0.799,
+    "score": 0.887,
+    "site_base_score": 0.887,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.0,
@@ -3700,7 +3792,8 @@
     "mw_class": 3,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Rechenzentrum PFALZKOM, DCRN II",
@@ -3716,8 +3809,8 @@
     "building": "commercial",
     "lat": 49.42083405,
     "lon": 8.34990207,
-    "score": 0.795,
-    "site_base_score": 0.795,
+    "score": 0.878,
+    "site_base_score": 0.878,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.0,
@@ -3741,7 +3834,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Datacenter One",
@@ -3758,8 +3852,8 @@
     "building": "yes",
     "lat": 51.05858861,
     "lon": 7.02015263,
-    "score": 0.792,
-    "site_base_score": 0.792,
+    "score": 0.802,
+    "site_base_score": 0.802,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -3783,7 +3877,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Rechenzentrum PFALZKOM, DCRN I",
@@ -3800,8 +3895,8 @@
     "building": "commercial",
     "lat": 49.42637597,
     "lon": 8.35939626,
-    "score": 0.792,
-    "site_base_score": 0.792,
+    "score": 0.874,
+    "site_base_score": 0.874,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.0,
@@ -3825,7 +3920,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "DXC Technology Company",
@@ -3835,8 +3931,8 @@
     "building": "data_center",
     "lat": 49.97841373,
     "lon": 8.43232602,
-    "score": 0.791,
-    "site_base_score": 0.791,
+    "score": 0.801,
+    "site_base_score": 0.801,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -3860,7 +3956,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "RZ",
@@ -3869,8 +3966,8 @@
     "building": "data_center",
     "lat": 52.14876141,
     "lon": 11.63642891,
-    "score": 0.79,
-    "site_base_score": 0.79,
+    "score": 0.8,
+    "site_base_score": 0.8,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -3894,7 +3991,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Open Skies One",
@@ -3911,8 +4009,8 @@
     "website": "https://www.prego-services.de/",
     "lat": 49.2249548,
     "lon": 7.0396224,
-    "score": 0.785,
-    "site_base_score": 0.785,
+    "score": 0.795,
+    "site_base_score": 0.795,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -3936,7 +4034,8 @@
     "mw_class": 3,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Rechenzentrum Ellhofen",
@@ -3955,8 +4054,8 @@
     "ref": "DC08",
     "lat": 49.14590402,
     "lon": 9.30801783,
-    "score": 0.78,
-    "site_base_score": 0.78,
+    "score": 0.789,
+    "site_base_score": 0.789,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -3980,7 +4079,8 @@
     "mw_class": 3,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "telecom": "data_center",
@@ -3990,8 +4090,8 @@
     "name": "Rechenzentrum",
     "lat": 49.97541304,
     "lon": 8.45322132,
-    "score": 0.777,
-    "site_base_score": 0.777,
+    "score": 0.785,
+    "site_base_score": 0.785,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -4015,7 +4115,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "DVZ Datenverarbeitungszentrum Mecklenburg-Vorpommern GmbH",
@@ -4034,8 +4135,8 @@
     "building": "office",
     "lat": 53.6468488,
     "lon": 11.38054107,
-    "score": 0.774,
-    "site_base_score": 0.774,
+    "score": 0.782,
+    "site_base_score": 0.782,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -4059,7 +4160,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "telecom": "data_center",
@@ -4069,8 +4171,8 @@
     "name": "Rechenzentrum",
     "lat": 49.9748882,
     "lon": 8.45017478,
-    "score": 0.774,
-    "site_base_score": 0.774,
+    "score": 0.782,
+    "site_base_score": 0.782,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -4094,7 +4196,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Rechenzentrum Akquinet",
@@ -4103,8 +4206,8 @@
     "dc_evidence": "telecom=data_center + expliziter DC-Name/Betreiber/Webseite",
     "lat": 53.7000316,
     "lon": 9.9937299,
-    "score": 0.77,
-    "site_base_score": 0.77,
+    "score": 0.849,
+    "site_base_score": 0.849,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.0,
@@ -4128,7 +4231,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "source_raw_idx": "138",
@@ -4137,8 +4241,8 @@
     "name": "Rechenzentrum",
     "lat": 51.88395825,
     "lon": 8.44754698,
-    "score": 0.768,
-    "site_base_score": 0.768,
+    "score": 0.742,
+    "site_base_score": 0.742,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 1.0,
@@ -4162,7 +4266,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Stadtwerke Lüdenscheid GmbH (ENERVIE-Gruppe)",
@@ -4175,8 +4280,8 @@
     "building": "data_centre",
     "lat": 51.22677138,
     "lon": 7.63508017,
-    "score": 0.768,
-    "site_base_score": 0.768,
+    "score": 0.776,
+    "site_base_score": 0.776,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -4200,7 +4305,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Planet IC",
@@ -4211,8 +4317,8 @@
     "building": "data_center",
     "lat": 53.59833673,
     "lon": 11.41846676,
-    "score": 0.764,
-    "site_base_score": 0.764,
+    "score": 0.771,
+    "site_base_score": 0.771,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -4236,7 +4342,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Vantage Berlin II (BER2)",
@@ -4248,8 +4355,8 @@
     "ref": "BER2",
     "lat": 52.26297939,
     "lon": 13.5741606,
-    "score": 0.758,
-    "site_base_score": 0.758,
+    "score": 0.765,
+    "site_base_score": 0.765,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -4273,7 +4380,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Universitätsrechenzentrum",
@@ -4283,8 +4391,8 @@
     "dc_evidence": "telecom=data_center + expliziter DC-Name/Betreiber/Webseite",
     "lat": 50.9320923,
     "lon": 11.5819783,
-    "score": 0.753,
-    "site_base_score": 0.753,
+    "score": 0.831,
+    "site_base_score": 0.831,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.0,
@@ -4308,7 +4416,8 @@
     "mw_class": 5,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Gebäude 94/95",
@@ -4321,8 +4430,8 @@
     "ref": "94;95",
     "lat": 52.28559013,
     "lon": 8.02205072,
-    "score": 0.729,
-    "site_base_score": 0.729,
+    "score": 0.81,
+    "site_base_score": 0.81,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.0,
@@ -4346,7 +4455,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "telecom": "data_center",
@@ -4356,8 +4466,8 @@
     "name": "Rechenzentrum",
     "lat": 48.3550061,
     "lon": 10.903686,
-    "score": 0.729,
-    "site_base_score": 0.729,
+    "score": 0.81,
+    "site_base_score": 0.81,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.0,
@@ -4381,7 +4491,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "GWDG - Außenstelle",
@@ -4396,8 +4507,8 @@
     "addr:country": "DE",
     "lat": 51.5479407,
     "lon": 9.9439876,
-    "score": 0.727,
-    "site_base_score": 0.727,
+    "score": 0.808,
+    "site_base_score": 0.808,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.0,
@@ -4421,7 +4532,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "BER11",
@@ -4438,8 +4550,8 @@
     "building": "data_center",
     "lat": 52.32203625,
     "lon": 13.29470036,
-    "score": 0.724,
-    "site_base_score": 0.724,
+    "score": 0.726,
+    "site_base_score": 0.726,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -4463,7 +4575,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "BER12",
@@ -4478,8 +4591,8 @@
     "building": "data_center",
     "lat": 52.32302932,
     "lon": 13.2929013,
-    "score": 0.724,
-    "site_base_score": 0.724,
+    "score": 0.727,
+    "site_base_score": 0.727,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -4503,7 +4616,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Rechenzentrum AtlasEdge HAM002",
@@ -4513,8 +4627,8 @@
     "dc_evidence": "telecom=data_center + expliziter DC-Name/Betreiber/Webseite",
     "lat": 53.6786512,
     "lon": 10.2712655,
-    "score": 0.724,
-    "site_base_score": 0.724,
+    "score": 0.804,
+    "site_base_score": 0.804,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.0,
@@ -4538,7 +4652,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "source_raw_idx": "132",
@@ -4553,8 +4668,8 @@
     "name": "Rechenzentrum Falkenstein/Vogtl.",
     "lat": 50.47851885,
     "lon": 12.33731907,
-    "score": 0.72,
-    "site_base_score": 0.72,
+    "score": 0.722,
+    "site_base_score": 0.722,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -4578,7 +4693,8 @@
     "mw_class": 3,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "telecom": "data_center",
@@ -4593,8 +4709,8 @@
     "name": "Rechenzentrum Ludwigsfelde",
     "lat": 52.32332775,
     "lon": 13.29639165,
-    "score": 0.72,
-    "site_base_score": 0.72,
+    "score": 0.722,
+    "site_base_score": 0.722,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -4618,7 +4734,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "operator": "Hansestadt Rostock",
@@ -4629,8 +4746,8 @@
     "name": "Hansestadt Rostock Rechenzentrum",
     "lat": 54.0821144,
     "lon": 12.1390714,
-    "score": 0.719,
-    "site_base_score": 0.719,
+    "score": 0.798,
+    "site_base_score": 0.798,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.0,
@@ -4654,7 +4771,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "source_raw_idx": "305",
@@ -4663,8 +4781,8 @@
     "name": "Rechenzentrum",
     "lat": 50.4771671,
     "lon": 12.33422445,
-    "score": 0.719,
-    "site_base_score": 0.719,
+    "score": 0.721,
+    "site_base_score": 0.721,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -4688,7 +4806,8 @@
     "mw_class": 3,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "source_raw_idx": "344",
@@ -4697,8 +4816,8 @@
     "name": "Rechenzentrum",
     "lat": 50.4767366,
     "lon": 12.33346185,
-    "score": 0.718,
-    "site_base_score": 0.718,
+    "score": 0.72,
+    "site_base_score": 0.72,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.7,
@@ -4722,7 +4841,8 @@
     "mw_class": 3,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "operator": "Johannes Gutenberg-Universität Mainz",
@@ -4739,8 +4859,8 @@
     "name": "Johannes Gutenberg-Universität Mainz Rechenzentrum",
     "lat": 49.98791612,
     "lon": 8.23014594,
-    "score": 0.712,
-    "site_base_score": 0.712,
+    "score": 0.791,
+    "site_base_score": 0.791,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.0,
@@ -4764,7 +4884,8 @@
     "mw_class": 3,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "rockenstein AG",
@@ -4781,8 +4902,8 @@
     "phone": "+49 931 29934 4",
     "lat": 49.83353735,
     "lon": 9.90843759,
-    "score": 0.705,
-    "site_base_score": 0.705,
+    "score": 0.673,
+    "site_base_score": 0.673,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 1.0,
@@ -4806,7 +4927,8 @@
     "mw_class": 3,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "R-KOM Datacenter Ostbayern 3",
@@ -4822,8 +4944,8 @@
     "building": "commercial",
     "lat": 49.03730463,
     "lon": 12.08742869,
-    "score": 0.69,
-    "site_base_score": 0.69,
+    "score": 0.766,
+    "site_base_score": 0.766,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.0,
@@ -4847,7 +4969,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Rechenzentrum",
@@ -4857,8 +4980,8 @@
     "dc_evidence": "telecom=data_center + expliziter DC-Name/Betreiber/Webseite",
     "lat": 49.25724,
     "lon": 7.0450634,
-    "score": 0.669,
-    "site_base_score": 0.669,
+    "score": 0.744,
+    "site_base_score": 0.744,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.0,
@@ -4882,7 +5005,8 @@
     "mw_class": 3,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Bundesnachrichtendienst Pullach Rechenzentrum",
@@ -4893,8 +5017,8 @@
     "building": "yes",
     "lat": 48.06391767,
     "lon": 11.53336446,
-    "score": 0.668,
-    "site_base_score": 0.668,
+    "score": 0.742,
+    "site_base_score": 0.742,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.0,
@@ -4918,7 +5042,8 @@
     "mw_class": 3,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "ITSMZ",
@@ -4937,8 +5062,8 @@
     "ref": "26",
     "lat": 53.88833883,
     "lon": 11.4467446,
-    "score": 0.617,
-    "site_base_score": 0.617,
+    "score": 0.685,
+    "site_base_score": 0.685,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.0,
@@ -4962,7 +5087,8 @@
     "mw_class": 3,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Boreus Rechenzentrum GmbH",
@@ -4979,8 +5105,8 @@
     "building": "data_center",
     "lat": 54.33688641,
     "lon": 13.06905989,
-    "score": 0.552,
-    "site_base_score": 0.552,
+    "score": 0.613,
+    "site_base_score": 0.613,
     "score_method": "point_mcda",
     "protection_mask": 0,
     "landuse_score": 0.0,
@@ -5004,7 +5130,8 @@
     "mw_class": 3,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Telekom Data-Center",
@@ -5013,8 +5140,8 @@
     "building": "data_center",
     "lat": 48.15153632,
     "lon": 11.59819263,
-    "score": 0.933,
-    "site_base_score": 0.933,
+    "score": 0.954,
+    "site_base_score": 0.954,
     "score_method": "point_mcda",
     "protection_mask": 16,
     "landuse_score": 0.7,
@@ -5038,7 +5165,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "TelemaxX IPC3",
@@ -5056,8 +5184,8 @@
     "building": "data_center",
     "lat": 49.02009278,
     "lon": 8.4783048,
-    "score": 0.906,
-    "site_base_score": 0.906,
+    "score": 0.895,
+    "site_base_score": 0.895,
     "score_method": "point_mcda",
     "protection_mask": 16,
     "landuse_score": 1.0,
@@ -5081,7 +5209,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "Rechenzentrum KÜS Data",
@@ -5097,8 +5226,8 @@
     "building": "commercial",
     "lat": 49.50505295,
     "lon": 6.80424583,
-    "score": 0.742,
-    "site_base_score": 0.742,
+    "score": 0.746,
+    "site_base_score": 0.746,
     "score_method": "point_mcda",
     "protection_mask": 16,
     "landuse_score": 0.7,
@@ -5122,7 +5251,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "NTT DATA Business Solutions Global Managed Services",
@@ -5141,8 +5271,8 @@
     "phone": "+49 3591 29520",
     "lat": 51.19395998,
     "lon": 14.34641792,
-    "score": 0.699,
-    "site_base_score": 0.699,
+    "score": 0.666,
+    "site_base_score": 0.666,
     "score_method": "point_mcda",
     "protection_mask": 16,
     "landuse_score": 1.0,
@@ -5166,7 +5296,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "DARZ - Darmstädter Rechenzentrum",
@@ -5177,8 +5308,8 @@
     "building": "office",
     "lat": 49.87692067,
     "lon": 8.64265895,
-    "score": 0.842,
-    "site_base_score": 0.842,
+    "score": 0.857,
+    "site_base_score": 0.857,
     "score_method": "point_mcda",
     "protection_mask": 4,
     "landuse_score": 0.7,
@@ -5202,7 +5333,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "EVF-Datacenter",
@@ -5245,7 +5377,8 @@
     "mw_class": 3,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "IRZ-HIP-Heidelberg",
@@ -5262,8 +5395,8 @@
     "building": "data_center",
     "lat": 49.39391935,
     "lon": 8.6726551,
-    "score": 0.829,
-    "site_base_score": 0.829,
+    "score": 0.916,
+    "site_base_score": 0.916,
     "score_method": "point_mcda",
     "protection_mask": 4,
     "landuse_score": 0.0,
@@ -5287,7 +5420,8 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   },
   {
     "name": "NSA Rechenzentrum",
@@ -5297,8 +5431,8 @@
     "building": "yes",
     "lat": 49.84399851,
     "lon": 8.5848291,
-    "score": 0.771,
-    "site_base_score": 0.771,
+    "score": 0.857,
+    "site_base_score": 0.857,
     "score_method": "point_mcda",
     "protection_mask": 4,
     "landuse_score": 0.0,
@@ -5322,6 +5456,7 @@
     "mw_class": 4,
     "dc_source_filter": "strict_osm_dc_evidence",
     "protection_score_policy": "context_only_for_existing_dc",
-    "aoi_check": "inside_germany_aoi"
+    "aoi_check": "inside_germany_aoi",
+    "landuse_score_policy": "context_only_not_scored"
   }
 ]
