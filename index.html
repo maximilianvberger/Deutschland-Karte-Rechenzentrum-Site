@@ -505,8 +505,8 @@ input[type=range].pwr-sl::-webkit-slider-thumb:hover { transform:scale(1.25); }
     </div>
     <div class="pwr-section-title">&#127807; Schutzgebiete</div>
     <div style="font-size:9px;color:#64748b;margin-bottom:8px;line-height:1.4">
-      <b style="color:#fca5a5">Hart</b> = Score&rarr;0 &nbsp;|&nbsp;
-      <b style="color:#fcd34d">Weich</b> = Score&times;0,3 &nbsp;|&nbsp;
+      <b style="color:#fca5a5">Hart</b> = anteilig, ab 25 % Score&rarr;0 &nbsp;|&nbsp;
+      <b style="color:#fcd34d">Weich</b> = anteiliger Malus &nbsp;|&nbsp;
       <b style="color:#94a3b8">Aus</b> = ignorieren
     </div>
     <div class="prot-row" id="prot-row-nationalpark">
@@ -598,7 +598,10 @@ var CELLS, LAT_EDGES, LON_EDGES, KRS_NAMES, DECAY, W, W_DEF, SCENARIOS;
 var PROT_MODES = {nationalpark:"hard",nsg:"hard",ffh:"hard",biosphere:"soft",lsg:"soft",naturpark:"off"};
 var PROT_BITS = {nationalpark:1,nsg:2,ffh:4,biosphere:8,lsg:16,naturpark:32};
 var SOFT_FACTOR = 0.3;
-var ASSET_VERSION = "2026-04-15-layer-symbols";
+var PROT_MIN_SHARE = 0.001;
+var PROT_HARD_FULL_SHARE = 0.25;
+var PROT_SHARE_IDX = {nationalpark:23,nsg:24,ffh:25,biosphere:26,lsg:27,naturpark:28};
+var ASSET_VERSION = "2026-04-15-protection-area-share";
 var opacityRef = {value:0.68}, filterRef = {value:0.0};
 var map, heatLayer, kreisFg;
 var DC_DATA = [];
@@ -631,14 +634,39 @@ function decayScoreMeters(d_m, key) {
   return 1.0 / (1.0 + Math.pow(d_m / DECAY[key].d0, DECAY[key].p));
 }
 
-function applyProtection(score, protMask) {
+function protShare(c, cat) {
+  var idx = PROT_SHARE_IDX[cat], bit = PROT_BITS[cat];
+  if (idx !== undefined && c.length > idx) return Math.max(0, Math.min(1, (c[idx] || 0) / 1000.0));
+  return ((c[13] || 0) & bit) ? 1 : 0;
+}
+
+function protMaxShare(c) {
+  var cats = Object.keys(PROT_BITS), maxShare = 0;
+  for (var i = 0; i < cats.length; i++) maxShare = Math.max(maxShare, protShare(c, cats[i]));
+  return maxShare;
+}
+
+function protLabelWithShare(c) {
+  var label = protLabel(c[13] || 0);
+  if (!label) return null;
+  var share = protMaxShare(c);
+  return share > 0 ? label + " (" + Math.round(share * 100) + "% Zellanteil)" : label;
+}
+
+function applyProtection(score, c) {
   var cats = Object.keys(PROT_BITS);
   var s = score;
   for (var i = 0; i < cats.length; i++) {
     var cat = cats[i], bit = PROT_BITS[cat], mode = PROT_MODES[cat];
-    if (mode === "off" || !(protMask & bit)) continue;
-    if (mode === "hard") return 0;
-    if (mode === "soft") s = s * SOFT_FACTOR;
+    if (mode === "off" || !((c[13] || 0) & bit)) continue;
+    var share = protShare(c, cat);
+    if (share < PROT_MIN_SHARE) continue;
+    if (mode === "hard") {
+      s = s * Math.max(0, 1 - Math.min(1, share / PROT_HARD_FULL_SHARE));
+    }
+    if (mode === "soft") {
+      s = s * (1 - (1 - SOFT_FACTOR) * Math.min(1, share));
+    }
   }
   return s;
 }
@@ -654,7 +682,7 @@ function calcScore(c) {
   if (c[3] >= 0 && c[3] * 10 < 2000 && c[4] >= 0 && c[4] * 10 < 5000) total += 0.05;
   total = Math.max(0, Math.min(1, total));
   var protMask = c[13] || 0;
-  if (protMask > 0) total = applyProtection(total, protMask);
+  if (protMask > 0) total = applyProtection(total, c);
   return Math.max(0, Math.min(1, total));
 }
 
@@ -890,7 +918,7 @@ function showTip(c) {
 
   /* Context tags: landuse + protection */
   var luV = c[16] || 0;
-  var pl = protLabel(c[13] || 0);
+  var pl = protLabelWithShare(c);
   if (luV > 0 || pl) {
     html += '<div class="tip-context">';
     if (luV > 0) html += '<span class="tip-tag" style="background:rgba(217,119,6,0.15);color:#fbbf24;border:1px solid rgba(217,119,6,0.3)">\ud83c\udfed ' + luLabel(luV) + '</span>';
@@ -969,7 +997,7 @@ function buildCellHtml(c) {
   html += '</div>';
 
   var luV = c[16]||0;
-  var pl = protLabel(c[13]||0);
+  var pl = protLabelWithShare(c);
   if (luV > 0 || pl) {
     html += '<div class="popup-section">Fl\u00e4chenkontext</div>';
     html += '<div class="popup-chips">';
