@@ -601,7 +601,7 @@ var SOFT_FACTOR = 0.3;
 var PROT_MIN_SHARE = 0.001;
 var PROT_HARD_FULL_SHARE = 0.25;
 var PROT_SHARE_IDX = {nationalpark:23,nsg:24,ffh:25,biosphere:26,lsg:27,naturpark:28};
-var ASSET_VERSION = "2026-04-15-hover-lookup";
+var ASSET_VERSION = "2026-04-15-hover-all-vars";
 var opacityRef = {value:0.68}, filterRef = {value:0.0};
 var map, heatLayer, kreisFg;
 var DC_DATA = [];
@@ -888,7 +888,7 @@ function showTip(c) {
   var s = calcScore(c);
   var lbl = scoreLabelDE(s);
 
-  /* Compute all sub-scores with weights for ranking */
+  /* Hover shows all live score components in a stable order. */
   var components = [
     {label:"Substation", val:decayScore(c[3],"sub"), color:"#f59e0b", w:W.sub},
     {label:"380 kV",     val:decayScore(c[4],"kv380"), color:"#c0392b", w:W.kv380},
@@ -899,8 +899,6 @@ function showTip(c) {
     {label:"Gewerbe",    val:(c[16]||0)/1000, color:"#d97706", w:W.lu},
     {label:"IT-Fachkr.", val:(c[22]||0)/1000, color:"#059669", w:W.labor}
   ];
-  /* Sort by weighted contribution descending */
-  var sorted = components.slice().sort(function(a,b) { return (b.val*b.w)-(a.val*a.w); });
 
   var kreis = (c[17] >= 0 && KRS_NAMES[c[17]]) ? KRS_NAMES[c[17]] : "";
   var latC = ((c[18]/1e5+c[19]/1e5)/2).toFixed(4);
@@ -915,15 +913,11 @@ function showTip(c) {
   if (kreis) html += '<div style="font-size:11px;color:#cbd5e1;font-weight:600;margin-bottom:1px">' + kreis + '</div>';
   html += '<div style="font-size:9px;color:#475569;margin-bottom:7px">' + latC + ', ' + lonC + ' &middot; [' + c[0] + ',' + c[1] + ']</div>';
 
-  /* Show top 4 score components */
-  for (var i = 0; i < Math.min(4, sorted.length); i++) {
-    var comp = sorted[i];
-    if (comp.w <= 0) continue;
+  /* Show all score components live, regardless of current weight. */
+  for (var i = 0; i < components.length; i++) {
+    var comp = components[i];
     html += tipBarHtml(comp.label, comp.val, comp.color);
   }
-  /* Show remaining count */
-  var remaining = sorted.length - 4;
-  if (remaining > 0) html += '<div style="font-size:9px;color:#475569;text-align:right;margin-top:1px">+' + remaining + ' weitere</div>';
 
   /* Distance chips */
   html += '<div class="tip-dist-chips">';
