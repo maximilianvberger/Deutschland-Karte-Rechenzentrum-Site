@@ -565,7 +565,7 @@ var CELLS, LAT_EDGES, LON_EDGES, KRS_NAMES, DECAY, W, W_DEF, SCENARIOS;
 var PROT_MODES = {nationalpark:"hard",nsg:"hard",ffh:"hard",biosphere:"soft",lsg:"soft",naturpark:"off"};
 var PROT_BITS = {nationalpark:1,nsg:2,ffh:4,biosphere:8,lsg:16,naturpark:32};
 var SOFT_FACTOR = 0.3;
-var ASSET_VERSION = "2026-04-15-strict-dc-evidence";
+var ASSET_VERSION = "2026-04-15-dc-protection-context";
 var opacityRef = {value:0.68}, filterRef = {value:0.0};
 var map, heatLayer, kreisFg;
 var DC_DATA = [];
@@ -1238,8 +1238,7 @@ function dcCalcPointBaseScore(d) {
 
 function dcCalcPointScore(d) {
   if (!d) return null;
-  var base = dcCalcPointBaseScore(d);
-  return clamp01(applyProtection(base, dcSiteProtMask(d)));
+  return dcCalcPointBaseScore(d);
 }
 
 function dcScoreValue(d) {
@@ -1352,7 +1351,7 @@ function dcRefreshComputed() {
     var notes = [];
     if (DC_EXPLORER_HIDDEN > 0) notes.push(DC_EXPLORER_HIDDEN + " Punkte ohne Namen, Betreiber oder Adresse sind im Explorer ausgeblendet.");
     notes.push("MW-Klassen basieren auf bekannten MW-Werten oder, falls diese fehlen, auf der Netzanbindung.");
-    notes.push("Scores nutzen den tatsächlichen Punktstandort; rote Rasterzellen bleiben nur Heatmap-Kontext.");
+    notes.push("Scores nutzen den tatsächlichen Punktstandort; Schutzgebiete bleiben bei bestehenden DCs nur Kontext.");
     noteEl.innerHTML = notes.join("<br>");
     noteEl.style.display = notes.length ? "block" : "none";
   }
@@ -1459,7 +1458,7 @@ function dcPopupHtml(d) {
   if (d.phone && typeof d.phone === 'string') details.push('📞 ' + d.phone);
   var pointProt = protLabel(dcSiteProtMask(d));
   var rasterProt = protLabel(dcCellProtMask(d));
-  if (pointProt) details.push('Schutz am Punkt: <b>' + escapeHtml(pointProt) + '</b>');
+  if (pointProt) details.push('Schutz am Punkt (Kontext): <b>' + escapeHtml(pointProt) + '</b>');
   if (rasterProt && rasterProt !== pointProt) details.push('Rasterzelle gefärbt: <b>' + escapeHtml(rasterProt) + '</b> (nicht für den DC-Score genutzt)');
   if (d._mwActual === null) details.push('🧭 MW-Klasse: <b>aus Netzanbindung abgeleitet</b>');
 
