@@ -1,0 +1,83 @@
+{
+  "version": "strict_hv_substation_footprint_v2",
+  "purpose": "Exclude pole/tower-like, generation-side, transition-terminal, or weakly evidenced objects from displayed and scored substation evidence.",
+  "accepted_geometry": [
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "excluded_geometry": [
+    "Point",
+    "LineString"
+  ],
+  "min_voltage_kv": 110,
+  "min_area_m2": 500.0,
+  "min_anonymous_area_m2": 1000.0,
+  "cluster_radius_m": 300.0,
+  "accepted_substation_types": [
+    "distribution",
+    "substation",
+    "transmission",
+    "yes"
+  ],
+  "excluded_substation_types": [
+    "compensation",
+    "connection",
+    "converter",
+    "erzeugung",
+    "erzeugungq",
+    "generation",
+    "industrial",
+    "minor_distribution",
+    "rail",
+    "storage",
+    "switchgear",
+    "switching",
+    "traction",
+    "transformer",
+    "transition"
+  ],
+  "rule_de": "Als Umspannwerk zählt nur ein flächenhaft kartiertes OSM-power=substation-Objekt mit mindestens 110 kV. Akzeptiert werden die OSM-Typen distribution/transmission sowie generisch als substation/yes erfasste Anlagen ab 500 m². Fehlt der OSM-Substation-Typ, genügen 500 m² nur bei Name oder Betreiber; anonyme untypisierte Flächen müssen mindestens 1.000 m² groß sein. Generation-, Transition-/Kabelend-, Kompensations-, Bahn-/Industrie-, Schaltgeräte- und Punkt-/Linienobjekte werden ausgeschlossen, weil sie für diese Standortanalyse keinen belastbaren Nachweis eines netzseitig nutzbaren Umspannwerks liefern.",
+  "input_features": 12229,
+  "strict_footprint_features": 3940,
+  "display_clusters": 3658,
+  "display_clusters_by_voltage": {
+    "110": 3224,
+    "220": 131,
+    "380": 303
+  },
+  "filter_diagnostics": {
+    "hv_polygon_candidates_before_strict_filter": 4761,
+    "removed_hv_polygons_by_excluded_substation_type": {
+      "generation": 432,
+      "transition": 158,
+      "compensation": 6,
+      "switchgear": 2,
+      "connection": 2,
+      "transformer": 1,
+      "erzeugungq": 1
+    },
+    "accepted_evidence_tiers": {
+      "accepted_osm_substation_type": 3101,
+      "untyped_with_name_or_operator": 548,
+      "large_untyped_footprint": 291
+    },
+    "accepted_substation_types": {
+      "distribution": 1691,
+      "transmission": 1393,
+      "untyped": 839,
+      "yes": 16,
+      "substation": 1
+    },
+    "min_accepted_area_m2": 500.41044755108595,
+    "accepted_features_below_1000_m2": 226
+  },
+  "cell_distance_stats": {
+    "cells": 89454,
+    "median_dist_sub110_m": 5159.037049406663,
+    "median_dist_sub220_m": 26439.885319432964,
+    "median_dist_sub380_m": 18322.415579997596
+  },
+  "datacenter_stats": {
+    "datacenters": 135
+  }
+}
